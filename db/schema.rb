@@ -30,11 +30,13 @@ ActiveRecord::Schema.define(version: 20141028173612) do
     t.integer  "parent_id"
     t.integer  "rank"
     t.text     "content"
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comments", ["course_id"], name: "index_comments_on_course_id"
+  add_index "comments", ["deleted_at"], name: "index_comments_on_deleted_at"
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id"
   add_index "comments", ["rank"], name: "index_comments_on_rank"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"

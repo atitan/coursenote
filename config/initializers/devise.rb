@@ -94,7 +94,8 @@ Devise.setup do |config|
   # a value less than 10 in other environments. Note that, for bcrypt (the default
   # encryptor), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
-  config.stretches = Rails.env.test? ? 1 : 2
+  # config.stretches = Rails.env.test? ? 1 : 10
+  config.stretches = 1
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = 'efca930b56406f3664954968f3855b614546335d58450ef0bbaf9cee50cd08cbebbf4919ec9f493ce62d1f690404d0480c97f707ef7175ef9f3a7e35539d141c'
@@ -143,6 +144,7 @@ Devise.setup do |config|
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
   # config.email_regexp = /\A[^@]+@[^@]+\z/
+  config.email_regexp = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.cycu.edu.tw\z/i
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this

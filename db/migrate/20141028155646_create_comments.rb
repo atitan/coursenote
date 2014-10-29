@@ -6,6 +6,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :rank
       t.text :content
+      t.datetime :deleted_at
 
       t.timestamps
     end
@@ -14,5 +15,6 @@ class CreateComments < ActiveRecord::Migration
     add_index :comments, :course_id
     add_index :comments, :parent_id
     add_index :comments, :rank
+    add_index :comments, :deleted_at
   end
 end
