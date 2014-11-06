@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :courses, defaults: { format: 'json' }
+      resources :departments, defaults: { format: 'json' }
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

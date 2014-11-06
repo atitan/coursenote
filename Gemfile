@@ -36,6 +36,9 @@ gem 'kaminari', '~> 0.16.1'
 # Soft delete
 gem "paranoia", :github => "radar/paranoia", :branch => "rails4"
 
+# N+1 problem
+gem "bullet", :group => "development"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

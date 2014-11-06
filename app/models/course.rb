@@ -10,4 +10,6 @@ class Course < ActiveRecord::Base
   belongs_to :department
   belongs_to :teacher
 
+  scope :name_like, ->(search) { where("name LIKE ?", "%#{search}%") }
+
 end

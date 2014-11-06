@@ -38,6 +38,9 @@ GEM
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     builder (3.2.2)
+    bullet (4.11.3)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -132,6 +135,7 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -139,6 +143,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bullet
   coffee-rails (~> 4.0.0)
   devise (~> 3.4.0)
   devise-encryptable (~> 0.2.0)
