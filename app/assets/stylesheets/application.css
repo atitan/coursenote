@@ -6375,3 +6375,11 @@ margin:20px;
 .bs-component,.section-preview .preview .image {
 position:relative;
 }
+
+.center {
+    text-align:center;
+}
+
+.center form {
+    display:inline-block;
+}
