@@ -26,9 +26,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# I18n
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+
 # User management
 gem 'devise', '~> 3.4.0'
 gem 'devise-encryptable', '~> 0.2.0'
+gem 'devise-i18n'
 
 # Model pagination
 gem 'kaminari', '~> 0.16.1'

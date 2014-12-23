@@ -4,6 +4,8 @@ Rails.application.routes.draw do
         sessions: 'users/sessions'
   }
 
+  root to: 'courses#index'
+
   resources :courses
 
   #namespace :api do

@@ -1,17 +1,48 @@
-<h2>Sign in</h2>
+<div class="bs-docs-section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="forms">登入</h1>
+      </div>
+    </div>
+  </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="well bs-component">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
+          
+          <%= devise_error_messages! %>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+          <div class="form-group">
+            <%= f.label :email, "學校信箱", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, "密碼", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+                <% if devise_mapping.rememberable? -%>
+                  <div class="checkbox">
+                    <% #f.label :remember_me, "記住我" %>
+                    <label>
+                          <%= f.check_box :remember_me %> 記住我
+                    </label>
+                  </div>
+                <% end -%>
+              </div>
+          </div>
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= f.submit "送出", class: "btn btn-primary" %>
+          </div>
+        <% end %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+        <div class="col-lg-offset-1">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
