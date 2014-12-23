@@ -4,12 +4,14 @@ Rails.application.routes.draw do
         sessions: 'users/sessions'
   }
 
-  namespace :api do
-    namespace :v1 do
-      resources :courses, defaults: { format: 'json' }
-      resources :departments, defaults: { format: 'json' }
-    end
-  end
+  resources :courses
+
+  #namespace :api do
+  #  namespace :v1 do
+  #    resources :courses, defaults: { format: 'json' }
+  #    resources :departments, defaults: { format: 'json' }
+  #  end
+  #end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
