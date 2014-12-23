@@ -1,29 +1,43 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="bs-docs-section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="forms">更改密碼</h1>
+      </div>
+    </div>
+  </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="well bs-component">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch, class: "form-horizontal" }) do |f| %>
+          <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+          <div class="form-group">
+            <%= f.label :current_password, "舊密碼", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.password_field :current_password, autofocus: true, autocomplete: "off", class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, "新密碼", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "確認新密碼", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= f.submit "送出", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,42 @@
-<h2>Change your password</h2>
+<div class="bs-docs-section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1 id="forms">修改密碼</h1>
+      </div>
+    </div>
+  </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="well bs-component">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :patch, class: "form-horizontal" }) do |f| %>
+          <%= devise_error_messages! %>
+          <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %></div>
+           <div class="form-group">
+            <%= f.label :password, "新密碼", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "確認新密碼", class: 'col-lg-2 control-label' %>
+              <div class="col-lg-10">
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+              </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= f.submit "送出", class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+        <div class="col-lg-offset-1">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

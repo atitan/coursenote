@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   #devise_for :users
   devise_for :users, controllers: {
-        sessions: 'users/sessions'
+        registrations: 'users/registrations'
   }
 
-  root to: 'courses#index'
+  root to: 'welcome#index'
 
-  resources :courses
+  resources :courses, only: [:index, :show]
 
   #namespace :api do
   #  namespace :v1 do

@@ -144,7 +144,7 @@ Devise.setup do |config|
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
   # config.email_regexp = /\A[^@]+@[^@]+\z/
-  config.email_regexp = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.cycu.edu.tw\z/i
+  config.email_regexp = /\A[\w\-]+@cycu\.edu\.tw\z/i
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this

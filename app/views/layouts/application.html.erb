@@ -17,7 +17,11 @@
 <%= render 'common/navbar' %>
 
 <div class="container">
+  <%= display_flash! %>
+
   <%= yield %>
+
+  <%= render 'common/footer' %>
 </div>
 
 </body>
