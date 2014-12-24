@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028173612) do
+ActiveRecord::Schema.define(version: 20141224163941) do
 
-  create_table "comment_votes", force: true do |t|
+  create_table "comment_votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
     t.boolean  "upvote"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20141028173612) do
   add_index "comment_votes", ["comment_id"], name: "index_comment_votes_on_comment_id"
   add_index "comment_votes", ["user_id", "comment_id"], name: "index_comment_votes_on_user_id_and_comment_id", unique: true
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "parent_id"
@@ -41,15 +41,18 @@ ActiveRecord::Schema.define(version: 20141028173612) do
   add_index "comments", ["rank"], name: "index_comments_on_rank"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "course_categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "course_entries", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "course_code"
+    t.binary   "timetable"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "course_categories", ["name"], name: "index_course_categories_on_name"
+  add_index "course_entries", ["course_code"], name: "index_course_entries_on_course_code"
+  add_index "course_entries", ["course_id"], name: "index_course_entries_on_course_id"
 
-  create_table "course_votes", force: true do |t|
+  create_table "course_votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "course_id"
     t.boolean  "upvote"
@@ -60,55 +63,37 @@ ActiveRecord::Schema.define(version: 20141028173612) do
   add_index "course_votes", ["course_id"], name: "index_course_votes_on_course_id"
   add_index "course_votes", ["user_id", "course_id"], name: "index_course_votes_on_user_id_and_course_id", unique: true
 
-  create_table "courses", force: true do |t|
-    t.string   "name",               default: "", null: false
-    t.integer  "course_category_id"
-    t.integer  "department_id"
-    t.integer  "teacher_id"
-    t.integer  "credit",             default: 0,  null: false
-    t.string   "code"
-    t.integer  "rank",               default: 0,  null: false
+  create_table "courses", force: :cascade do |t|
+    t.string   "title",      default: "", null: false
+    t.string   "category"
+    t.string   "department"
+    t.string   "instructor"
+    t.integer  "credit",     default: 0,  null: false
+    t.integer  "rank",       default: 0,  null: false
+    t.boolean  "required"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "courses", ["code"], name: "index_courses_on_code"
-  add_index "courses", ["course_category_id"], name: "index_courses_on_course_category_id"
+  add_index "courses", ["category"], name: "index_courses_on_category"
   add_index "courses", ["credit"], name: "index_courses_on_credit"
-  add_index "courses", ["department_id"], name: "index_courses_on_department_id"
-  add_index "courses", ["name"], name: "index_courses_on_name"
+  add_index "courses", ["department"], name: "index_courses_on_department"
+  add_index "courses", ["instructor"], name: "index_courses_on_instructor"
   add_index "courses", ["rank"], name: "index_courses_on_rank"
-  add_index "courses", ["teacher_id"], name: "index_courses_on_teacher_id"
+  add_index "courses", ["required"], name: "index_courses_on_required"
+  add_index "courses", ["title"], name: "index_courses_on_title"
 
-  create_table "departments", force: true do |t|
-    t.string   "name",       default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "favorite_courses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_entry_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "departments", ["name"], name: "index_departments_on_name"
+  add_index "favorite_courses", ["course_entry_id"], name: "index_favorite_courses_on_course_entry_id"
+  add_index "favorite_courses", ["user_id"], name: "index_favorite_courses_on_user_id"
 
-  create_table "schedules", force: true do |t|
-    t.integer  "course_id"
-    t.integer  "day"
-    t.integer  "period"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "schedules", ["course_id"], name: "index_schedules_on_course_id"
-  add_index "schedules", ["day"], name: "index_schedules_on_day"
-  add_index "schedules", ["period"], name: "index_schedules_on_period"
-
-  create_table "teachers", force: true do |t|
-    t.string   "name",       default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "teachers", ["name"], name: "index_teachers_on_name"
-
-  create_table "terms", force: true do |t|
+  create_table "terms", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "term"
     t.datetime "created_at"
@@ -118,7 +103,7 @@ ActiveRecord::Schema.define(version: 20141028173612) do
   add_index "terms", ["course_id"], name: "index_terms_on_course_id"
   add_index "terms", ["term"], name: "index_terms_on_term"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

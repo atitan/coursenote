@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :comment_votes
   has_many :course_votes
+  has_many :favorite_courses
 
 end
