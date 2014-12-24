@@ -2790,6 +2790,7 @@ select[multiple].form-group-lg .form-control {
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  opacity: 0.5;
 }
 .btn.disabled,
 .btn[disabled],
