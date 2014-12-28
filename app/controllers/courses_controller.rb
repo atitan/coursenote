@@ -9,6 +9,8 @@ class CoursesController < ApplicationController
 
   def index
     @courses = apply_scopes(Course).all
+
+    record_not_found if @courses.empty?
   end
 
   def show

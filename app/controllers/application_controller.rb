@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
+  def record_not_found
+    render plain: "404 Not Found", status: 404
+  end
+
   protected
 
     def verified_request?

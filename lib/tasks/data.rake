@@ -1,5 +1,5 @@
 namespace :data do
-  desc "import data from files to database"
+  desc "import data from url to database"
   task :import => :environment do
     require 'net/http'
 
@@ -28,7 +28,7 @@ namespace :data do
       }
     end
 
-    Course.create(course)
+    Course.create(course.uniq)
 
 
 
