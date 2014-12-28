@@ -3,7 +3,7 @@ class CreateCourseEntries < ActiveRecord::Migration
     create_table :course_entries do |t|
       t.integer :course_id
       t.string :course_code
-      t.binary :timetable
+      t.integer :timetable
       
       t.timestamps null: false
     end

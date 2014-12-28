@@ -34,6 +34,9 @@ gem 'devise', '~> 3.4.0'
 gem 'devise-encryptable', '~> 0.2.0'
 gem 'devise-i18n'
 
+# scope
+gem 'has_scope'
+
 # Model pagination
 gem 'kaminari', '~> 0.16.1'
 

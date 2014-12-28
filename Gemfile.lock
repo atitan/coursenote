@@ -71,6 +71,7 @@ GEM
     execjs (2.2.2)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
+    has_scope (0.5.1)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.6)
@@ -173,6 +174,7 @@ DEPENDENCIES
   devise (~> 3.4.0)
   devise-encryptable (~> 0.2.0)
   devise-i18n
+  has_scope
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.1)

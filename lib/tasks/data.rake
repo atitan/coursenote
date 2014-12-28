@@ -1,23 +1,20 @@
 namespace :data do
   desc "import data from files to database"
   task :import => :environment do
-	path = ARGV.last
-    file = File.open("/Users/ati/Projects/courses.data.html").read
-	data = file.split("@")
-	data.map!{ |x| x.split("|") }
-	data.each{ |x| x[15].gsub!(/\s+/, "") } # remove space from instructor
+  require 'net/http'
 
-	# create departments
+  uri = URI('http://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=1032')
+  raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
+  raw.gsub!(/(\s+|\r|\n)/, "") # remove space or newline
+  raw[0] = '' # remove first char '@'
+
+	course = raw.split("@")
+	course.map!{ |x| x.split("|") }
+
+  
+
 	depts = data.collect { |x| x[8] }.uniq.reject! { |x| x.empty? if x.is_a? String }
 	Department.create( depts.map{ |x| {name: x} } )
-
-	# create categories
-	cats = data.collect { |x| x[7] }.uniq
-	CourseCategory.create( cats.map{ |x| {name: x} } )
-
-	# create instructors
-	ins = data.collect{ |x| x[15] }.uniq
-	Teacher.create( ins.map{ |x| { name: x } } )
 
   end
 end

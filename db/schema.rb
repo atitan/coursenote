@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20141224163941) do
   create_table "course_entries", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "course_code"
-    t.binary   "timetable"
+    t.integer  "timetable"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -64,13 +64,15 @@ ActiveRecord::Schema.define(version: 20141224163941) do
   add_index "course_votes", ["user_id", "course_id"], name: "index_course_votes_on_user_id_and_course_id", unique: true
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",      default: "", null: false
+    t.string   "title",                  null: false
     t.string   "category"
     t.string   "department"
-    t.string   "instructor"
-    t.integer  "credit",     default: 0,  null: false
-    t.integer  "rank",       default: 0,  null: false
-    t.boolean  "required"
+    t.string   "instructor",             null: false
+    t.integer  "credit",     default: 0, null: false
+    t.integer  "rank",       default: 0, null: false
+    t.boolean  "required",               null: false
+    t.boolean  "quittable",              null: false
+    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20141224163941) do
   add_index "courses", ["credit"], name: "index_courses_on_credit"
   add_index "courses", ["department"], name: "index_courses_on_department"
   add_index "courses", ["instructor"], name: "index_courses_on_instructor"
+  add_index "courses", ["quittable"], name: "index_courses_on_quittable"
   add_index "courses", ["rank"], name: "index_courses_on_rank"
   add_index "courses", ["required"], name: "index_courses_on_required"
   add_index "courses", ["title"], name: "index_courses_on_title"
