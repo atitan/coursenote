@@ -1,33 +1,22 @@
 <%= render 'search_form' %>
 
-<% @courses.each do |course| %>
-  <%= course.name %><br>
-<% end %>
-
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>#</th>
-      <th>課程代碼</th>
       <th>課程名稱</th>
       <th>課程類別</th>
       <th>授課教師</th>
-      <th>時間</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.title %></td>
+        <td><%= course.category %></td>
+        <td><%= course.instructor %></td>
+        <td>*</td>
+      </tr>
+    <% end %>
     <tr class="info">
       <td>3</td>
       <td>Column content</td>

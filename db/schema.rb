@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20141224163941) do
 
   create_table "course_entries", force: :cascade do |t|
     t.integer  "course_id"
-    t.string   "course_code"
-    t.integer  "timetable"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "course_code",             null: false
+    t.integer  "timetable",   default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "course_entries", ["course_code"], name: "index_course_entries_on_course_code"
@@ -64,14 +64,16 @@ ActiveRecord::Schema.define(version: 20141224163941) do
   add_index "course_votes", ["user_id", "course_id"], name: "index_course_votes_on_user_id_and_course_id", unique: true
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",                  null: false
-    t.string   "category"
-    t.string   "department"
-    t.string   "instructor",             null: false
-    t.integer  "credit",     default: 0, null: false
-    t.integer  "rank",       default: 0, null: false
-    t.boolean  "required",               null: false
-    t.boolean  "quittable",              null: false
+    t.string   "title",                        null: false
+    t.string   "category",                     null: false
+    t.string   "department",                   null: false
+    t.string   "instructor",                   null: false
+    t.integer  "credit",           default: 0, null: false
+    t.integer  "rank",             default: 0, null: false
+    t.boolean  "required",                     null: false
+    t.boolean  "quittable",                    null: false
+    t.boolean  "cross_department",             null: false
+    t.boolean  "cross_graduate",               null: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -79,6 +81,8 @@ ActiveRecord::Schema.define(version: 20141224163941) do
 
   add_index "courses", ["category"], name: "index_courses_on_category"
   add_index "courses", ["credit"], name: "index_courses_on_credit"
+  add_index "courses", ["cross_department"], name: "index_courses_on_cross_department"
+  add_index "courses", ["cross_graduate"], name: "index_courses_on_cross_graduate"
   add_index "courses", ["department"], name: "index_courses_on_department"
   add_index "courses", ["instructor"], name: "index_courses_on_instructor"
   add_index "courses", ["quittable"], name: "index_courses_on_quittable"
