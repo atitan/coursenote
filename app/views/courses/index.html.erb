@@ -3,18 +3,21 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
+      <th>Rank#</th>
       <th>課程名稱</th>
       <th>課程類別</th>
       <th>授課教師</th>
+      <th>開課系級</th>
     </tr>
   </thead>
   <tbody>
     <% @courses.each do |course| %>
       <tr>
+        <td><%= course.rank %></td>
         <td><%= course.title %></td>
         <td><%= course.category %></td>
         <td><%= course.instructor %></td>
-        <td>*</td>
+        <td><%= course.department %></td>
       </tr>
     <% end %>
     <tr class="info">

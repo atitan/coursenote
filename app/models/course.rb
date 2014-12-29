@@ -5,11 +5,11 @@ class Course < ActiveRecord::Base
   has_many :course_entries
   has_many :terms
 
-  default_scope -> { order(title: :desc) }
   scope :required, -> { where(required: true) }
   scope :by_title, -> search { where("title LIKE ?", "%#{search}%") }
   scope :by_instructor, -> search { where("instructor LIKE ?", "%#{search}%") }
   scope :by_department, -> search { where("department LIKE ?", "%#{search}%") }
-  scope :by_category, -> search { where("category LIKE ?", "%#{search}%") }
+  scope :by_category, -> search { where(category: search) }
+  scope :sort, -> param, sort { order(sort) }
 
 end

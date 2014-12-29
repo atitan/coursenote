@@ -29,7 +29,9 @@ namespace :data do
     end
 
     Course.create(course.uniq)
+    course.uniq.each do |x|
 
+    end
 
 
   end
