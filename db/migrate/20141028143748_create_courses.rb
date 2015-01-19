@@ -9,9 +9,7 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :rank, null: false, default: 0
       t.boolean :required, null: false
       t.boolean :quittable, null: false
-      t.boolean :cross_department, null: false
-      t.boolean :cross_graduate, null: false
-      t.text :note
+      t.boolean :available, null: false
 
       t.timestamps
     end
@@ -24,7 +22,5 @@ class CreateCourses < ActiveRecord::Migration
     add_index :courses, :rank
     add_index :courses, :required
     add_index :courses, :quittable
-    add_index :courses, :cross_department
-    add_index :courses, :cross_graduate
   end
 end

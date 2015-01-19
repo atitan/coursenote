@@ -5,7 +5,8 @@ class Course < ActiveRecord::Base
   has_many :entries
   has_many :terms
 
-  scope :required, -> { where(required: true) }
+  scope :available, -> (value = false){ where(available: value) } 
+  scope :required, -> (value = false) { where(required: value) }
   scope :by_title, -> search { where("title LIKE ?", "%#{search}%") }
   scope :by_instructor, -> search { where("instructor LIKE ?", "%#{search}%") }
   scope :by_department, -> search { where("department LIKE ?", "%#{search}%") }

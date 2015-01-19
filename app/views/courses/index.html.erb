@@ -19,6 +19,12 @@
         <td><%= course.instructor %></td>
         <td><%= course.department %></td>
       </tr>
+      <tr class="info">
+        <% course.entries.each do |entry| %>
+          <td><%= entry.code %></td>
+          <td><%= entry.time %></td>
+        <% end %>
+      </tr>
     <% end %>
     <tr class="info">
       <td>3</td>
@@ -51,4 +57,6 @@
       <td>Column content</td>
     </tr>
   </tbody>
-</table> 
+</table>
+
+  <%= paginate @courses %>

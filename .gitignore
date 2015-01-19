@@ -17,3 +17,6 @@
 
 # Ignore OSX index
 .DS_Store
+
+# error file
+import_error.txt

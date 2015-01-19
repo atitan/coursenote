@@ -29,25 +29,21 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",                        null: false
-    t.string   "category",                     null: false
-    t.string   "department",                   null: false
-    t.string   "instructor",                   null: false
-    t.integer  "credit",           default: 0, null: false
-    t.integer  "rank",             default: 0, null: false
-    t.boolean  "required",                     null: false
-    t.boolean  "quittable",                    null: false
-    t.boolean  "cross_department",             null: false
-    t.boolean  "cross_graduate",               null: false
-    t.text     "note"
+    t.string   "title",                  null: false
+    t.string   "category",               null: false
+    t.string   "department",             null: false
+    t.string   "instructor",             null: false
+    t.integer  "credit",     default: 0, null: false
+    t.integer  "rank",       default: 0, null: false
+    t.boolean  "required",               null: false
+    t.boolean  "quittable",              null: false
+    t.boolean  "available",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "courses", ["category"], name: "index_courses_on_category"
   add_index "courses", ["credit"], name: "index_courses_on_credit"
-  add_index "courses", ["cross_department"], name: "index_courses_on_cross_department"
-  add_index "courses", ["cross_graduate"], name: "index_courses_on_cross_graduate"
   add_index "courses", ["department"], name: "index_courses_on_department"
   add_index "courses", ["instructor"], name: "index_courses_on_instructor"
   add_index "courses", ["quittable"], name: "index_courses_on_quittable"
@@ -57,14 +53,19 @@ ActiveRecord::Schema.define(version: 20150119091453) do
 
   create_table "entries", force: :cascade do |t|
     t.integer  "course_id"
-    t.string   "course_code", null: false
-    t.string   "timetable",   null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "code",             null: false
+    t.string   "timetable",        null: false
+    t.boolean  "cross_department", null: false
+    t.boolean  "cross_graduate",   null: false
+    t.text     "note"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  add_index "entries", ["course_code"], name: "index_entries_on_course_code"
+  add_index "entries", ["code"], name: "index_entries_on_code"
   add_index "entries", ["course_id"], name: "index_entries_on_course_id"
+  add_index "entries", ["cross_department"], name: "index_entries_on_cross_department"
+  add_index "entries", ["cross_graduate"], name: "index_entries_on_cross_graduate"
 
   create_table "favorite_courses", force: :cascade do |t|
     t.integer  "user_id"

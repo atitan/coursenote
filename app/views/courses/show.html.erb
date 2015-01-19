@@ -1,1 +1,4 @@
-name: <%= @course.title %><br>
+<%= @course %><br>
+<% @course.entries.each do |x| %>
+  <%= x.timetable %>
+<% end %>
