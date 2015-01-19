@@ -1,9 +1,9 @@
 class Comment < ActiveRecord::Base
-  # Soft delete
-  acts_as_paranoid
+  # Record versioning
+  has_paper_trail
 
   # Has many relationships
-  has_many :comment_votes
+  has_many :votes, as: :votable
   has_many :replies, class_name: "Comment",
     foreign_key: "parent_id", dependent: :destroy
 

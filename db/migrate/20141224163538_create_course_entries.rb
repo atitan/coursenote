@@ -3,7 +3,7 @@ class CreateCourseEntries < ActiveRecord::Migration
     create_table :course_entries do |t|
       t.integer :course_id
       t.string :course_code, null: false
-      t.integer :timetable, null: false, default: 0
+      t.integer :timetable, null: false
       
       t.timestamps null: false
     end

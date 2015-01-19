@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
   has_scope :by_instructor
   has_scope :by_department
   has_scope :by_category, type: :array
-  has_scope :sort
   has_scope :page, default: 1
 
   def index

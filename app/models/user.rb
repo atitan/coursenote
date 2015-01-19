@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
 
   # Has many relationships
   has_many :comments
-  has_many :comment_votes
-  has_many :course_votes
+  has_many :votes
   has_many :favorite_courses
 
 end

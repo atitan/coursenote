@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/radar/paranoia.git
-  revision: 641ff4a3c85d05abf7791976469318c2c5076409
-  branch: rails4
-  specs:
-    paranoia (2.0.4)
-      activerecord (~> 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -96,6 +88,9 @@ GEM
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
+    paper_trail (3.0.6)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     rack (1.6.0)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -178,7 +173,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.1)
-  paranoia!
+  paper_trail (~> 3.0.6)
   rails (~> 4.2.0)
   rails-i18n (~> 4.0.0)
   sass-rails (~> 4.0.3)

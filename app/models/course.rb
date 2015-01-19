@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
   # Has many relationships
   has_many :comments
-  has_many :course_votes
+  has_many :votes, as: :votable
   has_many :course_entries
   has_many :terms
 
@@ -10,6 +10,5 @@ class Course < ActiveRecord::Base
   scope :by_instructor, -> search { where("instructor LIKE ?", "%#{search}%") }
   scope :by_department, -> search { where("department LIKE ?", "%#{search}%") }
   scope :by_category, -> search { where(category: search) }
-  scope :sort, -> param, sort { order(sort) }
 
 end

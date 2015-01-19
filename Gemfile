@@ -40,8 +40,8 @@ gem 'has_scope'
 # Model pagination
 gem 'kaminari', '~> 0.16.1'
 
-# Soft delete
-gem "paranoia", :github => "radar/paranoia", :branch => "rails4"
+# Record Versioning
+gem 'paper_trail', '~> 3.0.6'
 
 # N+1 problem
 gem "bullet", :group => "development"

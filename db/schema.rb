@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224163941) do
+ActiveRecord::Schema.define(version: 20150119070203) do
 
   create_table "comment_votes", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,23 +30,21 @@ ActiveRecord::Schema.define(version: 20141224163941) do
     t.integer  "parent_id"
     t.integer  "rank"
     t.text     "content"
-    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comments", ["course_id"], name: "index_comments_on_course_id"
-  add_index "comments", ["deleted_at"], name: "index_comments_on_deleted_at"
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id"
   add_index "comments", ["rank"], name: "index_comments_on_rank"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "course_entries", force: :cascade do |t|
     t.integer  "course_id"
-    t.string   "course_code",             null: false
-    t.integer  "timetable",   default: 0, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "course_code", null: false
+    t.decimal  "timetable",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "course_entries", ["course_code"], name: "index_course_entries_on_course_code"
@@ -135,5 +133,16 @@ ActiveRecord::Schema.define(version: 20141224163941) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end
