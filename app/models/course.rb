@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   # Has many relationships
   has_many :comments
   has_many :votes, as: :votable
-  has_many :course_entries
+  has_many :entries
   has_many :terms
 
   scope :required, -> { where(required: true) }

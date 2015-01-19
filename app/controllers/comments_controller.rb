@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+
+  before_action :authenticate_user!
+
+
   def create
 
   end
@@ -8,6 +12,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+
+  end
+
+  private
+
+  def comment_params
 
   end
 end

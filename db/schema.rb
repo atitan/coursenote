@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119070203) do
-
-  create_table "comment_votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "comment_id"
-    t.boolean  "upvote"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comment_votes", ["comment_id"], name: "index_comment_votes_on_comment_id"
-  add_index "comment_votes", ["user_id", "comment_id"], name: "index_comment_votes_on_user_id_and_comment_id", unique: true
+ActiveRecord::Schema.define(version: 20150119091453) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -38,28 +27,6 @@ ActiveRecord::Schema.define(version: 20150119070203) do
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id"
   add_index "comments", ["rank"], name: "index_comments_on_rank"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-
-  create_table "course_entries", force: :cascade do |t|
-    t.integer  "course_id"
-    t.string   "course_code", null: false
-    t.decimal  "timetable",   null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "course_entries", ["course_code"], name: "index_course_entries_on_course_code"
-  add_index "course_entries", ["course_id"], name: "index_course_entries_on_course_id"
-
-  create_table "course_votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.boolean  "upvote"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "course_votes", ["course_id"], name: "index_course_votes_on_course_id"
-  add_index "course_votes", ["user_id", "course_id"], name: "index_course_votes_on_user_id_and_course_id", unique: true
 
   create_table "courses", force: :cascade do |t|
     t.string   "title",                        null: false
@@ -87,6 +54,17 @@ ActiveRecord::Schema.define(version: 20150119070203) do
   add_index "courses", ["rank"], name: "index_courses_on_rank"
   add_index "courses", ["required"], name: "index_courses_on_required"
   add_index "courses", ["title"], name: "index_courses_on_title"
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "course_code", null: false
+    t.string   "timetable",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "entries", ["course_code"], name: "index_entries_on_course_code"
+  add_index "entries", ["course_id"], name: "index_entries_on_course_id"
 
   create_table "favorite_courses", force: :cascade do |t|
     t.integer  "user_id"
@@ -144,5 +122,17 @@ ActiveRecord::Schema.define(version: 20150119070203) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "user_id"
+    t.boolean  "upvote"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "user_id"], name: "index_votes_on_votable_id_and_votable_type_and_user_id", unique: true
+  add_index "votes", ["votable_id"], name: "index_votes_on_votable_id"
 
 end

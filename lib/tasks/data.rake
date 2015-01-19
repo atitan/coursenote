@@ -31,16 +31,16 @@ namespace :data do
     end
 
     course.each_with_index do |x, i|
-      c = Course.find_by(x.select {|k,v| ["category", "department", "title", "instructor"].include?(k) })
+      #c = Course.find_by(x.select {|k,v| ["category", "department", "title", "instructor"].include?(k) })
+      c = Course.find_by(x)
       if c.nil?
-        Course.create(x) do |u|
-          u.terms.new(term: yearterm.to_i)
-          u.course_entries.new(entry[i])
-        end
-      else
-        c.update(x)
-        c.terms.create(term: yearterm.to_i)
-        c.course_entries.create(entry[i])
+        c = Course.create(x)
+        c.terms.create({term: yearterm.to_i})
+        c.entries.create(entry[i])
+      #else
+      #  c.update(x)
+      #  c.terms.create(term: yearterm.to_i)
+      #  c.course_entries.create(entry[i])
       end
     end
 
@@ -66,6 +66,6 @@ namespace :data do
         output[day*15 + offset.index(z)] = "1"
       end
     end
-    output.to_s(2)
+    output
   end
 end
