@@ -7,7 +7,6 @@
       <th>課程名稱</th>
       <th>課程類別</th>
       <th>授課教師</th>
-      <th>開課系級</th>
     </tr>
   </thead>
   <tbody>
@@ -17,12 +16,13 @@
         <td><%= course.title %></td>
         <td><%= course.category %></td>
         <td><%= course.instructor %></td>
-        <td><%= course.department %></td>
       </tr>
       <tr class="info">
         <% course.entries.each do |entry| %>
           <td><%= entry.code %></td>
           <td><%= entry.time %></td>
+          <td><%= entry.credit %></td>
+          <td><%= entry.department %></td>
         <% end %>
       </tr>
     <% end %>
