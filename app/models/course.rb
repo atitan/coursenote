@@ -3,7 +3,6 @@ class Course < ActiveRecord::Base
   has_many :comments
   has_many :votes, as: :votable
   has_many :entries
-  has_many :terms
 
   scope :by_title, -> search { where("title LIKE ?", "%#{search}%") }
   scope :by_instructor, -> search { where("instructor LIKE ?", "%#{search}%") }
