@@ -1,4 +1,44 @@
-<%= @course %><br>
+title: <%= @course.title %><br>
+category: <%= @course.category %><br>
+instructor: <%= @course.instructor %><br>
+rank: <%= @course.rank %><br>
+available: <%= @course.available %><br>
+<table border="1" style="text-align: center">
+  <tr>
+    <td>code</td>
+    <td>credit</td>
+    <td>department</td>
+    <td>time</td>
+    <td>cross_department</td>
+    <td>cross_graduate</td>
+    <td>quittable</td>
+    <td>required</td>
+    <td>note</td>
+  </tr>
 <% @course.entries.each do |x| %>
-  <%= x.timetable %>
+  <tr>
+    <td><%= x.code %></td>
+    <td><%= x.credit%></td>
+    <td><%= x.department%></td>
+    <td><%= x.time%></td>
+    <td><%= x.cross_department%></td>
+    <td><%= x.cross_graduate%></td>
+    <td><%= x.quittable%></td>
+    <td><%= x.required%></td>
+    <td><%= x.note%></td>
+  </tr>
+<% end %>
+</table>
+<br><br>
+<% @course.comments.each do |x| %>
+<div border="1">
+  <%= x.content %>
+</div><br>
+<% end %>
+<% if user_signed_in? %>
+<%= form_for @new_comment, html: {class: "nifty_form"} do |f| %>
+  <%= hidden_field_tag 'comment[course_id]', @course.id  %>
+  <%= f.text_area :content, size: "60x12" %>
+  <%= f.submit "Create" %>
+<% end %>
 <% end %>

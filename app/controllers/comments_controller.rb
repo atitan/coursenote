@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     current_user.comments.create(comment_params)
+    redirect_to course_path params[:comment][:course_id]
   end
 
   def update
@@ -18,8 +19,7 @@ class CommentsController < ApplicationController
   private
 
   def find_comment
-    @comment = current_user.comments.find_by(id: params[:id])
-    raise ActiveRecord::RecordNotFound if @comment.nil?
+    @comment = current_user.comments.find(params[:id])
   end
 
   def comment_params

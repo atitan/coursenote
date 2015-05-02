@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :courses, only: [:index, :show]
+  resources :comments, only: [:create, :update, :destroy]
 
   #namespace :api do
   #  namespace :v1 do
