@@ -20,23 +20,23 @@ namespace :data do
         timetable: convert2timetable([x[16], x[18], x[20]]), # 時間表
         cross_graduate: !x[1].empty?, # 跨部
         cross_department: !x[2].empty?, # 跨系
+        credit: x[14].to_i, # 學分
+        required: x[11].include?("必") ? true : false, # 必選修
+        quittable: x[4].empty? ? true : false, # 是否可停修
         note: x[22] # 備註
       }
 
       {
-        quittable: x[4].empty? ? true : false, # 是否可停修
         category: x[7], # 類別
         department: x[9], # 開課系級
         title: x[10], # 課程名稱
-        required: x[11].include?("必") ? true : false, # 必選修
-        credit: x[14].to_i, # 學分
         instructor: x[15], # 講師
         available: true
       }
     end
 
     course.each_with_index do |item, index|
-      w = Course.where(item.select {|k,v| [:category, :department, :title, :instructor].include?(k) })
+      w = Course.where(item.select {|k,v| [:category, :title, :instructor].include?(k) })
       if w.empty?
         w = Course.create(item)
         w.terms.create({term: yearterm.to_i})
