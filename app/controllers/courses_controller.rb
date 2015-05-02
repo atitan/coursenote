@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
   def index
     @courses = apply_scopes(Course).includes(:entries).all
 
-    record_not_found if @courses.empty?
+    raise ActiveRecord::RecordNotFound if @courses.empty?
   end
 
   def show

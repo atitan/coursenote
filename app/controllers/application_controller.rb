@@ -6,12 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   after_filter :set_csrf_cookie_for_ng
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  
+
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
-
-  def record_not_found
-    render plain: "404 Not Found", status: 404
   end
 
   protected
@@ -25,5 +24,9 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:account_update) { |u| 
         u.permit(:password, :password_confirmation, :current_password) 
       }
+    end
+
+    def record_not_found
+      render plain: "404 Not Found", status: 404
     end
 end
