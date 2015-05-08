@@ -46,6 +46,9 @@ gem 'paper_trail', '~> 3.0.6'
 # N+1 problem
 gem "bullet", :group => "development"
 
+# Use Bootstrap for stylesheets
+gem 'bootstrap-sass'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -57,4 +60,3 @@ gem "bullet", :group => "development"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
