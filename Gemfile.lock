@@ -199,6 +199,7 @@ DEPENDENCIES
   devise (~> 3.4.0)
   devise-encryptable (~> 0.2.0)
   devise-i18n
+  execjs
   has_scope
   jbuilder (~> 2.0)
   jquery-rails
