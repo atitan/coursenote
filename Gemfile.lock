@@ -102,6 +102,7 @@ GEM
     mini_portile (0.6.1)
     minitest (5.5.0)
     multi_json (1.10.1)
+    mysql2 (0.3.15)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.0)
@@ -204,6 +205,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.1)
+  mysql2
   paper_trail (~> 3.0.6)
   rails (~> 4.2.0)
   rails-i18n (~> 4.0.0)
