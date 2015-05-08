@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   has_scope :page, default: 1
 
   def index
-    @courses = apply_scopes(Course).includes(:entries).all
+    @courses = apply_scopes(Course)
 
     raise ActiveRecord::RecordNotFound if @courses.empty?
   end

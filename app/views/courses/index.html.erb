@@ -11,19 +11,11 @@
   </thead>
   <tbody>
     <% @courses.each do |course| %>
-      <tr>
+      <tr class="<%= course.available? ? 'info' : 'active' %>">
         <td><%= course.rank %></td>
         <td><%= course.title %></td>
         <td><%= course.category %></td>
         <td><%= course.instructor %></td>
-      </tr>
-      <tr class="info">
-        <% course.entries.each do |entry| %>
-          <td><%= entry.code %></td>
-          <td><%= entry.time %></td>
-          <td><%= entry.credit %></td>
-          <td><%= entry.department %></td>
-        <% end %>
       </tr>
     <% end %>
     <tr class="info">
