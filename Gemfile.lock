@@ -112,6 +112,8 @@ GEM
     paper_trail (3.0.6)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
+    puma (2.8.2)
+      rack (>= 1.1, < 2.0)
     rack (1.6.0)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -200,13 +202,15 @@ DEPENDENCIES
   devise (~> 3.4.0)
   devise-encryptable (~> 0.2.0)
   devise-i18n
-  execjs
   has_scope
+  i18n
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.1)
+  minitest
   mysql2
   paper_trail (~> 3.0.6)
+  puma
   rails (~> 4.2.0)
   rails-i18n (~> 4.0.0)
   sass-rails (~> 4.0.3)

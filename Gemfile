@@ -60,7 +60,10 @@ end
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
-gem 'execjs'
+# Use puma as production server
+gem 'puma'
+gem 'i18n'
+gem 'minitest'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
