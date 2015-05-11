@@ -16,6 +16,12 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def vote
+    comment = Comment.find(params[:id])
+    vote = current_user.votes.find_or_initialize_by(votable: comment)
+    vote.update_attributes(vote_params)
+  end
+
   private
 
   def find_comment
@@ -31,4 +37,9 @@ class CommentsController < ApplicationController
   def update_params
     params.require(:comment).permit(:content)
   end
+
+  def vote_params
+    params.require(:vote).permit(:upvote)
+  end
+
 end
