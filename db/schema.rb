@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.integer  "votable_id",   null: false
     t.string   "votable_type", null: false
     t.integer  "user_id",      null: false
-    t.boolean  "upvote",       null: false
+    t.boolean  "upvote"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

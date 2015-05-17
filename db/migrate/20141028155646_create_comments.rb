@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.integer :course_id, null: false
       t.integer :parent_id
-      t.integer :rank, null: false, default: 0
+      t.integer :rank, null: false
       t.text :content, null: false
 
       t.timestamps
