@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    comment = Comment.find(params[:id])
+    comment = Comment.find(params[:comment_id])
     vote = current_user.votes.find_or_initialize_by(votable: comment)
     vote.update_attributes(vote_params)
   end

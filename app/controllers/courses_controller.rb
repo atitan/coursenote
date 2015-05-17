@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
   end
 
   def vote
-    course = Course.find(params[:id])
+    course = Course.find(params[:course_id])
     vote = current_user.votes.find_or_initialize_by(votable: course)
     vote.update_attributes(vote_params)
   end
