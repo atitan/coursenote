@@ -20,3 +20,13 @@
 body {
   padding-top: 70px;  /* Fix navbar overlay problem */
 }
+
+.container-fluid {
+  margin: 0 15px 0 15px;
+}
+
+@media (min-width: 768px) {
+  .container-fluid {
+    margin: 0 30px 0 30px;
+  }
+}
