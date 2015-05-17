@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20150119091453) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
+    t.integer  "user_id",                null: false
+    t.integer  "course_id",              null: false
     t.integer  "parent_id"
-    t.integer  "rank"
-    t.text     "content"
+    t.integer  "rank",       default: 0, null: false
+    t.text     "content",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "courses", ["title"], name: "index_courses_on_title"
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "course_id"
+    t.integer  "course_id",                    null: false
     t.string   "code",                         null: false
     t.integer  "credit",           default: 0, null: false
     t.string   "department",                   null: false
@@ -69,24 +69,16 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "entries", ["timetable"], name: "index_entries_on_timetable"
 
   create_table "favorite_courses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "course_entry_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "user_id",                         null: false
+    t.integer  "course_entry_id",                 null: false
+    t.boolean  "time_filter",     default: false, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "favorite_courses", ["course_entry_id"], name: "index_favorite_courses_on_course_entry_id"
+  add_index "favorite_courses", ["time_filter"], name: "index_favorite_courses_on_time_filter"
   add_index "favorite_courses", ["user_id"], name: "index_favorite_courses_on_user_id"
-
-  create_table "terms", force: :cascade do |t|
-    t.integer  "course_id"
-    t.integer  "term"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "terms", ["course_id"], name: "index_terms_on_course_id"
-  add_index "terms", ["term"], name: "index_terms_on_term"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -105,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "time_filter"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,6 +105,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["time_filter"], name: "index_users_on_time_filter"
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
   create_table "versions", force: :cascade do |t|
@@ -126,10 +120,10 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "user_id"
-    t.boolean  "upvote"
+    t.integer  "votable_id",   null: false
+    t.string   "votable_type", null: false
+    t.integer  "user_id",      null: false
+    t.boolean  "upvote",       null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

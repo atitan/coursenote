@@ -1,7 +1,7 @@
 class CreateEntries < ActiveRecord::Migration
    def change
     create_table :entries do |t|
-      t.integer :course_id
+      t.integer :course_id, null: false
       t.string :code, null: false
       t.integer :credit, null: false, default: 0
       t.string :department, null: false

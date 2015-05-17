@@ -10,4 +10,13 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :favorite_courses
 
+  def student_id
+    return false unless is_student?
+    self[:email].match(/\A((s|g)(\d{7,8})@cycu\.edu\.tw)\z/i)[3]
+  end
+
+  def is_student?
+    !self[:email].match(/\A((s|g)\d{7,8}@cycu\.edu\.tw)\z/i).nil?
+  end
+
 end

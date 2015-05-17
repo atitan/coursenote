@@ -38,6 +38,9 @@ namespace :data do
     # and reset course status to unavailable
     Entry.destroy_all
     Course.update_all(available: false)
+    # delete all users' custom data
+    FavoriteCourse.destroy_all
+    User.update_all(time_filter: "".rjust(112, "0"))
 
     # start updating
     courses.each_with_index do |course, index|
@@ -51,15 +54,10 @@ namespace :data do
 
   end
 
-  desc "re-compute rank for courses and comments"
-  task :compute_rank => :environment do
-
-  end
-
   def convert2timetable(time)
     offset = %w(A 1 2 3 4 B 5 6 7 8 C D E F G H)
-    output = ""
-    (1..112).each {|i| output << "0"}
+    output = "".rjust(112, "0")
+
     time.each do |x|
       tmp = /(\d)-(\w+)/.match(x)
       next if tmp.nil?
