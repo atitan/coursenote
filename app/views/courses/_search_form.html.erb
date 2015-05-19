@@ -1,56 +1,31 @@
-<div class="bs-docs-section">
-  <div class="page-header">
-    <div class="row">
-      <form class="form-inline">
-        <fieldset>
-          <input type="text" name="by_title" placeholder="課程名稱" class="form-control">
-          <input type="text" name="by_department" placeholder="開課系級" class="form-control">
-          <input type="text" name="by_instructor" placeholder="授課教師" class="form-control">
-          <button type="submit" class="btn btn-primary">查詢</button>
-        </fieldset>
-        
-        <fieldset id="class-category">
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="天">天</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="人">人</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="物">物</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="我">我</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="人哲">人哲</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="宗哲">宗哲</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="體育">體育</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="歷史">歷史</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="公民">公民</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="英聽">英聽</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="文學">文學</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="軍訓">軍訓</label>
-          </div>
-          <div class="btn-group form-group" data-toggle="buttons">
-            <label class="btn btn-success"><input type="checkbox" name="by_category[]" value="科技">科技</label>
-          </div>
-        </fieldset>
-      </form>
-    </div>
+<form class="search-form">
+  <div class="form-group">
+    <label for="by_title">課程名稱</label>
+    <input type="text" class="form-control" id="by_title" placeholder="課程名稱" name="by_title">
   </div>
-</div>
+  <div class="form-group">
+    <label for="by_department">開課系級</label>
+    <input type="text" class="form-control" id="by_department" placeholder="開課系級" name="by_department">
+  </div>
+  <div class="form-group">
+    <label for="by_instructor">授課教師</label>
+    <input type="text" class="form-control" id="by_instructor" placeholder="授課教師" name="by_instructor">
+  </div>
+  <div data-toggle="buttons">
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="天">天學</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="人">人學</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="物">物學</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="我">我學</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="宗哲">宗哲</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="人哲">人哲</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="體育">體育</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="公民">公民</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="英聽">英聽</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="文學">文學</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="軍訓">軍訓</label>
+    <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="科技">科技</label>
+  </div>
+  <div class="btn-submit">
+    <button type="submit" class="btn btn-primary">查詢</button>
+  </div>
+</form>
