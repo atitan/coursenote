@@ -16,7 +16,7 @@ class Vote < ActiveRecord::Base
     votable.update_attributes(rank: rank)
   end
 
-  def compute_rank(seconds)
+  def compute_rank(seconds = 0)
     ballots = Vote.where(votable: votable)
 
     counted = Hash.new(0)

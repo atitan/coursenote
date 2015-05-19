@@ -40,6 +40,7 @@ class CommentsController < ApplicationController
 
   def vote_params
     params.require(:vote).permit(:upvote)
+    params[:vote][:upvote] = nil if params[:vote][:upvote] == 'nil'
   end
 
 end
