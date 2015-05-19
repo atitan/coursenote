@@ -20,12 +20,18 @@ body {
   padding-top: 70px;  /* Fix navbar overlay problem */
 }
 
-.container-fluid {
-  margin: 0 15px 0 15px;
+
+.mg-t-10 {
+  margin-top: 10px;
 }
 
-@media (min-width: 768px) {
-  .container-fluid {
-    margin: 0 30px 0 30px;
+.mg-b-10 {
+  margin-bottom: 10px
+}
+
+@media screen and (max-width: 768px) {
+  .mg-lr-xs-2 {
+    margin-left: 2px;
+    margin-right: 2px;
   }
 }
