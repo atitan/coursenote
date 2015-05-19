@@ -51,6 +51,10 @@ group :development do
   # N+1 problem
   gem "bullet"
 end
+
+# Use Bootstrap for stylesheets
+gem 'bootstrap-sass', '~> 3.3.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -67,4 +71,3 @@ gem 'minitest'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
