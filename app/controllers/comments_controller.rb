@@ -4,22 +4,33 @@ class CommentsController < ApplicationController
   before_action :find_comment, only: [:update, :destroy]
 
   def create
-    current_user.comments.create(create_params)
-    redirect_to course_path params[:comment][:course_id]
+    if current_user.comments.create(create_params)
+      render plain: 'ok'
+    else
+      render plain: 'error', status: 500
   end
 
   def update
-    @comment.update_attibutes(update_params)
+    if @comment.update(update_params)
+      render plain: 'ok'
+    else
+      render plain: 'error', status: 500
   end
 
   def destroy
-    @comment.destroy
+    if @comment.destroy
+      render plain: 'ok'
+    else
+      render plain: 'error', status: 500
   end
 
   def vote
     comment = Comment.find(params[:comment_id])
     vote = current_user.votes.find_or_initialize_by(votable: comment)
-    vote.update_attributes(vote_params)
+    if vote.update(vote_params)
+      render plain: 'ok'
+    else
+      render plain: 'error', status: 500
   end
 
   private
@@ -39,8 +50,8 @@ class CommentsController < ApplicationController
   end
 
   def vote_params
-    params.require(:vote).permit(:upvote)
-    params[:vote][:upvote] = nil if params[:vote][:upvote] == 'nil'
+    params[:upvote] = nil if params[:upvote] == 'nil'
+    {upvote: params[:upvote]}
   end
 
 end

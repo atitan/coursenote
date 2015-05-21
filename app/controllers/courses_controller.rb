@@ -24,14 +24,17 @@ class CoursesController < ApplicationController
   def vote
     course = Course.find(params[:course_id])
     vote = current_user.votes.find_or_initialize_by(votable: course)
-    vote.update_attributes(vote_params)
+    if vote.update(vote_params)
+      render plain: 'ok'
+    else
+      render plain: 'error', status: 500
   end
 
   private
 
   def vote_params
-    params.require(:vote).permit(:upvote)
-    params[:vote][:upvote] = nil if params[:vote][:upvote] == 'nil'
+    params[:upvote] = nil if params[:upvote] == 'nil'
+    {upvote: params[:upvote]}
   end
 
 end

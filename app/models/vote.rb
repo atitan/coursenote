@@ -13,7 +13,7 @@ class Vote < ActiveRecord::Base
     rank_f = compute_rank(seconds)
     rank = Integer(10**8 * rank_f)
 
-    votable.update_attributes(rank: rank)
+    votable.update(rank: rank)
   end
 
   def compute_rank(seconds = 0)
@@ -21,7 +21,6 @@ class Vote < ActiveRecord::Base
 
     counted = Hash.new(0)
     ballots.each { |ballot| counted[ballot[:upvote]] += 1 }
-    counted = Hash[counted.map {|k,v| [k,v] }]
 
     # Reference: Reddit Ranking Algorithm
     s = counted[true] - counted[false]
