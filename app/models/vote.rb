@@ -16,7 +16,7 @@ class Vote < ActiveRecord::Base
     votable.update(rank: rank)
   end
 
-  def compute_rank(seconds = 0)
+  def compute_rank(seconds)
     ballots = Vote.where(votable: votable)
 
     counted = Hash.new(0)
@@ -34,6 +34,8 @@ class Vote < ActiveRecord::Base
     else
       sign = 0
     end
+
+    seconds = 0 if seconds.nil?
 
     (sign*order+seconds).round(8)
   end
