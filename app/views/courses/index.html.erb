@@ -36,8 +36,9 @@
                 </li>
                 <li class="col-xs-12">
                   <li class="col-xs-6 col-sm-9">
-                    <button type="button" class="btn btn-success mg-t-10" aria-label="推"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 推</button>
-                    <button type="button" class="btn btn-danger mg-t-10" aria-label="噓"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 噓</button>
+                    <button type="button" onclick="sendVote(<%= course.id %>, true)" class="btn btn-success mg-t-10" aria-label="推"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 推</button>
+                    <button type="button" onclick="sendVote(<%= course.id %>, 'nil')" class="btn btn-info mg-t-10" aria-label="中立"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 中立</button>
+                    <button type="button" onclick="sendVote(<%= course.id %>, false)" class="btn btn-danger mg-t-10" aria-label="噓"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 噓</button>
                   </li>
                   <li class="col-xs-6 col-sm-3">
                     <a href="#<%= course.instructor %>_<%= course.id %>" class="btn btn-primary mg-t-10" data-toggle="collapse" data-parent="#courseInfoList" aria-expanded="true" aria-controls="<%= course.instructor %>_<%= course.id %>">開課資訊</a>

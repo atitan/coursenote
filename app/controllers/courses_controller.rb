@@ -28,6 +28,7 @@ class CoursesController < ApplicationController
       render plain: 'ok'
     else
       render plain: 'error', status: 500
+    end
   end
 
   private
