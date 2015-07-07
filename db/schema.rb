@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20150119091453) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",                null: false
-    t.integer  "course_id",              null: false
+    t.integer  "user_id",    null: false
+    t.integer  "course_id",  null: false
     t.integer  "parent_id"
-    t.integer  "rank",       default: 0, null: false
-    t.text     "content",                null: false
+    t.integer  "rank",       null: false
+    t.text     "content",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
