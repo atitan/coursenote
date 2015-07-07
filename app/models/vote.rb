@@ -2,21 +2,25 @@ class Vote < ActiveRecord::Base
   belongs_to :votable, polymorphic: true
   belongs_to :user
 
+  after_save :update_score
   after_save :update_rank
 
   validates_uniqueness_of :user_id, scope: [:votable_id, :votable_type]
+  validates_associated :votable
 
   private
 
-  def update_rank
-    seconds = (votable.created_at.to_i - 1134028003) / 45000 if votable_type == "Comment"
-    rank_f = compute_rank(seconds)
-    rank = Integer(10**8 * rank_f)
+  def update_score
+    history = changes['upvote']
+    lookup = { nil => 0, true => 1, false => -1 }
 
-    votable.update(rank: rank)
+    diff = -lookup[history[0]] + lookup[history[1]]
+    votable.update(score: votable.score + diff)
   end
 
-  def compute_rank(seconds)
+  def update_rank
+    return true unless votable_type == "Comment" and votable.is_parent?
+
     ballots = Vote.where(votable: votable)
 
     counted = Hash.new(0)
@@ -35,8 +39,8 @@ class Vote < ActiveRecord::Base
       sign = 0
     end
 
-    seconds = 0 if seconds.nil?
-
-    (sign*order+seconds).round(8)
+    seconds = (votable.created_at.to_i - 1134028003) / 45000
+    rank = Integer(10**8 * (sign*order+seconds).round(8))
+    votable.update(rank: rank)
   end
 end

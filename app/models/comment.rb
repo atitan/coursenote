@@ -21,6 +21,12 @@ class Comment < ActiveRecord::Base
   validates_associated :parent
   validates_associated :course
 
+  scope :thread, -> { where(parent: nil) }
+
+  def is_parent?
+    parent.nil?
+  end
+
   private
 
   def init_rank
