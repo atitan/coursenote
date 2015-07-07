@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!, only: :vote
 
   #has_scope :available, type: :boolean, allow_blank: true
-  #has_scope :required, type: :boolean, allow_blank: true
   has_scope :by_title
   has_scope :by_instructor
   has_scope :by_department
@@ -26,6 +25,7 @@ class CoursesController < ApplicationController
       render json: vote
     else
       render json: { error: vote.errors.full_messages }, status: :internal_server_error
+    end
   end
 
   private

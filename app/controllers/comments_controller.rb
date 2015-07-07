@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       render json: comment
     else
       render json: { error: comment.errors.full_messages }, status: :internal_server_error
+    end
   end
 
   def update
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
       render json: @comment
     else
       render json: { error: @comment.errors.full_messages }, status: :internal_server_error
+    end
   end
 
   def destroy
@@ -22,6 +24,7 @@ class CommentsController < ApplicationController
       render json: @comment
     else
       render json: { error: @comment.errors.full_messages }, status: :internal_server_error
+    end
   end
 
   def vote
@@ -31,6 +34,7 @@ class CommentsController < ApplicationController
       render json: vote
     else
       render json: { error: vote.errors.full_messages }, status: :internal_server_error
+    end
   end
 
   private
