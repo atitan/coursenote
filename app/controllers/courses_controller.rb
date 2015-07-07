@@ -12,8 +12,6 @@ class CoursesController < ApplicationController
 
   def index
     @courses = apply_scopes(Course).includes(:entries)
-
-    raise ActiveRecord::RecordNotFound if @courses.empty?
   end
 
   def show
@@ -25,16 +23,16 @@ class CoursesController < ApplicationController
     course = Course.find(params[:course_id])
     vote = current_user.votes.find_or_initialize_by(votable: course)
     if vote.update(vote_params)
-      render plain: 'ok'
+      render json: vote
     else
-      render plain: 'error', status: 500
+      render json: { error: vote.errors.full_messages }, status: :internal_server_error
   end
 
   private
 
   def vote_params
     params[:upvote] = nil if params[:upvote] == 'nil'
-    {upvote: params[:upvote]}
+    { upvote: params[:upvote] }
   end
 
 end

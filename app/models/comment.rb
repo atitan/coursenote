@@ -4,18 +4,22 @@ class Comment < ActiveRecord::Base
 
   # Has many relationships
   has_many :votes, as: :votable
-  has_many :replies, class_name: "Comment",
-    foreign_key: "parent_id", dependent: :destroy
 
   # Belongs to these models
   belongs_to :user
   belongs_to :course
+
+  # Self association
+  has_many :replies, class_name: "Comment",
+    foreign_key: "parent_id", dependent: :destroy
   belongs_to :parent, class_name: "Comment",
     foreign_key: "parent_id"
 
   before_create :init_rank
 
   validates :content, length: { maximum: 5000 }, presence: true
+  validates_associated :parent
+  validates_associated :course
 
   private
 
