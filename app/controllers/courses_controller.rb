@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
 
   before_action :authenticate_user!, only: :vote
 
-  #has_scope :available, type: :boolean, allow_blank: true
+  has_scope :show_all, type: :boolean
   has_scope :by_title
   has_scope :by_instructor
   has_scope :by_department
