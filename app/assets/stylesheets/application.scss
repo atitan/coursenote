@@ -15,8 +15,11 @@
  *= require_self
  */
 
+@import url(http://fonts.googleapis.com/earlyaccess/cwtexhei.css);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
 body {
+	font-family: 'Ubuntu', 'cwTeXHei', sans-serif;
   padding-top: 70px;  /* Fix navbar overlay problem */
 }
 
