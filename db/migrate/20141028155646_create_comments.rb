@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :user_id, null: false
       t.integer :course_id, null: false
       t.integer :parent_id
-      t.integer :rank, null: false
+      t.integer :score, null: false, default: 0
       t.text :content, null: false
 
       t.timestamps
@@ -13,6 +13,6 @@ class CreateComments < ActiveRecord::Migration
     add_index :comments, :user_id
     add_index :comments, :course_id
     add_index :comments, :parent_id
-    add_index :comments, :rank
+    add_index :comments, :score
   end
 end

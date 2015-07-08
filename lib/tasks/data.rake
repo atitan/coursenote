@@ -17,6 +17,7 @@ namespace :data do
       entries << {
         code: x[6], # 代號
         timetable: convert2timetable([x[16], x[18], x[20]]), # 時間表
+        timestring: "#{x[16]} #{x[18]} #{x[20]}", # 字串時間表
         cross_graduate: !x[1].empty?, # 跨部
         cross_department: !x[2].empty?, # 跨系
         department: x[9], # 開課系級
@@ -38,10 +39,7 @@ namespace :data do
     # and reset course status to unavailable
     Entry.destroy_all
     Course.update_all(available: false)
-    # delete all users' custom data
-    FavoriteCourse.destroy_all
-    User.update_all(time_filter: "".rjust(112, "0"))
-
+    
     # start updating
     courses.each_with_index do |course, index|
 
@@ -50,8 +48,6 @@ namespace :data do
       course_record.entries.create(entries[index])
 
     end
-
-
   end
 
   def convert2timetable(time)

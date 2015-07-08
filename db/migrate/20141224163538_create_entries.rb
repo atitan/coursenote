@@ -6,6 +6,7 @@ class CreateEntries < ActiveRecord::Migration
       t.integer :credit, null: false, default: 0
       t.string :department, null: false
       t.string :timetable, null: false
+      t.string :timestring, null: false
       t.boolean :cross_department, null: false
       t.boolean :cross_graduate, null: false
       t.boolean :quittable, null: false
@@ -21,6 +22,7 @@ class CreateEntries < ActiveRecord::Migration
     add_index :entries, :department
     add_index :entries, :required
     add_index :entries, :timetable
+    add_index :entries, :timestring
     add_index :entries, :quittable
     add_index :entries, :cross_department
     add_index :entries, :cross_graduate

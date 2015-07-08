@@ -2,8 +2,7 @@ class CoursesController < ApplicationController
 
   before_action :authenticate_user!, only: :vote
 
-  #has_scope :available, type: :boolean, allow_blank: true
-  #has_scope :required, type: :boolean, allow_blank: true
+  has_scope :show_all, type: :boolean
   has_scope :by_title
   has_scope :by_instructor
   has_scope :by_department
@@ -11,9 +10,7 @@ class CoursesController < ApplicationController
   has_scope :page, default: 1
 
   def index
-    @courses = apply_scopes(Course).includes(:entries)
-
-    raise ActiveRecord::RecordNotFound if @courses.empty?
+    @courses = apply_scopes(Course).includes(:entries).order(score: :desc)
   end
 
   def show
@@ -25,9 +22,9 @@ class CoursesController < ApplicationController
     course = Course.find(params[:course_id])
     vote = current_user.votes.find_or_initialize_by(votable: course)
     if vote.update(vote_params)
-      render plain: 'ok'
+      render json: vote
     else
-      render plain: 'error', status: 500
+      render json: { error: vote.errors.full_messages }, status: :internal_server_error
     end
   end
 
@@ -35,7 +32,7 @@ class CoursesController < ApplicationController
 
   def vote_params
     params[:upvote] = nil if params[:upvote] == 'nil'
-    {upvote: params[:upvote]}
+    { upvote: params[:upvote] }
   end
 
 end
