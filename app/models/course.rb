@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   # Has many relationships
-  has_many :comments, -> { thread.order(rank: :desc) }
+  has_many :comments, -> { thread.order(score: :desc, :created_at) }
   has_many :votes, as: :votable
   has_many :entries
 
