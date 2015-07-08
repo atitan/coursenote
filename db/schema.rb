@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.integer  "course_id",  limit: 4,                 null: false
     t.integer  "parent_id",  limit: 4
     t.integer  "score",      limit: 4,     default: 0, null: false
-    t.integer  "rank",       limit: 4,                 null: false
     t.text     "content",    limit: 65535,             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,7 +25,6 @@ ActiveRecord::Schema.define(version: 20150119091453) do
 
   add_index "comments", ["course_id"], name: "index_comments_on_course_id", using: :btree
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
-  add_index "comments", ["rank"], name: "index_comments_on_rank", using: :btree
   add_index "comments", ["score"], name: "index_comments_on_score", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 

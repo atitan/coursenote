@@ -1,12 +1,11 @@
 class CoursesController < ApplicationController
-
   before_action :authenticate_user!, only: :vote
 
   has_scope :show_all, type: :boolean
   has_scope :by_title
   has_scope :by_instructor
-  has_scope :by_department
   has_scope :by_category, type: :array
+  has_scope :by_department
   has_scope :page, default: 1
 
   def index
@@ -34,5 +33,4 @@ class CoursesController < ApplicationController
     params[:upvote] = nil if params[:upvote] == 'nil'
     { upvote: params[:upvote] }
   end
-
 end

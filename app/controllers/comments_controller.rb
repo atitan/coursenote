@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :find_comment, only: [:update, :destroy]
 
@@ -53,5 +52,4 @@ class CommentsController < ApplicationController
     params[:upvote] = nil if params[:upvote] == 'nil'
     { upvote: params[:upvote] }
   end
-
 end
