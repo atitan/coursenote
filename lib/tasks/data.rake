@@ -6,11 +6,11 @@ namespace :data do
     # pass yearterm using this sort of command `rake data:import[1031]`
     uri = URI('http://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
     raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
-    raw.gsub!(/(\s+|\r|\n)/, "") # remove space or newline
+    raw.gsub!(/(\s+|\r|\n)/, '') # remove space or newline
     raw[0] = '' # remove first char '@'
 
-    data = raw.split("@")
-    data.map!{ |x| x.split("|") }
+    data = raw.split('@')
+    data.map!{ |x| x.split('|') }
 
     entries = []
     courses = data.collect do |x|
@@ -22,7 +22,7 @@ namespace :data do
         cross_department: !x[2].empty?, # 跨系
         department: x[9], # 開課系級
         credit: x[14].to_i, # 學分
-        required: x[11].include?("必") ? true : false, # 必選修
+        required: x[11].include?('必') ? true : false, # 必選修
         quittable: x[4].empty? ? true : false, # 是否可停修
         note: x[22] # 備註
       }
@@ -52,16 +52,16 @@ namespace :data do
 
   def convert2timetable(time)
     offset = %w(A 1 2 3 4 B 5 6 7 8 C D E F G H)
-    output = "".rjust(112, "0")
+    output = ''.rjust(112, "0")
 
     time.each do |x|
       tmp = /(\d)-(\w+)/.match(x)
       next if tmp.nil?
 
       day = tmp[1].to_i - 1
-      sec = tmp[2].split("")
+      sec = tmp[2].split('')
       sec.each do |z|
-        output[day*16 + offset.index(z)] = "1"
+        output[day*16 + offset.index(z)] = '1'
       end
     end
     output

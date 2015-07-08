@@ -8,6 +8,5 @@ class FavoriteCourse < ActiveRecord::Base
   private
 
   def update_time_filter
-
   end
 end

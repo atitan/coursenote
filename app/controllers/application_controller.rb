@@ -15,27 +15,31 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def verified_request?
-      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
-    end
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+  end
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:account_update) { |u| 
-        u.permit(:password, :password_confirmation, :current_password) 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:password, :password_confirmation, :current_password)
+    end
+  end
+
+  def record_not_found
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { error: 'NotFound' }, status: :not_found
       }
     end
+  end
 
-    def record_not_found
-      respond_to do |format|
-        format.html
-        format.json { render json: { error: "NotFound" }, status: :not_found }
-      end
+  def param_missing
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { error: 'ParameterMissing' }, status: :bad_request
+      }
     end
-
-    def param_missing
-      respond_to do |format|
-        format.html
-        format.json { render json: { error: "ParameterMissing" }, status: :bad_request }
-      end
-    end
+  end
 end
