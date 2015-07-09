@@ -23,6 +23,9 @@ body {
   padding-top: 70px;  /* Fix navbar overlay problem */
 }
 
+.container > .wrapper {
+	min-height: 70vh;
+}
 
 .mg-t-10 {
   margin-top: 10px;
