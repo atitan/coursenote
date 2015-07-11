@@ -47,7 +47,7 @@
               </ul>
             </header>
           </section>
-          <section id="<%= course.instructor %>_<%= course.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelby="heading_<%= course.id %>">
+          <section id="<%= course.instructor %>_<%= course.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<%= course.id %>">
             <h1 class="sr-only">開課資訊</h1>
             <article class="panel-body">
               <table class="table table-hover table-striped">
@@ -75,271 +75,159 @@
             </article>
           </section>
           <footer class="panel-footer">
-            <section>
-            <h1 class="sr-only">Comments</h1>
-            <article class="comment-block">
-              <h1 class="h3"><i class="fa fa-comments-o"></i> Add a comment</h1>
-              <form action="#">
-                <textarea class="form-control" onkeyup="autoheight(this)" placeholder="Input your comments"></textarea>
-                <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> Submit</button>
-              </form>
-            </article>
+            <section class="comment-panel">
+            <h1 class="sr-only">留言</h1>
+              <article class="comment-block">
+                <h1 class="h3"><i class="fa fa-comments-o"></i> 留言</h1>
+                <form action="#">
+                  <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
+                  <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
+                </form>
+              </article>
 
-            <article class="comment-table">
-              <h1 class="h3"><span>3</span> Comments</h1>
-              <hr />
+              <article class="comment-table">
+                <h1 class="h3"><span>3</span> 則留言</h1>
 
-              <div class="comment-list">
-                <div class="comments">
-                  <div class="vote">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span>5</span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                  </div>
-                  <div class="comment">
-                    <p>那就什麼都不行？向庚桑楚張開嘴。如果我學得了一點點待人接物的和氣。先生問他，因為箭箭相銜。你還該記得罷，這是無須遲疑的，老子微微的嘆一口氣，他白瞪著眼，遲了兩分鐘！羿在垃圾堆邊懶懶地下了馬。對不起？耳朵也不及分別那聲音，但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
-                  </div>
-                  <div class="reply-block">
-                  <hr />
-                    <p>
-                      <span class="text-muted">A month ago ‧ <a href="#collapseExample1" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> Reply</a></span>
-                    </p>
-                    <div class="reply-form collapse" id="collapseExample1">
+                <div class="comment-list">
+                  <div class="comments">
+                    <div class="vote">
+                      <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span>150</span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
+                    <div class="comment-content">
+                      <p>那就什麼都不行？向庚桑楚張開嘴。如果我學得了一點點待人接物的和氣。先生問他，因為箭箭相銜。你還該記得罷，這是無須遲疑的，老子微微的嘆一口氣，他白瞪著眼，遲了兩分鐘！羿在垃圾堆邊懶懶地下了馬。對不起？耳朵也不及分別那聲音，但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
+                      <div class="comment-info">
+                        <div class="text-muted">
+                          <span>一個月前 ‧ </span>
+                          <span>2 則回覆 ‧ </span>
+                          <span><a href="#collapseExample1" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="reply-block collapse" id="collapseExample1">
                       <form action="#">
-                        <textarea class="form-control" onkeyup="autoheight(this)"></textarea>
-                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> Submit</button>
+                        <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
+                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
                       </form>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="reply-list">
-                <h1 class="h3"><span>2</span> Replies</h1>
-                <hr />
-                <div class="replies">
-                  <p>家中光景很是慘淡，大約過了八分鐘，自說是上流沙去的，陝西同山西！眾妙之門，這才接近樹林！這顆奇異果越長越大，瞬間。靠櫃外站著，你們看見有什麼向天上飛昇的麼，但現在卻還在睡大覺的敵人吧？獨立支持。</p>
-                  <div class="vote text-muted">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span> 5 </span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    <span> ‧ 20 days ago</span>
+                <div class="reply-list">
+                  <div class="replies">
+                    <p>家中光景很是慘淡，大約過了八分鐘，自說是上流沙去的，陝西同山西！眾妙之門，這才接近樹林！這顆奇異果越長越大，瞬間。靠櫃外站著，你們看見有什麼向天上飛昇的麼，但現在卻還在睡大覺的敵人吧？獨立支持。</p>
+                    <div class="vote text-muted">
+                      <span>20 天前</span>
+                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span> 553 </span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
+                  </div>
+                  <div class="replies">
+                    <p>他白瞪著眼，遲了兩分鐘！</p>
+                    <div class="vote text-muted">
+                      <span>28 天前</span>
+                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span> 5 </span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
                   </div>
                 </div>
-                <div class="replies">
-                  <p>他白瞪著眼，遲了兩分鐘！</p>
-                  <div class="vote text-muted">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span> 5 </span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    <span> ‧ 28 days ago</span>
-                  </div>
-                </div>
-              </div>
 
-              <hr class="slash">
-
-              <div class="comment-list">
-                <div class="comments">
-                  <div class="vote">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span>3</span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                  </div>
-                  <div class="comment">
-                    <p>那就什麼都不行？向庚桑楚張開嘴。如果我學得了一點點待人接物的和氣。</p>
-                  </div>
-                  <div class="reply-block">
-                    <hr />
-                    <p>
-                      <span class="text-muted">3 months ago ‧ <a href="#collapseExample2" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> Reply</a></span>
-                    </p>
-                    <div class="reply-form collapse" id="collapseExample2">
+                <div class="comment-list">
+                  <div class="comments">
+                    <div class="vote">
+                      <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span>7</span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
+                    <div class="comment-content">
+                      <p>那就什麼都不行？向庚桑楚張開嘴。如果我學得了一點點待人接物的和氣。先生問他，因為箭箭相銜。你還該記得罷，這是無須遲疑的，老子微微的嘆一口氣，他白瞪著眼，遲了兩分鐘！羿在垃圾堆邊懶懶地下了馬。對不起？耳朵也不及分別那聲音，但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
+                      <div class="comment-info">
+                        <div class="text-muted">
+                          <span>2 小時前 ‧ </span>
+                          <span>0 則回覆 ‧ </span>
+                          <span><a href="#collapseExample2" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="reply-block collapse" id="collapseExample2">
                       <form action="#">
-                        <textarea onkeyup="autoheight(this)" class="form-control"></textarea>
-                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> Submit</button>
+                        <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
+                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
                       </form>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="reply-list">
-                <h1 class="h3"><span>0</span> Replies</h1>
-              </div>
 
-              <hr class="slash">
-
-              <div class="comment-list">
-                <div class="comments">
-                  <div class="vote">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span>1</span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                  </div>
-                  <div class="comment">
-                    <p>我敢相信？將要攻陷你的心！我們真的羡慕，這時候想回頭已經太遲。的本領，那麼。本人面前搗什麼鬼。她多疼你，與他一樣。看見滿院狼藉的東西，你的父親，誰不曾擁著半夜的孤衾飲泣，就不能無不愛，卻須把講義交卷。他便很詫異，忠於自己，或者茴香豆，永遠是他們眼中的二等生物，蘿莉控的興起是天意。</p>
-                  </div>
-                  <div class="reply-block">
-                    <hr />
-                    <p>
-                      <span class="text-muted">26 days ago ‧ <a href="#collapseExample3" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> Reply</a></span>
-                    </p>
-                    <div class="reply-form collapse" id="collapseExample3">
+                <div class="comment-list">
+                  <div class="comments">
+                    <div class="vote">
+                      <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span>4</span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
+                    <div class="comment-content">
+                      <p>但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
+                      <div class="comment-info">
+                        <div class="text-muted">
+                          <span>24 天前 ‧ </span>
+                          <span>4 則回覆 ‧ </span>
+                          <span><a href="#collapseExample3" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="reply-block collapse" id="collapseExample3">
                       <form action="#">
-                        <textarea onkeyup="autoheight(this)" class="form-control"></textarea>
-                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> Submit</button>
+                        <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
+                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
                       </form>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="reply-list">
-                <h1 class="h3"><span>3</span> Replies</h1>
-                <hr />
-                <div class="replies">
-                  <p>這顆奇異果越長越大，車子就走動了，舌頭還在嗎，孔子就要上車了，連母雞也不認識。怪不好看的，他彷彿覺得她們都在苦笑。於是愈過愈窮。偏是謀生忙，她說，正式興起了蘿莉控文化！叫我披衣坐起。陸海空軍都對付不了他們，我就是夷羿，仍有絕大部分保有蘿莉控的優良傳統，只要得了道，老子接著說。還沒有走完高粱田，他不回答？老子像一段呆木頭似的坐在中央？</p>
-                  <div class="vote text-muted">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span> 3 </span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    <span> ‧ 25 days ago</span>
-                  </div>
-                </div>
-                <div class="replies">
-                  <p>沈澱著彩虹似的夢，幸而寫得一筆好字，可以給你做菜的。</p>
-                  <div class="vote text-muted">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span> 29 </span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    <span> ‧ 25 days ago</span>
-                  </div>
-                </div>
-                <div class="replies">
-                  <p>為什麼呢，或正在下雨，決意不讓無意味的鑼鼓，白鶃們只要瞧著，假使當初，過去始終過去了，雖則你回去的時候剛滿三歲，家中光景很是慘淡，我道是誰？</p>
-                  <div class="vote text-muted">
-                    <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                    <span> 9 </span>
-                    <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    <span> ‧ 26 days ago</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-              <!-- <article class="comment">
-                <h1 class="sr-only">comment</h1>
-                <div class="avatar">
-                  <i class="glyphicon glyphicon-comment"></i>
-                </div>
-                <div class="wrapper">
-                  <form action="">
-                    <textarea class="form-control" placeholder="Input your comments"></textarea>
-                    <button type="submit" class="btn btn-block">
-                      <i class="glyphicon glyphicon-pencil"></i> Submit
-                    </button>
-                  </form>
-                </div>
-              </article> -->
-              <!-- <ul class="comment-list">
-                <h1 class="sr-only">comment-list</h1>
-                <li>
-                  <article class="main-comment comment">
-                    <h1 class="sr-only">comment</h1>
-                    <div class="avatar">
-                      <i class="glyphicon glyphicon-comment"></i>
+                <div class="reply-list">
+                  <div class="replies">
+                    <p>家中光景很是慘淡，大約過了八分鐘，自說是上流沙去的，陝西同山西！眾妙之門，這才接近樹林！這顆奇異果越長越大，瞬間。靠櫃外站著，你們看見有什麼向天上飛昇的麼，但現在卻還在睡大覺的敵人吧？獨立支持。如果是小女孩的話，懷了弟弟。由於大型反應爐以及護盾技術的發明。好在天無絕人之路，一面自己親手從架子上挑出一包鹽。眼睛都望著碟子，你說。頂天立地。王升就退出去了，瞎了你的眼睛，忠於自己。</p>
+                    <div class="vote text-muted">
+                      <span>2 天前</span>
+                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span> 18 </span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
                     </div>
-                    <div class="wrapper comment-content">
-                      <p>是一個了不起的大人！大鋼球。幸虧薦頭的情面大，繫留中，他的眼色。不一會。傲嬌吧，這問的後身便是無限的隱痛。你一定又偷了人家的東西了。六經。老子答道，叫旅館裡一個熟識的茶房陪我同去，譬如同是一雙鞋子罷！我們且談正經事罷，登上宇宙，老子仍舊毫無動靜的坐著。處處聞名。哭號的俘虜們！都看過了罷！我研究。假如他年紀青。後來是打。</p>
-                      <div class="reply">
-                        <span>A month age</span>
-                        <span>
-                          <button type="button">
-                            <i class="glyphicon glyphicon-chevron-up"></i>
-                          </button>
-                        </span>
-                        <span>5</span>
-                        <span>
-                          <button type="button">
-                            <i class="glyphicon glyphicon-chevron-down"></i>
-                          </button>
-                        </span>
-                        <span>
-                          <button type="button">
-                            <i class="glyphicon glyphicon-share-alt"></i> 回覆
-                          </button>
-                        </span>
-                      </div>
+                  </div>
+                  <div class="replies">
+                    <p>他白瞪著眼，遲了兩分鐘！</p>
+                    <div class="vote text-muted">
+                      <span>2 天前</span>
+                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span> 5 </span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
                     </div>
-                  </article>
-                  <ul class="sub-comment">
-                    <li class="comment">
-                      <div class="avatar">
-                        <i class="glyphicon glyphicon-comment"></i>
-                      </div>
-                      <div class="wrapper comment-content">
-                        <p>將手一放，然而？</p>
-                        <div class="reply">
-                          <span>A month age</span>
-                          <span>
-                            <button type="button">
-                              <i class="glyphicon glyphicon-chevron-up"></i>
-                            </button>
-                          </span>
-                          <span>5</span>
-                          <span>
-                            <button type="button">
-                              <i class="glyphicon glyphicon-chevron-down"></i>
-                            </button>
-                          </span>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="comment">
-                      <div class="avatar">
-                        <i class="glyphicon glyphicon-comment"></i>
-                      </div>
-                      <div class="wrapper comment-content">
-                        <p>再到年關也沒有看見他。笑著說，夠熟透了。屋裡逐漸坐滿了聽講的人們，嘴裏說些話。也不過五千個大字，可以隨時溫酒。</p>
-                        <div class="reply">
-                          <span>A month age</span>
-                          <span>
-                            <button type="button">
-                              <i class="glyphicon glyphicon-chevron-up"></i>
-                            </button>
-                          </span>
-                          <span>5</span>
-                          <span>
-                            <button type="button">
-                              <i class="glyphicon glyphicon-chevron-down"></i>
-                            </button>
-                          </span>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="comment">
-                      <div class="avatar">
-                        <i class="glyphicon glyphicon-comment"></i>
-                      </div>
-                      <div class="wrapper comment-content">
-                        <p>我的話你是永遠聽不著了，然而，勝者低聲說。這才覺著父性的愛像泉眼似的在性靈裏汩汩的流出，兩腿都麻木了，在我的心頭蕩漾。冉有把鞭子在空中一揮，店內外充滿了快活的空氣！不是寡恩，先前因為上圖書館去查。</p>
-                        <div class="reply">
-                          <span>A month age</span>
-                          <span>
-                            <button type="button">
-                              <i class="glyphicon glyphicon-chevron-up"></i>
-                            </button>
-                          </span>
-                          <span>5</span>
-                          <span>
-                            <button type="button">
-                              <i class="glyphicon glyphicon-chevron-down"></i>
-                            </button>
-                          </span>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul> -->
+                  </div>
+                  <div class="replies">
+                    <p>你離開了媽的懷抱，阿亮香雞排，有一個初秋的傍晚，現在每碗要漲到十文。這時候想回頭已經太遲。就起身要告辭，對？</p>
+                    <div class="vote text-muted">
+                      <span>20 天前</span>
+                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span> 1 </span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
+                  </div>
+                  <div class="replies">
+                    <p>望著遠遠的火車上的煤煙。圍住了孔乙己，垂著手！</p>
+                    <div class="vote text-muted">
+                      <span>22 天前</span>
+                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
+                      <span> 0 </span>
+                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+                
+              </article>
             </section>
           </footer>
         </dd>
