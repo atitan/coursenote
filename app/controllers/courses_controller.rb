@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
   has_scope :show_all do |controller, scope, value|
     value == "true" ? scope : scope.available_only
   end
-  has_scope :hide_passed_courses, type: :boolean, if: user_signed_in? do |controller, scope|
+  has_scope :hide_passed_courses, type: :boolean, if: :user_signed_in? do |controller, scope|
     scope.hide_passed_courses(controller.current_user.passed_courses)
   end
 
