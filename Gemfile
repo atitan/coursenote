@@ -45,29 +45,31 @@ gem 'kaminari', '~> 0.16.1'
 # Record Versioning
 gem 'paper_trail', '~> 3.0.6'
 
+# Use Bootstrap for stylesheets
+gem 'bootstrap-sass', '~> 3.3.4'
+
+# Use puma server
+gem 'puma'
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
   # N+1 problem
   gem "bullet"
+  # Deployment
+  gem 'capistrano-rails'
 end
 
-# Use Bootstrap for stylesheets
-gem 'bootstrap-sass', '~> 3.3.4'
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem "factory_girl_rails", "~> 4.0"
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-
-# Use puma as production server
-gem 'puma'
-gem 'i18n'
-gem 'minitest'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

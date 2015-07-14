@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119091453) do
+ActiveRecord::Schema.define(version: 20150714043804) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4,                 null: false
     t.integer  "course_id",  limit: 4,                 null: false
     t.integer  "parent_id",  limit: 4
     t.integer  "score",      limit: 4,     default: 0, null: false
-    t.integer  "rank",       limit: 4,                 null: false
     t.text     "content",    limit: 65535,             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,7 +25,6 @@ ActiveRecord::Schema.define(version: 20150119091453) do
 
   add_index "comments", ["course_id"], name: "index_comments_on_course_id", using: :btree
   add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
-  add_index "comments", ["rank"], name: "index_comments_on_rank", using: :btree
   add_index "comments", ["score"], name: "index_comments_on_score", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
@@ -81,7 +79,19 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   end
 
   add_index "favorite_courses", ["course_entry_id"], name: "index_favorite_courses_on_course_entry_id", using: :btree
+  add_index "favorite_courses", ["user_id", "course_entry_id"], name: "index_favorite_courses_on_user_id_and_course_entry_id", unique: true, using: :btree
   add_index "favorite_courses", ["user_id"], name: "index_favorite_courses_on_user_id", using: :btree
+
+  create_table "passed_courses", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4, null: false
+    t.integer  "course_id",  limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "passed_courses", ["course_id"], name: "index_passed_courses_on_course_id", using: :btree
+  add_index "passed_courses", ["user_id", "course_id"], name: "index_passed_courses_on_user_id_and_course_id", unique: true, using: :btree
+  add_index "passed_courses", ["user_id"], name: "index_passed_courses_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

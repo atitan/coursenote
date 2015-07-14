@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :votes
   has_many :favorite_courses
+  has_many :passed_courses
 
   def student_id
     return false unless student?

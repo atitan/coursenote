@@ -1,6 +1,11 @@
 class Entry < ActiveRecord::Base
   # Belongs to these models
   belongs_to :course
+  
+  # Has many relationships
+  has_many :favorite_courses
+
+  validates_presence_of :course
 
   def time
     day = 0

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:index, :show] do
     post 'vote'
+    post 'passed'
   end
 
   resources :comments, only: [:create, :update, :destroy] do
