@@ -41,13 +41,22 @@ namespace :data do
     Course.update_all(available: false)
     
     # start updating
+    total = courses.length
+    percentage = 0
+    print "Importing..."
     courses.each_with_index do |course, index|
 
       course_record = Course.find_or_initialize_by(course)
       course_record.update_attributes(available: true)
       course_record.entries.create(entries[index])
 
+      current_percentage = (index * 100 / total)
+      if current_percentage > percentage
+        percentage = current_percentage
+        print "\rImporting...#{percentage}% completed"
+      end
     end
+    puts "\rImporting...done!"
   end
 
   def convert2timetable(time)

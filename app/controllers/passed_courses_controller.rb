@@ -1,12 +1,12 @@
-class FavoriteCoursesController < ApplicationController
+class PassedCoursesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @courses = current_user.favorite_courses
+    @courses = current_user.passed_courses
   end
 
   def create
-    @course = current_user.favorite_courses.create(favorite_courses_param)
+    @course = current_user.passed_courses.create(passed_courses_param)
     if @course.save
       render json: @course
     else
@@ -15,7 +15,7 @@ class FavoriteCoursesController < ApplicationController
   end
 
   def destroy
-    @course = current_user.favorite_courses.find(params[:id])
+    @course = current_user.passed_courses.find(params[:id])
     if @course.destroy
       render json: @course
     else
@@ -25,7 +25,7 @@ class FavoriteCoursesController < ApplicationController
 
   private
 
-  def favorite_courses_param
-    params.require(:favorite_course).permit(:course_id)
+  def passed_courses_param
+    params.require(:passed_course).permit(:course_id)
   end
 end

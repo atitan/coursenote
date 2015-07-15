@@ -8,12 +8,14 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:index, :show] do
     post 'vote'
-    post 'passed'
   end
 
   resources :comments, only: [:create, :update, :destroy] do
     post 'vote'
   end
+
+  resources :favorite_courses, only: [:index, :create, :destroy]
+  resources :passed_courses, only: [:index, :create, :destroy]
 
   #namespace :api do
   #  namespace :v1 do
