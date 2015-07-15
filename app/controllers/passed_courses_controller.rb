@@ -6,7 +6,7 @@ class PassedCoursesController < ApplicationController
   end
 
   def create
-    @course = current_user.passed_courses.create(passed_courses_param)
+    @course = current_user.passed_courses.new(passed_courses_param)
     if @course.save
       render json: @course
     else

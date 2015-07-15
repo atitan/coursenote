@@ -6,7 +6,7 @@ class FavoriteCoursesController < ApplicationController
   end
 
   def create
-    @course = current_user.favorite_courses.create(favorite_courses_param)
+    @course = current_user.favorite_courses.new(favorite_courses_param)
     if @course.save
       render json: @course
     else
