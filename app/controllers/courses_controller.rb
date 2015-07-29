@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   has_scope :page, default: 1
 
   def index
-    @courses = apply_scopes(Course).includes(:entries).order(score: :desc)
+    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(score: :desc)
   end
 
   def show

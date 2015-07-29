@@ -85,29 +85,29 @@
                   <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
                 </form>
               </article>
-
+              
               <article class="comment-table">
-                <h1 class="h3"><span>3</span> 則留言</h1>
-
+                <h1 class="h3"><span><%= course.comments.count %></span> 則留言</h1>
+                <% course.comments.each do |comment| %>
                 <div class="comment-list">
                   <div class="comments">
                     <div class="vote">
                       <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span>150</span>
+                      <span><%= comment.score %></span>
                       <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
                     </div>
                     <div class="comment-content">
-                      <p>那就什麼都不行？向庚桑楚張開嘴。如果我學得了一點點待人接物的和氣。先生問他，因為箭箭相銜。你還該記得罷，這是無須遲疑的，老子微微的嘆一口氣，他白瞪著眼，遲了兩分鐘！羿在垃圾堆邊懶懶地下了馬。對不起？耳朵也不及分別那聲音，但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
+                      <p><%= comment.content %></p>
                       <div class="comment-info">
                         <div class="text-muted">
-                          <span>一個月前 ‧ </span>
-                          <span>2 則回覆 ‧ </span>
-                          <span><a href="#collapseExample1" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
+                          <span><%= comment.created_at %> ‧ </span>
+                          <span><%= comment.replies.count %> 則回覆 ‧ </span>
+                          <span><a href="#<%= comment.id %>" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
                           </span>
                         </div>
                       </div>
                     </div>
-                    <div class="reply-block collapse" id="collapseExample1">
+                    <div class="reply-block collapse" id="<%= comment.id %>">
                       <form action="#">
                         <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
                         <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
@@ -116,118 +116,19 @@
                   </div>
                 </div>
                 <div class="reply-list">
+                  <% comment.replies.each do |reply| %>
                   <div class="replies">
-                    <p>家中光景很是慘淡，大約過了八分鐘，自說是上流沙去的，陝西同山西！眾妙之門，這才接近樹林！這顆奇異果越長越大，瞬間。靠櫃外站著，你們看見有什麼向天上飛昇的麼，但現在卻還在睡大覺的敵人吧？獨立支持。</p>
+                    <p><%= reply.content %></p>
                     <div class="vote text-muted">
-                      <span>20 天前</span>
+                      <span><%= reply.created_at %></span>
                       <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span> 553 </span>
+                      <span> <%= reply.score %> </span>
                       <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
                     </div>
                   </div>
-                  <div class="replies">
-                    <p>他白瞪著眼，遲了兩分鐘！</p>
-                    <div class="vote text-muted">
-                      <span>28 天前</span>
-                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span> 5 </span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                  </div>
+                  <% end %>
                 </div>
-
-                <div class="comment-list">
-                  <div class="comments">
-                    <div class="vote">
-                      <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span>7</span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                    <div class="comment-content">
-                      <p>那就什麼都不行？向庚桑楚張開嘴。如果我學得了一點點待人接物的和氣。先生問他，因為箭箭相銜。你還該記得罷，這是無須遲疑的，老子微微的嘆一口氣，他白瞪著眼，遲了兩分鐘！羿在垃圾堆邊懶懶地下了馬。對不起？耳朵也不及分別那聲音，但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
-                      <div class="comment-info">
-                        <div class="text-muted">
-                          <span>2 小時前 ‧ </span>
-                          <span>0 則回覆 ‧ </span>
-                          <span><a href="#collapseExample2" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="reply-block collapse" id="collapseExample2">
-                      <form action="#">
-                        <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
-                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="comment-list">
-                  <div class="comments">
-                    <div class="vote">
-                      <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span>4</span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                    <div class="comment-content">
-                      <p>但是奇異果牽到哪裡都還是奇異果，掌櫃說。</p>
-                      <div class="comment-info">
-                        <div class="text-muted">
-                          <span>24 天前 ‧ </span>
-                          <span>4 則回覆 ‧ </span>
-                          <span><a href="#collapseExample3" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-reply"></i> 回覆</a>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="reply-block collapse" id="collapseExample3">
-                      <form action="#">
-                        <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
-                        <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div class="reply-list">
-                  <div class="replies">
-                    <p>家中光景很是慘淡，大約過了八分鐘，自說是上流沙去的，陝西同山西！眾妙之門，這才接近樹林！這顆奇異果越長越大，瞬間。靠櫃外站著，你們看見有什麼向天上飛昇的麼，但現在卻還在睡大覺的敵人吧？獨立支持。如果是小女孩的話，懷了弟弟。由於大型反應爐以及護盾技術的發明。好在天無絕人之路，一面自己親手從架子上挑出一包鹽。眼睛都望著碟子，你說。頂天立地。王升就退出去了，瞎了你的眼睛，忠於自己。</p>
-                    <div class="vote text-muted">
-                      <span>2 天前</span>
-                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span> 18 </span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                  </div>
-                  <div class="replies">
-                    <p>他白瞪著眼，遲了兩分鐘！</p>
-                    <div class="vote text-muted">
-                      <span>2 天前</span>
-                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span> 5 </span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                  </div>
-                  <div class="replies">
-                    <p>你離開了媽的懷抱，阿亮香雞排，有一個初秋的傍晚，現在每碗要漲到十文。這時候想回頭已經太遲。就起身要告辭，對？</p>
-                    <div class="vote text-muted">
-                      <span>20 天前</span>
-                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span> 1 </span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                  </div>
-                  <div class="replies">
-                    <p>望著遠遠的火車上的煤煙。圍住了孔乙己，垂著手！</p>
-                    <div class="vote text-muted">
-                      <span>22 天前</span>
-                      <span>‧<a href=""><i class="fa fa-chevron-up"></i></a></span>
-                      <span> 0 </span>
-                      <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                    </div>
-                  </div>
-                </div>
-                
+                <% end %>
               </article>
             </section>
           </footer>
