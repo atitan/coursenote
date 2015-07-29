@@ -35,14 +35,14 @@
 
 <%= render 'common/navbar' %>
 
-<div class="container">
-  <div class="wrapper">
+<div class="wrapper">
+  <div class="container">
     <%= display_flash! %>
 
     <%= yield %>
   </div>
-  <%= render 'common/footer' %>
 </div>
+<%= render 'common/footer' %>
 
 </body>
 </html>

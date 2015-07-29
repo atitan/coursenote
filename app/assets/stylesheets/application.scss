@@ -17,17 +17,28 @@
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
+$font-color: white;
+$dark-bg-color: #19272c;
+$primary-color: #f25111;
+
 body {
 	font-family: 'Ubuntu', '微軟正黑體', sans-serif;
   padding-top: 70px;  /* Fix navbar overlay problem */
 }
 
-a:focus {
-	outline: none;
+a {
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  	outline: none;
+  }
 }
 
-.container > .wrapper {
-	min-height: 70vh;
+.wrapper {
+	min-height: 80vh;
 }
 
 .mg-t-10 {
@@ -42,5 +53,32 @@ a:focus {
   .mg-lr-xs-2 {
     margin-left: 2px;
     margin-right: 2px;
+  }
+}
+
+.page-footer {
+  background-color: $dark-bg-color;
+  color: $font-color;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  p {
+    margin: 0;
+    line-height: 2;
+    a {
+      border-bottom: 1px #999 dashed;
+    }
+  }
+  span {
+    white-space: nowrap;
+  }
+  .share-btn a {
+    font-size: 32px;
+    line-height: 56px;
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+  a:hover {
+    color: $primary-color;
   }
 }
