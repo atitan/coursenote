@@ -1,58 +1,29 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar-fixed-top" data-no-turbolink>
   <div class="container">
-    <div class="navbar-header">
-      <a href="/" class="navbar-brand">中原選課大全</a>
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-            <!--<li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="../default/">Default</a></li>
-                <li class="divider"></li>
-                <li><a href="../cerulean/">Cerulean</a></li>
-                <li><a href="../cosmo/">Cosmo</a></li>
-                <li><a href="../cyborg/">Cyborg</a></li>
-                <li><a href="../darkly/">Darkly</a></li>
-                <li><a href="../flatly/">Flatly</a></li>
-                <li><a href="../journal/">Journal</a></li>
-                <li><a href="../lumen/">Lumen</a></li>
-                <li><a href="../paper/">Paper</a></li>
-                <li><a href="../readable/">Readable</a></li>
-                <li><a href="../sandstone/">Sandstone</a></li>
-                <li><a href="../simplex/">Simplex</a></li>
-                <li><a href="../slate/">Slate</a></li>
-                <li><a href="../spacelab/">Spacelab</a></li>
-                <li><a href="../superhero/">Superhero</a></li>
-                <li><a href="../united/">United</a></li>
-                <li><a href="../yeti/">Yeti</a></li>
-              </ul>
-            </li>-->
-            <li><%= link_to '課程查詢', courses_path %></li>
-            <li><a href="https://www.facebook.com/CourseNote" target="_blank">粉絲專頁</a></li>
-      </ul>
+    <h1><a href="/">中原選課大全</a><span class="sr-only">導覽列</span></h1>
+    <button class="nav-btn visible-xs">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <ul class="nav-list text-right">
+      <li class="nav-item hover-effect"><%= link_to '課程查詢', courses_path %></li>
+      <li class="nav-item hover-effect"><a href="https://www.facebook.com/CourseNote" target="_blank">粉絲專頁</a></li>
 
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><%= current_user.email %> <span class="caret"></span></a>
-            <ul class="dropdown-menu" aria-labelledby="themes">
-              <li><%= link_to '更改密碼', edit_user_registration_path %></li>
-              <li class="divider"></li>
-              <li><%= link_to '登出', destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </li>
-        <% else %>
-          <li><%= link_to '登入', new_user_session_path %></li>
-          <li><%= link_to '註冊', new_user_registration_path %></li>
-        <% end %>
-      </ul>
+      <% if user_signed_in? %>
+        <li class="dropdown nav-item">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><%= current_user.email %> <span class="caret"></span></a>
 
-    </div>
+          <ul class="dropdown-menu" aria-labelledby="themes">
+            <li><%= link_to '更改密碼', edit_user_registration_path%></li>
+            <li><%= link_to '登出', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      <% else %>
+        <li class="nav-item hover-effect"><%= link_to '登入', new_user_session_path %></li>
+        <li class="nav-item hover-effect"><%= link_to '註冊', new_user_registration_path %></li>
+      <% end %>
+    </ul>
+
   </div>
-</div>
+</nav>
