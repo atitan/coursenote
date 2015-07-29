@@ -51,6 +51,7 @@ $fz-xs: 16px;
 body {
 	font-family: 'Ubuntu', '微軟正黑體', sans-serif;
   padding-top: 70px;  /* Fix navbar overlay problem */
+  background-color: $bg-color;
 }
 
 * {
@@ -271,5 +272,8 @@ nav {
   }
   a:hover {
     color: $orange;
+  }
+  @include breakpoint(phablet) {
+    text-align: center;
   }
 }
