@@ -27,4 +27,20 @@ $(function(){
 		$(this).toggleClass('active');
 		$('.nav-list').toggleClass('open');
 	});
+
+
+	/* totop button toggle */
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100) {
+			$('.totop').fadeIn("slow");
+		} else {
+			$('.totop').fadeOut("slow");
+		}
+	});
+
+	/* click event to scroll to top */
+	$('.totop').click(function(){
+		$('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
 });
