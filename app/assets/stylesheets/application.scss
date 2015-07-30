@@ -159,6 +159,36 @@ input.m-btn {
   }
 }
 
+.m-divider {
+  position: relative;
+  color: $orange;
+  font-size: $fz-m;
+  padding-left: 7.5%;
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    height: 3px;
+    width: 5%;
+    background-color: $orange;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 0;
+    height: 3px;
+    width: 85%;
+    background-color: $orange;
+    @include breakpoint(mobileonly) {
+      width: 80%;
+    }
+  }
+}
+
 /* Layout */
 /* Nav */
 nav {
@@ -375,6 +405,30 @@ nav {
   }
   @include breakpoint(phablet) {
     padding: 30px;
+  }
+  form {
+    font-size: $fz-xs;
+  }
+  .links a {
+    display: block;
+    background-color: lighten($orange, 45);
+    color: #555;
+    font-size: $fz-xs;
+    line-height: 2;
+    padding: 5px 0;
+    text-indent: 7.5%;
+    border-radius: 5px;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    &:hover {
+      background-color: lighten($orange, 40);
+      color: #000;
+    }
+    &:focus {
+      background-color: lighten($orange, 35);
+      color: #000;
+    }
   }
 }
 
