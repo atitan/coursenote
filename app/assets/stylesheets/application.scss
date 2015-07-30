@@ -280,6 +280,7 @@ nav {
 
 /* To top button */
 .totop {
+  display: none;
   position: fixed;
   font-size: $fz-m;
   right: 5px;
