@@ -21,7 +21,7 @@ $font-color: white;
 $bg-color: #f6f6f6;
 $dark-bg-color: #19272c;
 $primary-color: #61b2a7;
-$orange: #f25111;
+$orange: #F57C00;
 
 /* font-size */
 $fz-l: 32px;
@@ -49,7 +49,7 @@ $fz-xs: 16px;
 }
 
 body {
-	font-family: 'Ubuntu', '微軟正黑體', sans-serif;
+	font-family: 'Ubuntu', 'Microsoft JhengHei', sans-serif;
   padding-top: 70px;  /* Fix navbar overlay problem */
   background-color: $bg-color;
 }
@@ -306,5 +306,67 @@ nav {
     border-width: 0 25px 18px;
     border-style: solid;
     border-color: transparent transparent $orange;
+  }
+}
+
+/* Jumbotron */
+.jumbotron {
+  background-image: url(http://www.transparenttextures.com/patterns/light-wool.png);
+  background-color: lighten($primary-color, 50);
+  border-top: 10px solid $primary-color;
+  box-shadow: 0 5px 15px 3px lightgray;
+  .title {
+    position: relative;
+    h1 {
+      margin-bottom: 50px;
+      &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 30%;
+        height: 7px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 15px;
+        background-color: $orange;
+      }
+    }
+    i {
+      position: absolute;
+      -webkit-transform: rotate(30deg) scaleX(-1) translate3d(30px, 15px, 0);
+          -ms-transform: rotate(30deg) scaleX(-1) translate3d(30px, 15px, 0);
+              transform: rotate(30deg) scaleX(-1) translate3d(30px, 15px, 0);
+      top: -40px;
+      color: $orange;
+      @include breakpoint(phablet) {
+        -webkit-transform: rotate(30deg) scaleX(-1) translate3d(10px, 25px, 0);
+            -ms-transform: rotate(30deg) scaleX(-1) translate3d(10px, 25px, 0);
+                transform: rotate(30deg) scaleX(-1) translate3d(10px, 25px, 0);
+      }
+    }
+  }
+  p {
+    min-height: 100px;
+    @include breakpoint (mobileonly) {
+      text-indent: 2em;
+      text-align: justify;
+    }
+  }
+  a {
+    background-color: $primary-color;
+    color: #eee;
+    line-height: 24px;
+    vertical-align: middle;
+    &:hover {
+      background-color: darken($primary-color, 5);
+      color: $font-color;
+    }
+    &:focus {
+      background-color: darken($primary-color, 10);
+      color: $font-color;
+    }
+  }
+  @include breakpoint(phablet) {
+    padding: 30px;
   }
 }
