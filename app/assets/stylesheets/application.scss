@@ -125,6 +125,41 @@ a:focus {
   }
 }
 
+/* Module */
+.m-title {
+  position: relative;
+  margin-bottom: 50px;
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 30%;
+    height: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 15px;
+    background-color: $orange;
+  }
+}
+
+a.m-btn,
+button.m-btn,
+input.m-btn {
+  background-color: $primary-color;
+  color: #eee;
+  line-height: 24px;
+  vertical-align: middle;
+  &:hover {
+    background-color: darken($primary-color, 5);
+    color: $font-color;
+  }
+  &:focus {
+    background-color: darken($primary-color, 10);
+    color: $font-color;
+  }
+}
+
+/* Layout */
 /* Nav */
 nav {
   background-color: $primary-color;
@@ -315,22 +350,8 @@ nav {
   background-color: lighten($primary-color, 50);
   border-top: 10px solid $primary-color;
   box-shadow: 0 5px 15px 3px lightgray;
-  .title {
+  .icon-float {
     position: relative;
-    h1 {
-      margin-bottom: 50px;
-      &::after {
-        position: absolute;
-        content: '';
-        display: block;
-        width: 30%;
-        height: 7px;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 15px;
-        background-color: $orange;
-      }
-    }
     i {
       position: absolute;
       -webkit-transform: rotate(30deg) scaleX(-1) translate3d(30px, 15px, 0);
@@ -352,21 +373,8 @@ nav {
       text-align: justify;
     }
   }
-  a {
-    background-color: $primary-color;
-    color: #eee;
-    line-height: 24px;
-    vertical-align: middle;
-    &:hover {
-      background-color: darken($primary-color, 5);
-      color: $font-color;
-    }
-    &:focus {
-      background-color: darken($primary-color, 10);
-      color: $font-color;
-    }
-  }
   @include breakpoint(phablet) {
     padding: 30px;
   }
 }
+
