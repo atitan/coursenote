@@ -1,0 +1,63 @@
+/* Module */
+.m-title {
+  position: relative;
+  margin-bottom: 50px;
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 30%;
+    height: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 15px;
+    background-color: $orange;
+  }
+}
+
+a.m-btn,
+button.m-btn,
+input.m-btn {
+  background-color: $primary-color;
+  color: #eee;
+  line-height: 24px;
+  vertical-align: middle;
+  &:hover {
+    background-color: darken($primary-color, 5);
+    color: $font-color;
+  }
+  &:focus {
+    background-color: darken($primary-color, 10);
+    color: $font-color;
+  }
+}
+
+.m-divider {
+  position: relative;
+  color: $orange;
+  font-size: $fz-m;
+  padding-left: 7.5%;
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 0;
+    height: 3px;
+    width: 5%;
+    background-color: $orange;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 50%;
+    right: 0;
+    height: 3px;
+    width: 85%;
+    background-color: $orange;
+    @include breakpoint(mobileonly) {
+      width: 80%;
+    }
+  }
+}

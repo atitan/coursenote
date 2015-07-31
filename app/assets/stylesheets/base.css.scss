@@ -1,0 +1,53 @@
+body {
+	font-family: 'Ubuntu', 'Microsoft JhengHei', sans-serif;
+  padding-top: 70px;  /* Fix navbar overlay problem */
+  background-color: $bg-color;
+  font-size: $fz-xs;
+}
+
+.wrapper {
+	min-height: 80vh;
+}
+
+/* Helper class */
+.mg-t-10 {
+  margin-top: 10px;
+}
+
+.mg-b-10 {
+  margin-bottom: 10px
+}
+
+@media screen and (max-width: 768px) {
+  .mg-lr-xs-2 {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+.hover-effect {
+  a {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      background-color: $orange;
+      bottom: 0;
+      height: 0;
+      width: 30%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+         -moz-transform: translateX(-50%);
+              transform: translateX(-50%);
+      -webkit-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+         -moz-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+           -o-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+              transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+    }
+    &:hover::before {
+      height: 5px;
+      width: 80%;
+    }
+  }
+}

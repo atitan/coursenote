@@ -2,35 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*comment-vote*/$text-indent: 30px;
-/*comment-content*/$inner-padding: 15px;
-
-/* Breakpoint mixin (Desktop first) */
-@mixin breakpoint($point) {
-  @if $point == desktop {
-    @media (min-width: 1200px) { @content ; }
-  }
-  @else if $point == laptop {
-    @media (max-width: 1199px) { @content ; }
-  }
-  @else if $point == tablet {
-    @media (max-width: 991px)  { @content ; }
-  }
-  @else if $point == phablet {
-    @media (max-width: 767px)  { @content ; }
-  }
-  @else if $point == mobileonly {
-    @media (max-width: 567px)  { @content ; }
-  }
-}
-
-ol, ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
 .course-info li {
   display: inline-block;
   position: relative;

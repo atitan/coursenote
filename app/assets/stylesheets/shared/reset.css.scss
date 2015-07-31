@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+button,
+input[type='button'],
+input[type='submit'],
+a:focus {
+  outline-style: none;
+} 
+
+ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
