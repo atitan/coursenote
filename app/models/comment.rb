@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   # Record versioning
-  has_paper_trail
+  has_paper_trail, only: :content
 
   # Has many relationships
   has_many :votes, as: :votable
