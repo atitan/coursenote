@@ -5,6 +5,25 @@
 /*comment-vote*/$text-indent: 30px;
 /*comment-content*/$inner-padding: 15px;
 
+/* Breakpoint mixin (Desktop first) */
+@mixin breakpoint($point) {
+  @if $point == desktop {
+    @media (min-width: 1200px) { @content ; }
+  }
+  @else if $point == laptop {
+    @media (max-width: 1199px) { @content ; }
+  }
+  @else if $point == tablet {
+    @media (max-width: 991px)  { @content ; }
+  }
+  @else if $point == phablet {
+    @media (max-width: 767px)  { @content ; }
+  }
+  @else if $point == mobileonly {
+    @media (max-width: 567px)  { @content ; }
+  }
+}
+
 ol, ul {
   list-style: none;
   margin: 0;
@@ -38,23 +57,30 @@ span.superscript-title {
   margin-bottom: 20px;
 }
 
-// Alignment Settings for Submit Button of the search form
-.btn-submit {
-    text-align:left;
+.fixed-aside {
+  position: fixed;
+  @include breakpoint(tablet) {
+    position: relative;
+  }
 }
-@media screen and (min-width: 992px) {
-  .fixed-aside {
-    position: fixed;
+
+.search-form {
+  width: 45%;
+  margin-top: 30px;
+  .jumbotron {
+    padding-right: 20px;
+    padding-left: 20px;
   }
-  .search-result {
-    z-index: 2;
+  .search-buttons {
+    margin: 30px 0;
+    text-align: justify;
   }
-  .search-form {
-    width: 41.5%;
-    margin-top: 40px;
+  @include breakpoint(laptop) {
+    width: 37%;
   }
-  .btn-submit {
-    text-align: right;
+  @include breakpoint(tablet) {
+    width: 100%;
+    margin-top: 0px;
   }
 }
 
