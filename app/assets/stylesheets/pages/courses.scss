@@ -58,7 +58,7 @@
     border-top: 10px solid $primary-color;
     margin-bottom: 30px;
     .panel-heading {
-      background-image: image-url('bg.png');
+      background-image: image-url('jumbotron-bg.png');
       color: $primary-color;
     }
     .panel-body {
@@ -92,7 +92,7 @@
       }
     }
     .panel-footer {
-      background-image: image-url('bg.png');
+      background-image: image-url('jumbotron-bg.png');
       background-color: #fff;
       border-top: 5px #eee dashed;
       h1 {
