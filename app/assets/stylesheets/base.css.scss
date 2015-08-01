@@ -2,6 +2,7 @@ body {
 	font-family: 'Ubuntu', 'Microsoft JhengHei', sans-serif;
   padding-top: 70px;  /* Fix navbar overlay problem */
   background-color: $bg-color;
+  background-image: image-url('main-bg.png');
   font-size: $fz-xs;
 }
 
