@@ -2,32 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.course-info li {
-  display: inline-block;
-  position: relative;
-}
-span.superscript-title {
-  padding-left: 35px;
-  margin: 0;
-  color: #939393;
-  font-size: 12px;
-  line-height: 1.2em;
-}
-.course-info h2 {
-  padding-left: 35px;
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.5em;
-}
-.course-info i {
-  font-size: 25px;
-  position: absolute;
-  top: 20%;
-}
-.panel-group .panel {
-  margin-bottom: 20px;
-}
-
+/* Search form */
 .fixed-aside {
   position: fixed;
   @include breakpoint(tablet) {
@@ -41,6 +16,17 @@ span.superscript-title {
   .jumbotron {
     padding-right: 20px;
     padding-left: 20px;
+    opacity: 0.5;
+    box-shadow: none;
+    transition: 0.5s ease;
+    &:hover {
+      opacity: 1;
+      box-shadow: 0 5px 15px 3px lightgray;
+    }
+    @include breakpoint(tablet) {
+      opacity: 1;
+      box-shadow: 0 5px 15px 3px lightgray;
+    }
   }
   .search-buttons {
     margin: 30px 0;
@@ -55,6 +41,93 @@ span.superscript-title {
   }
 }
 
+/* Main */
+.search-result {
+  h1::after {
+    left: 0;
+    -webkit-transform: translateX(0);
+       -moz-transform: translateX(0);
+            transform: translateX(0);
+    height: 5px;
+    width: 20%;
+  }
+  .panel {
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.2);
+    border: 0;
+    border-bottom: 10px solid $primary-color;
+    border-top: 10px solid $primary-color;
+    margin-bottom: 30px;
+    .panel-heading {
+      background-image: image-url('bg.png');
+      color: $primary-color;
+    }
+    .panel-body {
+      background-color: #fff;
+      background-image: image-url('main-bg.png');
+      thead tr {
+        background-color: lighten($orange, 45);
+      }
+      tbody tr {
+        background-color: #fff;
+        color: $gray700;
+        td {
+          vertical-align: middle;
+        }
+        &:hover {
+          background-color: lighten($orange, 50);
+          color: $black;
+        }
+      }
+      a.m-btn,
+      input.m-btn,
+      button.m-btn {
+        color: #fff;
+        background-color: lighten($orange, 10);
+        &:hover {
+          background-color: lighten($orange, 5);
+        }
+        &:focus {
+          background-color: lighten($orange, 0);
+        }
+      }
+    }
+    .panel-footer {
+      background-image: image-url('bg.png');
+      background-color: #fff;
+      border-top: 5px #eee dashed;
+      h1 {
+        font-size: $fz-s;
+      }
+    }
+  }
+}
+
+.course-info li {
+  display: inline-block;
+  position: relative;
+  color: $orange;
+  span.superscript-title {
+    padding-left: ($fz-m*1.5);
+    margin: 0;
+    color: $gray700;
+    font-size: 12px;
+    line-height: 1.2em;
+  }
+  h2 {
+    padding-left: ($fz-m*1.5);
+    margin: 0;
+    font-size: $fz-s;
+    line-height: 1.5em;
+  }
+  i {
+    position: absolute;
+    font-size: $fz-m;
+    line-height: 49px;
+  }
+}
+
+
+/* Comments & Replies */
 .comment-panel {
   padding: 0 10px;
 }
@@ -64,15 +137,6 @@ span.superscript-title {
   width: 100%;
   h1 {
     margin-bottom: 15px;
-  }
-  a {
-    &:link,
-    &:hover,
-    &:active,
-    &:visited {
-      text-decoration: none;
-      color: inherit; 
-    }
   }
 }
 
@@ -84,6 +148,7 @@ span.superscript-title {
     background: image-url("comment/slash.png") repeat-x 0 0;
     border: 0;
     margin-bottom: 15px;
+    margin-top: 15px;
   }
   &:first-of-type::before {
     display: block;
@@ -97,6 +162,8 @@ span.superscript-title {
       font-size: 20px;
       width: $text-indent;
       text-align: center;
+      color: $gray500;
+      transition: 0.3s;
     }
     .comment-content {
       display: table-cell;
@@ -107,29 +174,54 @@ span.superscript-title {
       }
       .comment-info {
         padding-bottom: $inner-padding;
+        color: $gray500;
+        transition: 0.3s;
+        span {
+          white-space: nowrap;
+        }
+      }
+    }
+    &:hover {
+      .vote,
+      .comment-info {
+        color: $gray700;
       }
     }
   }
 }
 
-.reply-list {
-  margin-left: $text-indent;
-  padding: $inner-padding;
-  padding-top: 0;
-  .replies {
-    background-color: #e5e5e5;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 1em;
-    .vote {
-      display: block;
-      i {
-        padding: 0 0.5rem;
-      }
+.reply-list .replies {
+  background-color: lighten($orange, 50);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 1em;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .vote {
+    display: block;
+    color: $gray500;
+    transition: 0.3s;
+    i {
+      padding: 0 0.5rem;
+    }
+    span {
+      white-space: nowrap;
     }
   }
+  &:hover {
+    .vote {
+      color: $gray700;
+    }
+  }
+}
+
+.reply-list,
+.reply-block {
+  margin-left: $text-indent;
+  padding: 0 $inner-padding;
 }
 
 .comment-block,
@@ -143,18 +235,17 @@ span.superscript-title {
     border: 2px solid #e5e5e5;
     border-radius: 4px 4px 0 0;
   }
-
   button[type="submit"] {
     background-color: #f6f8f9;
     border: 2px solid #e5e5e5;
     border-top: 0;
     border-radius: 0 0 4px 4px;
     text-align: left;
+    color: $gray700;
+    transition: 0.3s;
+    &:hover {
+      color: $black;
+    }
   }
 }
 
-.reply-block {
-  margin-left: $text-indent;
-  margin-bottom: 15px;
-  padding: 0 $inner-padding;
-}

@@ -43,4 +43,9 @@ $(function(){
 		$('html, body').animate({scrollTop : 0},800);
 		return false;
 	});
+
+	/* Show Comments or Replies */
+	$('.switch').on('click', function(){
+		$(this).children().toggleClass('fa-minus fa-plus');
+	});
 });
