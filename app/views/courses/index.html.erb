@@ -102,8 +102,8 @@
                       <div class="comment-content">
                         <p><%= comment.content %></p>
                         <div class="comment-info">
-                          <span><%= comment.created_at %> ‧ </span>
-                          <span><a class="switch" href="#<%= comment.id %>_reply" data-toggle="collapse" aria-expanded="true" aria-controls="<%= comment.id %>_reply"><%= comment.replies.count %> 則回覆 <i class="fa fa-minus"></i></a> ‧ </span>
+                          <span data-date="<%= comment.created_at %>" class="date"></span>
+                          <span> ‧ <a class="switch" href="#<%= comment.id %>_reply" data-toggle="collapse" aria-expanded="true" aria-controls="<%= comment.id %>_reply"><%= comment.replies.count %> 則回覆 <i class="fa fa-minus"></i></a> ‧ </span>
                           <span><a href="#<%= comment.id %>" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">回覆 <i class="fa fa-reply"></i></a></span>
                         </div>
                       </div>
@@ -120,7 +120,7 @@
                     <div class="replies">
                       <p><%= reply.content %></p>
                       <div class="vote">
-                        <span><%= reply.created_at %></span>
+                        <span data-date="<%= reply.created_at %>" class="date"></span>
                         <span>‧<a href=""><i class="fa fa-chevron-up"></i></a> <%= reply.score %> <a href=""><i class="fa fa-chevron-down"></i></a></span>
                       </div>
                     </div>

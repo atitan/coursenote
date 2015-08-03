@@ -16,6 +16,8 @@
 //= require turbolinks
 //= require_tree .
 //= require autosize
+//= require moment
+//= require moment/zh-tw
 /*!
  * Bootstrap v3.3.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -23,6 +25,12 @@
  */
 
 $(function(){
+	$('.date').each(function() {
+		var date = $(this).data('date');
+	  var date_formatted = moment(date).startOf('minute').fromNow();
+	  $(this).text(date_formatted);
+	});
+
 	$('.nav-btn').on('click', function(){
 		$(this).toggleClass('active');
 		$('.nav-list').toggleClass('open');
