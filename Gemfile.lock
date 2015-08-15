@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    arel (6.0.0)
+    arel (6.0.3)
     autoprefixer-rails (5.2.1)
       execjs
       json
@@ -92,7 +92,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    globalid (0.3.5)
+    globalid (0.3.6)
       activesupport (>= 4.1.0)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
@@ -114,9 +114,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     multi_json (1.11.2)
     mysql2 (0.3.18)
     net-scp (1.2.1)
@@ -128,6 +129,12 @@ GEM
     paper_trail (3.0.8)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.6.4)
@@ -146,7 +153,7 @@ GEM
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.6)
+    rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
@@ -190,6 +197,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
+    slop (3.6.0)
     spring (1.3.6)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -238,12 +248,14 @@ DEPENDENCIES
   kaminari (~> 0.16.1)
   mysql2
   paper_trail (~> 3.0.6)
+  pry-rails
   puma
   rails (~> 4.2.0)
   rails-i18n (~> 4.0.0)
   rspec-rails (~> 3.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   spring
   turbolinks
   uglifier (>= 1.3.0)
