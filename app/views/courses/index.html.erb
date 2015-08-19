@@ -1,4 +1,4 @@
-<div class="row" >
+﻿<div class="row" >
   <div class="col-md-4">
     <div class="fixed-aside">
       <%= render 'search_form' %>
@@ -6,52 +6,54 @@
   </div>
   <div class="col-md-8 search-result">
     <section class="row mg-lr-xs-2">
-      <h1>課程查詢結果</h1><hr>
+      <h1 class="m-title"><strong>課程查詢結果</strong></h1>
       <dl class="panel-group" id="courseInfoList" role="tablist" aria-multiselectable="true">
         <% @courses.each do |course| %>
-        <dd class="panel panel-info">
+        <dd class="panel">
           <h1 class="sr-only"><%= course.title %></h1>
           <section id="heading_<%= course.id %>" class="panel-heading" role="tab">
             <header clas="panel-title">
               <ul class="course-info list-unstyled mg-b-10 clearfix">
                 <li class="col-xs-6 col-sm-3">
-                  <i class="glyphicon glyphicon-star" aria-hidden="true"></i>
+                  <i class="fa fa-star" aria-hidden="true"></i>
                   <span class="superscript-title">Rank#</span>
                   <h2><%= course.score %></h2>
                 </li>
                 <li class="col-xs-6 col-sm-3">
-                  <i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
+                  <i class="fa fa-list-alt" aria-hidden="true"></i>
                   <span class="superscript-title">課程名稱</span>
                   <h2><%= course.title %></h2>
                 </li>
                 <li class=" col-xs-6 col-sm-3">
-                  <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                  <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="superscript-title">授課教師</span>
                   <h2><%= course.instructor %></h2>
                 </li>
                 <li class="col-xs-6 col-sm-3">
-                  <i class="glyphicon glyphicon-tag" aria-hidden="true"></i>
+                  <i class="fa fa-tag" aria-hidden="true"></i>
                   <span class="superscript-title">課程類別</span>
                   <h2><%= course.category %></h2>
                 </li>
                 <li class="col-xs-12">
                   <li class="col-xs-6 col-sm-9">
-                    <button type="button" class="btn btn-success mg-t-10" aria-label="推"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 推</button>
-                    <button type="button" class="btn btn-danger mg-t-10" aria-label="噓"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> 噓</button>
+                    <button type="button" onclick="sendVote(<%= course.id %>, true)" class="btn btn-success mg-t-10" aria-label="推"><span class="fa fa-thumbs-o-up" aria-hidden="true"></span> 推</button>
+                    <button type="button" onclick="sendVote(<%= course.id %>, 'nil')" class="btn btn-info mg-t-10" aria-label="中立"><span class="" aria-hidden="true"></span> 中立</button>
+                    <button type="button" onclick="sendVote(<%= course.id %>, false)" class="btn btn-danger mg-t-10" aria-label="噓"><span class="fa fa-thumbs-o-down" aria-hidden="true"></span> 噓</button>
                   </li>
                   <li class="col-xs-6 col-sm-3">
-                    <a href="#<%= course.instructor %>_<%= course.id %>" class="btn btn-primary mg-t-10" data-toggle="collapse" data-parent="#courseInfoList" aria-expanded="true" aria-controls="<%= course.instructor %>_<%= course.id %>">開課資訊</a>
+                    <a href="#<%= course.instructor %>_<%= course.id %>" class="btn m-btn mg-t-10" data-toggle="collapse" data-parent="#courseInfoList" aria-expanded="true" aria-controls="<%= course.instructor %>_<%= course.id %>">開課資訊</a>
                   </li>
                 </li>
               </ul>
             </header>
           </section>
-          <section id="<%= course.instructor %>_<%= course.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelby="heading_<%= course.id %>">
+          <section id="<%= course.instructor %>_<%= course.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<%= course.id %>">
             <h1 class="sr-only">開課資訊</h1>
             <article class="panel-body">
-              <table class="table table-hover table-striped">
+            <h1 class="sr-only"><%= course.title %> - <%= course.instructor %>: 開課詳細資訊</h1>
+              <table class="table">
                 <thead>
-                  <tr class="">
+                  <tr>
                     <th>課程代碼</th>
                     <th>上課時段</th>
                     <th>學分數</th>
@@ -66,7 +68,7 @@
                     <td><%= entry.time %></td>
                     <td><%= entry.credit %></td>
                     <td><%= entry.department %></td>
-                    <td><a class="btn btn-sm btn-default">追蹤課程</a></td>
+                    <td><a class="btn btn-sm m-btn">追蹤課程</a></td>
                   </tr>
                   <% end %>
                 </tbody>
@@ -74,6 +76,60 @@
             </article>
           </section>
           <footer class="panel-footer">
+            <section class="comment-panel">
+            <h1 class="sr-only">留言</h1>
+              <article class="comment-block">
+                <h1><i class="fa fa-comments-o"></i> 留言</h1>
+                <form action="#">
+                  <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
+                  <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 留言</button>
+                </form>
+              </article>
+              
+              <article class="comment-table">
+                <h1>
+                  <span><a class="switch" href="#<%= course.id %>_comment" data-toggle="collapse" aria-expanded="true" aria-controls="<%= course.id %>_comment"><%= course.comments.count %> 則留言 <i class="fa fa-minus"></i></a></span>
+                </h1>
+                <div id="<%= course.id %>_comment" class="collapse in">
+                  <% course.comments.each do |comment| %>
+                  <div class="comment-list">
+                    <div class="comments">
+                      <div class="vote">
+                        <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
+                        <span><%= comment.score %></span>
+                        <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
+                      </div>
+                      <div class="comment-content">
+                        <p><%= comment.content %></p>
+                        <div class="comment-info">
+                          <span data-date="<%= comment.created_at %>" class="date"></span>
+                          <span> ‧ <a class="switch" href="#<%= comment.id %>_reply" data-toggle="collapse" aria-expanded="true" aria-controls="<%= comment.id %>_reply"><%= comment.replies.count %> 則回覆 <i class="fa fa-minus"></i></a> ‧ </span>
+                          <span><a href="#<%= comment.id %>" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">回覆 <i class="fa fa-reply"></i></a></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="reply-block collapse" id="<%= comment.id %>">
+                    <form action="#">
+                      <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
+                      <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
+                    </form>
+                  </div>
+                  <div class="reply-list collapse in" id="<%= comment.id %>_reply">
+                    <% comment.replies.each do |reply| %>
+                    <div class="replies">
+                      <p><%= reply.content %></p>
+                      <div class="vote">
+                        <span data-date="<%= reply.created_at %>" class="date"></span>
+                        <span>‧<a href=""><i class="fa fa-chevron-up"></i></a> <%= reply.score %> <a href=""><i class="fa fa-chevron-down"></i></a></span>
+                      </div>
+                    </div>
+                    <% end %>
+                  </div>
+                  <% end %>
+                </div>
+              </article>
+            </section>
           </footer>
         </dd>
         <% end %>

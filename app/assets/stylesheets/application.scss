@@ -11,27 +11,7 @@
  * file per style scope.
  *
  *= require shared/bootstrap-base
- *= require_tree .
+ *= require main
+ * require_tree .
  *= require_self
  */
-
-
-body {
-  padding-top: 70px;  /* Fix navbar overlay problem */
-}
-
-
-.mg-t-10 {
-  margin-top: 10px;
-}
-
-.mg-b-10 {
-  margin-bottom: 10px
-}
-
-@media screen and (max-width: 768px) {
-  .mg-lr-xs-2 {
-    margin-left: 2px;
-    margin-right: 2px;
-  }
-}
