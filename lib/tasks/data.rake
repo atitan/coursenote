@@ -11,6 +11,7 @@ namespace :data do
 
     data = raw.split('@')
     data.map!{ |x| x.split('|') }
+    data.delete_if{ |x| x.empty? }
 
     entries = []
     courses = data.collect do |x|
@@ -39,16 +40,33 @@ namespace :data do
     # and reset course status to unavailable
     Entry.destroy_all
     Course.update_all(available: false)
-    
+
     # start updating
     total = courses.length
     percentage = 0
     print "Importing..."
+    @output_errors  = []
     courses.each_with_index do |course, index|
 
+      @record = {}
+      @record[:errors] = []
+
       course_record = Course.find_or_initialize_by(course)
-      course_record.update_attributes(available: true)
-      course_record.entries.create(entries[index])
+      if course_record.save
+        course_record.update_attributes(available: true)
+        course_record.entries.create(entries[index])
+      else
+        course_record.errors.full_messages.each do |message|
+          @record[:errors] << message
+        end
+      end
+
+      unless @record[:errors] == []
+        @record.merge!(course)
+        @record[:entries] = []
+        @record[:entries] << entries[index]
+        @output_errors.push(@record)
+      end
 
       current_percentage = (index * 100 / total)
       if current_percentage > percentage
@@ -57,6 +75,11 @@ namespace :data do
       end
     end
     puts "\rImporting...done!"
+    unless @output_errors == []
+      puts '正在產生例外報告...'
+      output_file = File.new("lib/tasks/exceptions-#{Time.now.utc.iso8601}.json", 'w')
+      output_file.print(JSON.pretty_generate(@output_errors))
+    end
   end
 
   def convert2timetable(time)

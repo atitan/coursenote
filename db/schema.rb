@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20150714043804) do
   end
 
   add_index "favorite_courses", ["course_entry_id"], name: "index_favorite_courses_on_course_entry_id", using: :btree
-  add_index "favorite_courses", ["user_id", "course_entry_id"], name: "index_favorite_courses_on_user_id_and_course_entry_id", unique: true, using: :btree
   add_index "favorite_courses", ["user_id"], name: "index_favorite_courses_on_user_id", using: :btree
 
   create_table "passed_courses", force: :cascade do |t|
