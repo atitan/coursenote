@@ -3,20 +3,30 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :lockable, :confirmable
+         :validatable, :lockable, :confirmable, :encryptable
 
   # Has many relationships
   has_many :comments
   has_many :votes
-  has_many :favorite_courses
-  has_many :passed_courses
 
-  def student_id
-    return false unless student?
-    self[:email].match(/\A((s|g)(\d{7,8})@cycu\.edu\.tw)\z/i)[3]
-  end
+  before_create :check_identity
+  before_save :sanitize_passed_courses
 
   def student?
-    !self[:email].match(/\A((s|g)\d{7,8}@cycu\.edu\.tw)\z/i).nil?
+    self[:is_student]
+  end
+
+  def check_identity
+    exp = /\A((s|g)(\d{7,8})@cycu\.edu\.tw)\z/i
+    self[:is_student] = !self[:email].match(exp).nil?
+    true
+  end
+
+  def sanitize_passed_courses
+    self[:passed_courses].uniq!
+  end
+
+  def active_for_authentication?
+    super && (self[:banned_until].nil? || DateTime.now > self[:banned_until])
   end
 end

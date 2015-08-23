@@ -27,7 +27,7 @@ namespace :data do
       entries << {
         code: x[6], # 代號
         timetable: convert2timetable([x[16], x[18], x[20]]), # 時間表
-        timestring: "#{x[16]} #{x[18]} #{x[20]}", # 字串時間表
+        timestring: "#{x[16]} #{x[18]} #{x[20]}".strip, # 字串時間表
         cross_graduate: !x[1].empty?, # 跨部
         cross_department: !x[2].empty?, # 跨系
         department: x[9], # 開課系級
@@ -75,17 +75,15 @@ namespace :data do
 
   def convert2timetable(time)
     offset = %w(A 1 2 3 4 B 5 6 7 8 C D E F G H)
-    output = ''.rjust(112, "0")
+    output = {}
 
     time.each do |x|
       tmp = /(\d)-(\w+)/.match(x)
       next if tmp.nil?
 
-      day = tmp[1].to_i - 1
+      day = tmp[1].to_i
       sec = tmp[2].split('')
-      sec.each do |z|
-        output[day*16 + offset.index(z)] = '1'
-      end
+      output[day] = sec
     end
     output
   end
