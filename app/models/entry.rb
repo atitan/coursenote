@@ -5,7 +5,7 @@ class Entry < ActiveRecord::Base
   # Has many relationships
   has_many :favorite_courses
 
-  validates_presence_of :course
+  validates_presence_of :course, :department
 
   def time
     day = 0
