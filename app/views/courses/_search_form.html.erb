@@ -2,15 +2,15 @@
   <div class="jumbotron">
     <div class="form-group">
       <label for="by_title">課程名稱</label>
-      <input type="text" class="form-control" id="by_title" placeholder="課程名稱" name="by_title">
+      <input type="text" class="form-control" id="by_title" placeholder="課程名稱" name="by_title" value="<%= params[:by_title] %>">
     </div>
     <div class="form-group">
       <label for="by_department">開課系級</label>
-      <input type="text" class="form-control" id="by_department" placeholder="開課系級" name="by_department">
+      <input type="text" class="form-control" id="by_department" placeholder="開課系級" name="by_department" value="<%= params[:by_department] %>">
     </div>
     <div class="form-group">
       <label for="by_instructor">授課教師</label>
-      <input type="text" class="form-control" id="by_instructor" placeholder="授課教師" name="by_instructor">
+      <input type="text" class="form-control" id="by_instructor" placeholder="授課教師" name="by_instructor" value="<%= params[:by_instructor] %>">
     </div>
     <div data-toggle="buttons" class="search-buttons">
       <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="天">天學</label>

@@ -95,7 +95,7 @@ Devise.setup do |config|
   # encryptor), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   # config.stretches = Rails.env.test? ? 1 : 10
-  config.stretches = 1
+  config.stretches = Rails.env.test? ? 1 : 20
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = 'efca930b56406f3664954968f3855b614546335d58450ef0bbaf9cee50cd08cbebbf4919ec9f493ce62d1f690404d0480c97f707ef7175ef9f3a7e35539d141c'
@@ -127,7 +127,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 6.months
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
