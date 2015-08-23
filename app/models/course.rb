@@ -1,4 +1,7 @@
 class Course < ActiveRecord::Base
+  # Validations
+  validates_presence_of :title, :category
+
   # Has many relationships
   has_many :comments, -> { thread.order(score: :desc, created_at: :desc) }
   has_many :votes, as: :votable
