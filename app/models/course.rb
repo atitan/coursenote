@@ -11,6 +11,7 @@ class Course < ActiveRecord::Base
   scope :by_title, -> search { where('title LIKE ?', "%#{search}%") }
   scope :by_instructor, -> search { where('instructor LIKE ?', "%#{search}%") }
   scope :by_department, -> search { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.department LIKE ?', "%#{search}%").uniq }
+  scope :cross_department, -> { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(entries: {cross_department: true}).uniq }
   scope :by_category, -> search { where(category: search) }
   scope :hide_passed_courses, -> passed_courses { where.not(title: passed_courses) }
 end

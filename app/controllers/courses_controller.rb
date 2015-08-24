@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   has_scope :by_category, type: :array
   has_scope :by_department
   has_scope :page, default: 1
+  has_scope :cross_department, type: :boolean
   has_scope :show_all, default: false, type: :boolean, allow_blank: true do |controller, scope, value|
     value ? scope : scope.available_only
   end
