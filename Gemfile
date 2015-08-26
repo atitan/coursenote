@@ -48,6 +48,9 @@ gem 'paper_trail', '~> 3.0.6'
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
 
+# JSON validator
+gem 'activerecord_json_validator'
+
 # Use puma server
 gem 'puma'
 

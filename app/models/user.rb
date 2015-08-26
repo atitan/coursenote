@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   before_create :check_identity
   before_save :sanitize_passed_courses
 
+  validates :time_filter, json: { schema: Rails.root.join('app', 'models', 'schemas', 'time_filter.json').to_s }
+
   def student?
     self[:is_student]
   end
