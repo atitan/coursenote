@@ -48,6 +48,11 @@ gem 'paper_trail', '~> 3.0.6'
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
 
+# Use slim to simplify html code
+gem 'slim', '~> 3.0.6'
+gem 'slim-rails'
+
+
 # JSON validator
 gem 'activerecord_json_validator'
 
@@ -55,10 +60,10 @@ gem 'activerecord_json_validator'
 gem 'puma'
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # N+1 problem
-  gem "bullet"
+  gem 'bullet'
   # Deployment
   gem 'capistrano-rails'
   # console
@@ -67,7 +72,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
-  gem "factory_girl_rails", "~> 4.0"
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
 end
 
