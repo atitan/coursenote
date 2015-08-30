@@ -12,7 +12,7 @@
         <dd class="panel">
           <h1 class="sr-only"><%= course.title %></h1>
           <section id="heading_<%= course.id %>" class="panel-heading" role="tab">
-            <header clas="panel-title">
+            <header class="panel-title">
               <ul class="course-info list-unstyled mg-b-10 clearfix">
                 <li class="col-xs-6 col-sm-3">
                   <i class="fa fa-star" aria-hidden="true"></i>
@@ -34,7 +34,7 @@
                   <span class="superscript-title">課程類別</span>
                   <h2><%= course.category %></h2>
                 </li>
-                <li class="col-xs-12">
+                <ul>
                   <li class="col-xs-6 col-sm-9">
                     <button type="button" onclick="sendVote(<%= course.id %>, true)" class="btn btn-success mg-t-10" aria-label="推"><span class="fa fa-thumbs-o-up" aria-hidden="true"></span> 推</button>
                     <button type="button" onclick="sendVote(<%= course.id %>, 'nil')" class="btn btn-info mg-t-10" aria-label="中立"><span class="" aria-hidden="true"></span> 中立</button>
@@ -43,7 +43,7 @@
                   <li class="col-xs-6 col-sm-3">
                     <a href="#<%= course.instructor %>_<%= course.id %>" class="btn m-btn mg-t-10" data-toggle="collapse" data-parent="#courseInfoList" aria-expanded="true" aria-controls="<%= course.instructor %>_<%= course.id %>">開課資訊</a>
                   </li>
-                </li>
+                </ul>
               </ul>
             </header>
           </section>
@@ -85,7 +85,7 @@
                   <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 留言</button>
                 </form>
               </article>
-              
+
               <article class="comment-table">
                 <h1>
                   <span><a class="switch" href="#<%= course.id %>_comment" data-toggle="collapse" aria-expanded="true" aria-controls="<%= course.id %>_comment"><%= course.comments.count %> 則留言 <i class="fa fa-minus"></i></a></span>
