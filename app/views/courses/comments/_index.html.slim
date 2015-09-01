@@ -36,5 +36,5 @@ section.comment-panel
                     a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
                       | 回覆&ensp;
                       i.fa.fa-reply
-        = render 'courses/comments/replies/form', comment: comment
+        = render 'courses/comments/replies/form', comment: comment, course: course
         = render 'courses/comments/replies/index', comment: comment

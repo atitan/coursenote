@@ -1,6 +1,8 @@
 .reply-block.collapse id="#{comment.id}"
-  form action='#'
-    textarea.form-control onkeyup='autoheight(this)' placeholder='我想說...'
-    button.btn.btn-block type='submit'
+  = form_for [course, course.comments.build], url: comments_path do |f|
+    = f.hidden_field :course_id, value: course.id
+    = f.hidden_field :parent_id, value: comment.id
+    = f.text_area :content, class: 'form-control', onkeyup: 'autoheight(this)', placeholder: '我想說...'
+    = f.button :submit, class: 'btn btn-block' do
       i.fa.fa-paper-plane
-      | 提交
+      | &ensp; 提交
