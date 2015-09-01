@@ -47,33 +47,8 @@
               </ul>
             </header>
           </section>
-          <section id="<%= course.instructor %>_<%= course.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_<%= course.id %>">
-            <h1 class="sr-only">開課資訊</h1>
-            <article class="panel-body">
-            <h1 class="sr-only"><%= course.title %> - <%= course.instructor %>: 開課詳細資訊</h1>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>課程代碼</th>
-                    <th>上課時段</th>
-                    <th>學分數</th>
-                    <th>開課系級</th>
-                    <th>追蹤課程</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% course.entries.each do |entry| %>
-                  <tr>
-                    <td><%= entry.code %></td>
-                    <td><%= entry.timestring %></td>
-                    <td><%= entry.credit %></td>
-                    <td><%= entry.department %></td>
-                    <td><a class="btn btn-sm m-btn">追蹤課程</a></td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </article>
+          <section id="<%= course.instructor %>_<%= course.id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_<%= course.id %>">
+            <%= render 'courses/entries/index', course: course %>
           </section>
           <footer class="panel-footer">
             <%= render 'courses/comments/index', course: course %>

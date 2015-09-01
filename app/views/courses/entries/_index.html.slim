@@ -1,0 +1,26 @@
+h1.sr-only 開課資訊
+article.panel-body
+  h1.sr-only
+    = course.title
+    | &ensp;-&ensp;
+    = course.instructor
+    | : 開課詳細資訊
+
+  table.table
+    thead
+      tr
+        th 課程代碼
+        th 上課時段
+        th 學分數
+        th 開課系級
+        /th 追蹤課程
+
+    tbody
+      - course.entries.each do |entry|
+        tr
+          td = entry.code
+          td = entry.timestring
+          td = entry.credit
+          td = entry.department
+          /td 
+            a.btn.btn-sm.m-btn 追蹤課程
