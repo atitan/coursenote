@@ -1,0 +1,54 @@
+.row
+  .col-md-4
+    .fixed-aside
+      = render 'search_form'
+
+  .col-md-8.search-result
+    section.row.mg-lr-xs-2
+      h1.m-title
+        strong 課程查詢結果
+      dl#courseInfoList.panel-group role='tablist' aria-multiselectable='true'
+        - @courses.each do |course|
+          dd.panel
+            h1.sr-only = course.title
+            section.panel-heading role='tab' id="heading_#{course.id}"
+              header.panel-title
+                ul.course-info.list-unstyled.mg-b-10.clearfix
+                  li.col-xs-6.col-sm-3
+                    i.fa.fa-star aria-hidden='true'
+                    span.superscript-title Rank #
+                    h2 = course.score
+                  li.col-xs-6.col-sm-3
+                    i.fa.fa-list-alt aria-hidden='true'
+                    span.superscript-title 課程名稱
+                    h2 = course.title
+                  li.col-xs-6.col-sm-3
+                    i.fa.fa-user aria-hidden='true'
+                    span.superscript-title 授課教師
+                    h2 = course.instructor
+                  li.col-xs-6.col-sm-3
+                    i.fa.fa-tag aria-hidden='true'
+                    span.superscript-title 課程類別
+                    h2 = course.category
+                  ul
+                    li.col-xs-6.col-sm-9
+                      button.btn.btn-success.mg-t-10.btn-vote aria-label='推' type='button' onclick="sendVote(#{course.id}, true)"
+                        span.fa.fa-thumbs-o-up aria-hidden='true'
+                        | &ensp;推
+                      button.btn.btn-info.mg-t-10.btn-vote aria-label='中立' type='button' onclick="sendVote(#{course.id}, 'nil')"
+                        | 中立
+                      button.btn.btn-danger.mg-t-10.btn-vote aria-label='噓' type='button' onclick="sendVote(#{course.id}, false)"
+                        span.fa.fa-thumbs-o-down aria-hidden='true'
+                        | &ensp;噓
+                    li.col-xs-6.col-sm-3
+                      a.btn.m-btn.mg-t-10 href="##{course.instructor}_#{course.id}" data-toggle='collapse' data-parent='#courseInfoList' aria-expanded='true' aria-controls="#{course.instructor}_#{course.id}"
+                        | 開課資訊
+
+            section.panel-collapse.collapse.in id="#{course.instructor}_#{course.id}" role='tabpanel' aria-labelledby="heading_#{course.id}"
+              = render 'courses/entries/index', course: course
+
+            footer.panel-footer
+              = render 'courses/comments/index', course: course
+
+    .text-center
+      = paginate @courses, :window => 2
