@@ -76,60 +76,7 @@
             </article>
           </section>
           <footer class="panel-footer">
-            <section class="comment-panel">
-            <h1 class="sr-only">留言</h1>
-              <article class="comment-block">
-                <h1><i class="fa fa-comments-o"></i> 留言</h1>
-                <form action="#">
-                  <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
-                  <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 留言</button>
-                </form>
-              </article>
-
-              <article class="comment-table">
-                <h1>
-                  <span><a class="switch" href="#<%= course.id %>_comment" data-toggle="collapse" aria-expanded="true" aria-controls="<%= course.id %>_comment"><%= course.comments.count %> 則留言 <i class="fa fa-minus"></i></a></span>
-                </h1>
-                <div id="<%= course.id %>_comment" class="collapse in">
-                  <% course.comments.each do |comment| %>
-                  <div class="comment-list">
-                    <div class="comments">
-                      <div class="vote">
-                        <span><a href=""><i class="fa fa-chevron-up"></i></a></span>
-                        <span><%= comment.score %></span>
-                        <span><a href=""><i class="fa fa-chevron-down"></i></a></span>
-                      </div>
-                      <div class="comment-content">
-                        <p><%= comment.content %></p>
-                        <div class="comment-info">
-                          <span data-date="<%= comment.created_at %>" class="date"></span>
-                          <span> ‧ <a class="switch" href="#<%= comment.id %>_reply" data-toggle="collapse" aria-expanded="true" aria-controls="<%= comment.id %>_reply"><%= comment.replies.count %> 則回覆 <i class="fa fa-minus"></i></a> ‧ </span>
-                          <span><a href="#<%= comment.id %>" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">回覆 <i class="fa fa-reply"></i></a></span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="reply-block collapse" id="<%= comment.id %>">
-                    <form action="#">
-                      <textarea class="form-control" onkeyup="autoheight(this)" placeholder="我想說..."></textarea>
-                      <button type="submit" class="btn btn-block"><i class="fa fa-paper-plane"></i> 提交</button>
-                    </form>
-                  </div>
-                  <div class="reply-list collapse in" id="<%= comment.id %>_reply">
-                    <% comment.replies.each do |reply| %>
-                    <div class="replies">
-                      <p><%= reply.content %></p>
-                      <div class="vote">
-                        <span data-date="<%= reply.created_at %>" class="date"></span>
-                        <span>‧<a href=""><i class="fa fa-chevron-up"></i></a> <%= reply.score %> <a href=""><i class="fa fa-chevron-down"></i></a></span>
-                      </div>
-                    </div>
-                    <% end %>
-                  </div>
-                  <% end %>
-                </div>
-              </article>
-            </section>
+            <%= render 'courses/comments/comments', course: course %>
           </footer>
         </dd>
         <% end %>
