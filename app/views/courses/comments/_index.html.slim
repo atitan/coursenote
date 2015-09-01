@@ -1,21 +1,12 @@
 section.comment-panel
-  h1.sr-only 留言
-  article.comment-block
-    h1
-      i.fa.fa-comments-o
-      | 留言
-    form action='#'
-      textarea.form-control onkeyup='autoheight(this)' placeholder='我想說...'
-      button.btn.btn-block type='submit'
-        i.fa.fa-paper-plane
-        | 留言
+  = render 'courses/comments/form'
 
   article.comment-table
     h1
       span
         a.switch aria-controls="#{course.id}_comment" aria-expanded='true' data-toggle='collapse' href="##{course.id}_comment"
           = course.comments.count
-          | &ensp;則留言
+          | &ensp;則留言&ensp;
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
       - course.comments.each do |comment|
@@ -44,22 +35,5 @@ section.comment-panel
                   a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
                     | 回覆&ensp;
                     i.fa.fa-reply
-        .reply-block.collapse id="#{comment.id}"
-          form action='#'
-            textarea.form-control onkeyup='autoheight(this)' placeholder='我想說...'
-            button.btn.btn-block type='submit'
-              i.fa.fa-paper-plane
-              | 提交
-        .reply-list.collapse.in id="#{comment.id}_reply"
-          - comment.replies.each do |reply|
-            .replies
-              p = reply.content
-              .vote
-                span.date data-date="#{reply.created_at}"
-                span
-                  | &ensp;&#8901;&ensp;
-                  a href=''
-                    i.fa.fa-chevron-up
-                  = reply.score
-                  a href=''
-                    i.fa.fa-chevron-down
+        = render 'courses/comments/replies/form', comment: comment
+        = render 'courses/comments/replies/index', comment: comment
