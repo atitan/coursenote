@@ -1,5 +1,5 @@
 .reply-block.collapse id="#{comment.id}"
-  = form_for [course, course.comments.build], url: comments_path do |f|
+  = form_for [course, course.comments.build], url: comments_path, remote: :true do |f|
     = f.hidden_field :course_id, value: course.id
     = f.hidden_field :parent_id, value: comment.id
     = f.text_area :content, class: 'form-control', onkeyup: 'autoheight(this)', placeholder: '我想說...'
