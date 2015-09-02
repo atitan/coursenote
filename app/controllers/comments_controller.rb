@@ -3,10 +3,11 @@ class CommentsController < ApplicationController
   before_action :find_comment, only: [:update, :destroy]
 
   def create
-    if comment = current_user.comments.create(comment_params)
-      render json: comment
+    if @comment = current_user.comments.create(comment_params)
+      # render json: comment
+      render 'courses/comments/created'
     else
-      render json: { error: comment.errors.full_messages }, status: :internal_server_error
+      render json: { error: @comment.errors.full_messages }, status: :internal_server_error
     end
   end
 
