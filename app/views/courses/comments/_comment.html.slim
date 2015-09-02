@@ -11,7 +11,7 @@
     .comment-content
       p = comment.content
       .comment-info
-        span.date data-date="#{comment.created_at}"
+        span.date data-date="#{comment.created_at.utc.iso8601}"
         span
           | &ensp;&#8901;&ensp;
           a.switch aria-controls="#{comment.id}_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_reply"
