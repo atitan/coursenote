@@ -9,3 +9,10 @@
 | $("##{@comment.course_id}_comment").prepend('
 = j render 'courses/comments/comment', comment: @comment, course: @comment.course
 | ');
+
+// Processing Relative Time
+| $('##{@comment.course_id}_comment .date').each(function() {
+|  var date = $(this).data('date');
+|  var date_formatted = moment(date).startOf('minute').fromNow();
+|  $(this).text(date_formatted);
+|});
