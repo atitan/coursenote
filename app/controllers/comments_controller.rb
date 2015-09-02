@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   def create
     if @comment = current_user.comments.create(comment_params)
       # render json: comment
-      render 'courses/comments/created'
+      render 'courses/comments/created'         if  @comment.parent_id.nil?
+      render 'courses/comments/replies/created' if !@comment.parent_id.nil?
     else
       render json: { error: @comment.errors.full_messages }, status: :internal_server_error
     end

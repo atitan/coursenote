@@ -1,0 +1,11 @@
+// Trigger Reset Action on Corresponding Form to Clear Form
+| $("#new_reply_on_#{@comment.parent_id}").trigger('reset');
+| autosize.update($("#new_reply_on_#{@comment.parent_id} > textarea"));
+
+// Update Replies Count of Corresponding Parent Object
+| $("span#replies_count_on_#{@comment.parent_id}").html("#{@comment.parent.replies.count}&nbsp;則回覆&ensp;");
+
+// Render Newly Created Comments
+| $("##{@comment.parent_id}_reply").prepend('
+= j render 'courses/comments/replies/reply', reply: @comment
+| ');
