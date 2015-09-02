@@ -15,11 +15,11 @@ section.comment-panel
             .comments
               .vote
                 p
-                  a href=''
+                  = link_to comment_vote_path(comment_id: comment.id, upvote: true), method: :post, remote: :true do
                     i.fa.fa-chevron-up
                 p = comment.score
                 p
-                  a href=''
+                  = link_to comment_vote_path(comment_id: comment.id, upvote: false), method: :post, remote: true do
                     i.fa.fa-chevron-down
               .comment-content
                 p = comment.content
