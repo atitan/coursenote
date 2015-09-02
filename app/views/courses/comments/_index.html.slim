@@ -5,36 +5,11 @@ section.comment-panel
     h1
       span
         a.switch aria-controls="#{course.id}_comment" aria-expanded='true' data-toggle='collapse' href="##{course.id}_comment"
-          = course.comments.count
-          | &ensp;則留言&ensp;
+          span id="comments_count_on_#{course.id}"
+            = course.comments.count
+            | &ensp;則留言&ensp;
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
       - course.comments.each do |comment|
         - unless comment.new_record?
-          .comment-list
-            .comments
-              .vote
-                p
-                  = link_to comment_vote_path(comment_id: comment.id, upvote: true), method: :post, remote: :true do
-                    i.fa.fa-chevron-up
-                p = comment.score
-                p
-                  = link_to comment_vote_path(comment_id: comment.id, upvote: false), method: :post, remote: true do
-                    i.fa.fa-chevron-down
-              .comment-content
-                p = comment.content
-                .comment-info
-                  span.date data-date="#{comment.created_at}"
-                  span
-                    | &ensp;&#8901;&ensp;
-                    a.switch aria-controls="#{comment.id}_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_reply"
-                      = comment.replies.count
-                      | &nbsp;則回覆&ensp;
-                      i.fa.fa-minus
-                    | &ensp;&#8901;&ensp;
-                  span
-                    a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
-                      | 回覆&ensp;
-                      i.fa.fa-reply
-        = render 'courses/comments/replies/form', comment: comment, course: course
-        = render 'courses/comments/replies/index', comment: comment
+          = render 'courses/comments/comment', comment: comment, course: course
