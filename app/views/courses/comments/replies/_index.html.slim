@@ -6,8 +6,8 @@
         span.date data-date="#{reply.created_at}"
         span
           | &ensp;&#8901;&ensp;
-          a href=''
+          = link_to comment_vote_path(comment_id: reply.id, upvote: true), method: :post, remote: :true do
             i.fa.fa-chevron-up
           = reply.score
-          a href=''
+          = link_to comment_vote_path(comment_id: reply.id, upvote: false), method: :post, remote: :true do
             i.fa.fa-chevron-down
