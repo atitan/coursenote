@@ -3,7 +3,7 @@
 | autosize.update($("#new_comment_on_#{@comment.course_id} > textarea"));
 
 // Update Comments Count of Corresponding Parent Object
-| $("span#comments_count_on_#{@comment.course_id}").html("#{@comment.course.comments.count}&ensp;則留言&ensp;");
+| $("span#comments_count_on_#{@comment.course_id}").html("#{@comment.course.comments_count}&ensp;則留言&ensp;");
 
 // Render Newly Created Comments
 | $("##{@comment.course_id}_comment").prepend('

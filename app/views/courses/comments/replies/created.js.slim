@@ -3,7 +3,7 @@
 | autosize.update($("#new_reply_on_#{@comment.parent_id} > textarea"));
 
 // Update Replies Count of Corresponding Parent Object
-| $("span#replies_count_on_#{@comment.parent_id}").html("#{@comment.parent.replies.count}&nbsp;則回覆&ensp;");
+| $("span#replies_count_on_#{@comment.parent_id}").html("#{@comment.parent.replies.size}&nbsp;則回覆&ensp;");
 
 // Render Newly Created Comments
 | $("##{@comment.parent_id}_reply").prepend('
