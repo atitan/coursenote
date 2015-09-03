@@ -54,6 +54,6 @@ $(function(){
 
 	/* Show Comments or Replies */
 	$('.switch').on('click', function(){
-		$(this).children().toggleClass('fa-minus fa-plus');
+		$(this).children('i').toggleClass('fa-minus fa-plus');
 	});
 });

@@ -74,6 +74,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
+  gem 'rack-mini-profiler'
 end
 
 # Use ActiveModel has_secure_password

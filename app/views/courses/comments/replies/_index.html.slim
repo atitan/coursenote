@@ -1,13 +1,3 @@
 .reply-list.collapse.in id="#{comment.id}_reply"
   - comment.replies.each do |reply|
-    .replies
-      p = reply.content
-      .vote
-        span.date data-date="#{reply.created_at}"
-        span
-          | &ensp;&#8901;&ensp;
-          a href=''
-            i.fa.fa-chevron-up
-          = reply.score
-          a href=''
-            i.fa.fa-chevron-down
+    = render 'courses/comments/replies/reply', reply: reply

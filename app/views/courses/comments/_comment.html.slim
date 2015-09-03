@@ -16,7 +16,7 @@
           | &ensp;&#8901;&ensp;
           a.switch aria-controls="#{comment.id}_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_reply"
             span id="replies_count_on_#{comment.id}"
-              = comment.replies.count
+              = comment.replies.size
               | &nbsp;則回覆&ensp;
             i.fa.fa-minus
           | &ensp;&#8901;&ensp;
