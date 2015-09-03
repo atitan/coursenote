@@ -96,6 +96,8 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    font-awesome-sass (4.3.2.1)
+      sass (~> 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     has_scope (0.6.0)
@@ -261,6 +263,7 @@ DEPENDENCIES
   devise-encryptable (~> 0.2.0)
   devise-i18n
   factory_girl_rails (~> 4.0)
+  font-awesome-sass
   has_scope
   jbuilder (~> 2.0)
   jquery-rails
