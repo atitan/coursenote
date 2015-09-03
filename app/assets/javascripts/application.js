@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require messenger
+//= require messenger-theme-future
 //= require_tree .
 //= require autosize
 //= require moment
