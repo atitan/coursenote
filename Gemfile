@@ -64,6 +64,9 @@ gem 'activerecord_json_validator'
 # Use puma server
 gem 'puma'
 
+# A higher level command-line oriented interface
+gem 'highline'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
