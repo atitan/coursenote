@@ -35,6 +35,8 @@ ready = ->
                   action: ->
                       vote_errmsg.hide()
   $('a.btn-vote-comment').on("ajax:success", (e, data, status, xhr) ->
+    target_credit = $('#rank_on_comment_' + data.votable_id)
+    target_credit.html data.rank_value
     vote_success_msg = Messenger().post
         message: '已成功送出留言投票！'
         actions:
