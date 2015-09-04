@@ -9,7 +9,10 @@ ready = ->
   }
 
   $('a.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
-    vote_target = 
+    console.log(data)
+    console.log(xhr)
+    target_credit = $('#rank_on_course_' + data.votable_id)
+    target_credit.html data.rank_value
     vote_success_msg = Messenger().post
         message: '已成功送出課程投票！'
         actions:
