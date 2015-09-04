@@ -8,6 +8,10 @@ ready = ->
     'theme': 'air'
   }
 
+  $('a.btn-vote-course').unbind()
+  $('a.btn-vote-comment').unbind()
+  $('a.btn-vote-reply').unbind()
+
   $('a.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
     target_credit = $('#rank_on_course_' + data.votable_id)
     target_credit.html data.rank_value
@@ -81,4 +85,5 @@ ready = ->
                   action: ->
                       vote_errmsg.hide()
 $(document).ready(ready)
+$(document).ajaxComplete(ready)
 $(document).on('page:load', ready)
