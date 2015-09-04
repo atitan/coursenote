@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
   before_action :find_comment, only: [:update, :destroy]
 
   def create
-    if @comment = current_user.comments.create(comment_params)
+    @comment = current_user.comments.new(comment_params)
+    if @comment.save
       # render json: comment
       render 'courses/comments/created'         if  @comment.parent_id.nil?
       render 'courses/comments/replies/created' if !@comment.parent_id.nil?

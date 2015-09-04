@@ -14,4 +14,5 @@ class Course < ActiveRecord::Base
   scope :cross_department, -> { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(entries: {cross_department: true}).uniq }
   scope :by_category, -> search { where(category: search) }
   scope :hide_passed_courses, -> passed_courses { where.not(title: passed_courses) }
+  scope :apply_time_filter, -> time_filter { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.timetable <@ ?', time_filter.to_json).where('entries.timetable <> ?', {}.to_json).uniq }
 end

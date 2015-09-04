@@ -13,6 +13,9 @@ class CoursesController < ApplicationController
   has_scope :hide_passed_courses, type: :boolean, if: :user_signed_in? do |controller, scope|
     scope.hide_passed_courses(controller.current_user.passed_courses)
   end
+  has_scope :apply_time_filter, type: :boolean, if: :user_signed_in? do |controller, scope|
+    scope.apply_time_filter(controller.current_user.time_filter)
+  end
 
   def index
     @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(score: :desc)
