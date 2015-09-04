@@ -13,10 +13,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :update, :destroy] do
     post 'vote'
   end
-
-  resources :favorite_courses, only: [:index, :create, :destroy]
-  resources :passed_courses, only: [:index, :create, :destroy]
-
+  
   #namespace :api do
   #  namespace :v1 do
   #    resources :courses, defaults: { format: 'json' }
