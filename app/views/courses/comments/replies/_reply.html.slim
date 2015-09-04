@@ -6,6 +6,6 @@
       | &ensp;&#8901;&ensp;
       = link_to comment_vote_path(comment_id: reply.id, upvote: true), method: :post, remote: :true, class: 'btn-vote-reply' do
         i.fa.fa-chevron-up
-      = reply.score
+      span id="rank_on_reply_#{reply.id}" = reply.score
       = link_to comment_vote_path(comment_id: reply.id, upvote: false), method: :post, remote: :true, class: 'btn-vote-reply' do
         i.fa.fa-chevron-down

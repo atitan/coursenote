@@ -9,8 +9,6 @@ ready = ->
   }
 
   $('a.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
-    console.log(data)
-    console.log(xhr)
     target_credit = $('#rank_on_course_' + data.votable_id)
     target_credit.html data.rank_value
     vote_success_msg = Messenger().post
@@ -59,6 +57,8 @@ ready = ->
                   action: ->
                       vote_errmsg.hide()
   $('a.btn-vote-reply').on("ajax:success", (e, data, status, xhr) ->
+    target_credit = $('#rank_on_reply_' + data.votable_id)
+    target_credit.html data.rank_value
     vote_success_msg = Messenger().post
         message: '已成功送出評論投票！'
         actions:
