@@ -3,20 +3,28 @@
 
 ## 安裝使用
 
-**先確認Ruby和Bundler已安裝**
+**確認Ruby和Bundler已安裝**
 
 ``` bash
 $ ruby -v
 ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
-$ bundle show
-Gems included by the bundle:
-...以下略
+$ gem install bundler
+Successfully installed bundler-1.10.6
+```
+
+**確認PostgreSQL已安裝並啟動**
+
+``` bash
+$ which postgres
+/usr/local/bin/postgres
+$ ps aux | grep postgres
 ```
 
 **安裝相關套件並建立DB**
 
 ``` bash
 $ bundle install
+$ createdb coursewiki
 $ rake db:migrate
 ```
 
