@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   def sanitize_passed_courses
     self[:passed_courses].uniq!
+    true
   end
 
   def active_for_authentication?
