@@ -122,6 +122,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    messengerjs-rails (1.4.1)
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
@@ -268,6 +269,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari (~> 0.16.1)
+  messengerjs-rails (~> 1.4.1)
   paper_trail (~> 3.0.6)
   pg
   pry-rails

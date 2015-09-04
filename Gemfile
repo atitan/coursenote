@@ -55,6 +55,9 @@ gem 'slim-rails'
 # Official Font Awesome SASS Ruby Gem
 gem 'font-awesome-sass'
 
+# Messenger javascript library
+gem 'messengerjs-rails', '~> 1.4.1'
+
 # JSON validator
 gem 'activerecord_json_validator'
 

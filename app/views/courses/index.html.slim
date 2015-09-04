@@ -17,7 +17,7 @@
                   li.col-xs-6.col-sm-3
                     i.fa.fa-star aria-hidden='true'
                     span.superscript-title Rank #
-                    h2 = course.score
+                    h2 id="rank_on_course_#{course.id}" = course.score
                   li.col-xs-6.col-sm-3
                     i.fa.fa-list-alt aria-hidden='true'
                     span.superscript-title 課程名稱
@@ -32,12 +32,12 @@
                     h2 = course.category
                   ul
                     li.col-xs-6.col-sm-9
-                      button.btn.btn-success.mg-t-10.btn-vote aria-label='推' type='button' onclick="sendVote(#{course.id}, true)"
+                      = link_to course_vote_path(course_id: course.id, upvote: true), class: 'btn btn-success mg-t-10 btn-vote-course', 'aria-label': '推', method: :post, remote: :true do
                         span.fa.fa-thumbs-o-up aria-hidden='true'
                         | &ensp;推
-                      button.btn.btn-info.mg-t-10.btn-vote aria-label='中立' type='button' onclick="sendVote(#{course.id}, 'nil')"
+                      = link_to course_vote_path(course_id: course.id, upvote: 'nil'), class: 'btn btn-info mg-t-10 btn-vote-course', 'aria-label': '中立', method: :post, remote: :true do
                         | 中立
-                      button.btn.btn-danger.mg-t-10.btn-vote aria-label='噓' type='button' onclick="sendVote(#{course.id}, false)"
+                      = link_to course_vote_path(course_id: course.id, upvote: false), class: 'btn btn-danger mg-t-10 btn-vote-course', 'aria-label': '噓', method: :post, remote: :true do |variable|
                         span.fa.fa-thumbs-o-down aria-hidden='true'
                         | &ensp;噓
                     li.col-xs-6.col-sm-3

@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:comment_id])
     vote = current_user.votes.find_or_initialize_by(votable: comment)
     if vote.update(vote_params)
-      render json: vote
+      render json: vote.as_json.merge(rank_value: Comment.find(params[:comment_id]).score)
     else
       render json: { error: vote.errors.full_messages }, status: :internal_server_error
     end
