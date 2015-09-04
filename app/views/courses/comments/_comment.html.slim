@@ -2,7 +2,7 @@
   .comments
     .vote
       p
-        = link_to comment_vote_path(comment_id: comment.id, upvote: true), method: :post, remote: :true, class: 'btn-vote-comment' do
+        = link_to comment_vote_path(comment_id: comment.id, upvote: true), method: :post, remote: true, class: 'btn-vote-comment' do
           i.fa.fa-chevron-up
       p id="rank_on_comment_#{comment.id}" = comment.score
       p
