@@ -20,3 +20,6 @@
 
 # Ignore capistrano
 /config/deploy*
+
+# Ignore database.yml
+/config/database.yml
