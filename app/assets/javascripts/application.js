@@ -26,19 +26,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-$(function(){
-	$('.date').each(function() {
-		var date = $(this).data('date');
-	  var date_formatted = moment(date).startOf('minute').fromNow();
-	  $(this).text(date_formatted);
-	});
-
-	$('.nav-btn').on('click', function(){
-		$(this).toggleClass('active');
-		$('.nav-list').toggleClass('open');
-	});
-
-
+var ready = function() {
 	/* totop button toggle */
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 100) {
@@ -54,8 +42,17 @@ $(function(){
 		return false;
 	});
 
+	$('.nav-btn').on('click', function(){
+		$(this).toggleClass('active');
+		$('.nav-list').toggleClass('open');
+	});
+
 	/* Show Comments or Replies */
 	$('.switch').on('click', function(){
 		$(this).children('i').toggleClass('fa-minus fa-plus');
 	});
-});
+
+
+};
+
+$(document).ready(ready);
