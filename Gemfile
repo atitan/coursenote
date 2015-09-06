@@ -85,6 +85,13 @@ group :development, :test do
   gem 'rack-mini-profiler'
 end
 
+group :production do
+  gem 'redis'
+  gem 'redis-namespace'
+  gem 'redis-rails'
+  gem 'redis-rack-cache'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
