@@ -17,7 +17,7 @@ article.panel-body
 
     tbody
       - course.entries.each do |entry|
-        tr
+        tr style="#{time_overlap?(entry, current_user)}"
           td = entry.code
           td = entry.timestring
           td = entry.credit
