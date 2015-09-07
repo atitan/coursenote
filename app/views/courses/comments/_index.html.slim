@@ -6,7 +6,7 @@ section.comment-panel
       span
         a.switch aria-controls="#{course.id}_comment" aria-expanded='true' data-toggle='collapse' href="##{course.id}_comment"
           span id="comments_count_on_#{course.id}"
-            = course.comments_count
+            = course.comments.size
             | &ensp;則留言&ensp;
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
