@@ -1,3 +1,2 @@
 .reply-list.collapse.in id="#{comment.id}_reply"
-  - comment.replies.each do |reply|
-    = render 'courses/comments/replies/reply', reply: reply
+  = render partial: 'courses/comments/replies/reply', collection: comment.replies

@@ -10,6 +10,4 @@ section.comment-panel
             | &ensp;則留言&ensp;
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
-      - course.comments.each do |comment|
-        - unless comment.new_record?
-          = render 'courses/comments/comment', comment: comment, course: course
+      = render partial: 'courses/comments/comment', collection: course.comments, as: :comment, locals: {course: course}
