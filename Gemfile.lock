@@ -41,7 +41,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.3)
-    autoprefixer-rails (6.0.1)
+    autoprefixer-rails (6.0.2)
       execjs
       json
     bcrypt (3.1.10)
@@ -120,7 +120,7 @@ GEM
     colorize (0.7.7)
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
-    devise (3.4.1)
+    devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -182,9 +182,10 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
-    paper_trail (3.0.8)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
+    paper_trail (4.0.0)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1)
     pg (0.18.3)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -251,6 +252,7 @@ GEM
       redis-store (~> 1.1.0)
     redis-store (1.1.6)
       redis (>= 2.2)
+    request_store (1.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.3.2)
@@ -340,7 +342,7 @@ DEPENDENCIES
   bullet
   capistrano-rails
   coffee-rails (~> 4.0.0)
-  devise (~> 3.4.0)
+  devise (~> 3.5.2)
   devise-async
   devise-encryptable (~> 0.2.0)
   devise-i18n
@@ -352,7 +354,7 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 0.16.1)
   messengerjs-rails (~> 1.4.1)
-  paper_trail (~> 3.0.6)
+  paper_trail (~> 4.0.0)
   pg
   pry-rails
   puma

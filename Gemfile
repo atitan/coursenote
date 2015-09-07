@@ -32,7 +32,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 3.4.0'
+gem 'devise', '~> 3.5.2'
 gem 'devise-encryptable', '~> 0.2.0'
 gem 'devise-i18n'
 
@@ -43,7 +43,7 @@ gem 'has_scope'
 gem 'kaminari', '~> 0.16.1'
 
 # Record Versioning
-gem 'paper_trail', '~> 3.0.6'
+gem 'paper_trail', '~> 4.0.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
