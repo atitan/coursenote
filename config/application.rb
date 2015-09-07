@@ -20,5 +20,8 @@ module Coursenote
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.i18n.default_locale = "zh-TW".to_sym
+
+    # Queue processing
+    config.active_job.queue_adapter = :sidekiq
   end
 end

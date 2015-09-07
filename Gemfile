@@ -67,6 +67,10 @@ gem 'puma'
 # A higher level command-line oriented interface
 gem 'highline'
 
+# Queue processing
+gem 'sidekiq'
+gem 'devise-async'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
