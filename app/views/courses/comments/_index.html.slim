@@ -11,5 +11,4 @@ section.comment-panel
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
       - course.comments.each do |comment|
-        - unless comment.new_record?
-          = render 'courses/comments/comment', comment: comment, course: course
+        = render 'courses/comments/comment', comment: comment, course: course
