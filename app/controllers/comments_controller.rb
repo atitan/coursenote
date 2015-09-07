@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     if @comment.save
       # render json: comment
+      @new_comment = Comment.new
       render 'courses/comments/created'         if  @comment.parent_id.nil?
       render 'courses/comments/replies/created' if !@comment.parent_id.nil?
     else

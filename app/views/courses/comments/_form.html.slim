@@ -3,7 +3,7 @@ article.comment-block
   h1
     i.fa.fa-comments-o
     | 留言
-  = form_for [course, course.comments.build], url: comments_path, html: {id: "new_comment_on_#{course.id}"}, remote: true do |f|
+  = form_for [course, @new_comment], url: comments_path, html: {id: "new_comment_on_#{course.id}"}, remote: true do |f|
     = f.text_area :content, class: 'form-control', placeholder: '我想說...', onkeyup: 'autoheight(this)', id: "comment_content_on_#{course.id}"
     = f.hidden_field :course_id, value: course.id, id: "comment_course_id_on_#{course.id}"
     = f.button :submit, class: 'btn btn-block' do

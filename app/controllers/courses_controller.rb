@@ -19,6 +19,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(score: :desc)
+    @new_comment = Comment.new
   end
 
   def show
