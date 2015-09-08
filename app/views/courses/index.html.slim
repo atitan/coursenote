@@ -32,13 +32,10 @@
                     h2 = course.category
                   ul
                     li.col-xs-6.col-sm-9
-                      = vote_course_btns(course)
-                      /= link_to course_vote_path(course_id: course.id, upvote: true), class: 'btn btn-success mg-t-10 btn-vote-course', 'aria-label':  '推', method: :post, remote: true do
+                      = button_to course_vote_path(course_id: course.id, upvote: true), disabled: (@votes.nil?) ? false : vote_course_status(@votes, course.id, true), class: 'btn btn-success mg-t-10 btn-vote-course', form_class: 'btn-vote-course button_to', 'aria-label':  '推', method: :post, remote: true do
                         span.fa.fa-thumbs-o-up aria-hidden='true'
                         | &ensp;推
-                      /= link_to course_vote_path(course_id: course.id, upvote: 'nil'), class: 'btn btn-info mg-t-10 btn-vote-course', 'aria-label':  '中立', method: :post, remote: true do
-                        | 中
-                      /= link_to course_vote_path(course_id: course.id, upvote: false), class: 'btn btn-danger mg-t-10 btn-vote-course', 'aria-label':  '噓', method: :post, remote: true do
+                      = button_to course_vote_path(course_id: course.id, upvote: false), disabled: (@votes.nil?) ? false : vote_course_status(@votes, course.id, false), class: 'btn btn-danger mg-t-10 btn-vote-course', form_class: 'btn-vote-course button_to', 'aria-label':  '噓', method: :post, remote: true do
                         span.fa.fa-thumbs-o-down aria-hidden='true'
                         | &ensp;噓
                     li.col-xs-6.col-sm-3
