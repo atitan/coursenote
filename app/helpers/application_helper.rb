@@ -26,4 +26,20 @@ module ApplicationHelper
       render partial: 'common/flash', locals: {type: type, message: value}
   end
 
+  def vote_status(object, btn_type)
+    return false if @votes.nil? || @votes.empty?
+
+    found = nil
+
+    found = @votes.find do |vote|
+      vote[:votable_type] == object.class.name && vote[:votable_id] == object.id
+    end
+
+    if found.nil? || found.upvote != btn_type
+      false
+    else
+      true
+    end
+  end
+
 end
