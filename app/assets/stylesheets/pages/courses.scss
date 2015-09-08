@@ -6,10 +6,9 @@
 .fixed-aside {
   position: fixed;
   width: 25%;
-  @include breakpoint(laptop) {
-    width: 25%;
-  }
+  max-width: 360px;
   @include breakpoint(tablet) {
+    max-width: none;
     position: relative;
     width: 100%;
   }
