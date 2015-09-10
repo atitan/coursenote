@@ -30,9 +30,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
-      ## Encryptable
-      t.string :password_salt, null: false
-
       ## Custom fields
       t.jsonb  :time_filter, null: false, default: {}
       t.string :passed_courses, array: true, null: false, default: []

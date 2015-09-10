@@ -33,7 +33,6 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
 gem 'devise', '~> 3.5.2'
-gem 'devise-encryptable', '~> 0.2.0'
 gem 'devise-i18n'
 
 # scope

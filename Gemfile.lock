@@ -129,8 +129,6 @@ GEM
       warden (~> 1.2.3)
     devise-async (0.10.1)
       devise (~> 3.2)
-    devise-encryptable (0.2.0)
-      devise (>= 2.1.0)
     devise-i18n (0.12.1)
     diff-lcs (1.2.5)
     dotenv (2.0.2)
@@ -344,7 +342,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise (~> 3.5.2)
   devise-async
-  devise-encryptable (~> 0.2.0)
   devise-i18n
   factory_girl_rails (~> 4.0)
   font-awesome-sass

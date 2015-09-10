@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903023856) do
+ActiveRecord::Schema.define(version: 20150119091453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,14 +32,13 @@ ActiveRecord::Schema.define(version: 20150903023856) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",                         null: false
-    t.string   "category",                      null: false
-    t.string   "instructor",                    null: false
-    t.integer  "score",          default: 0,    null: false
-    t.boolean  "available",      default: true, null: false
+    t.string   "title",                     null: false
+    t.string   "category",                  null: false
+    t.string   "instructor",                null: false
+    t.integer  "score",      default: 0,    null: false
+    t.boolean  "available",  default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comments_count", default: 0
   end
 
   add_index "courses", ["available"], name: "index_courses_on_available", using: :btree
@@ -86,7 +85,6 @@ ActiveRecord::Schema.define(version: 20150903023856) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.string   "password_salt",                       null: false
     t.jsonb    "time_filter",            default: {}, null: false
     t.string   "passed_courses",         default: [], null: false, array: true
     t.boolean  "is_student",                          null: false

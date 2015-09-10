@@ -95,7 +95,7 @@ Devise.setup do |config|
   # encryptor), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
   # config.stretches = Rails.env.test? ? 1 : 10
-  config.stretches = Rails.env.test? ? 1 : 10
+  config.stretches = Rails.env.test? ? 1 : 13
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = 'efca930b56406f3664954968f3855b614546335d58450ef0bbaf9cee50cd08cbebbf4919ec9f493ce62d1f690404d0480c97f707ef7175ef9f3a7e35539d141c'
@@ -175,7 +175,7 @@ Devise.setup do |config|
   config.maximum_attempts = 5
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  config.unlock_in = 1.hour
+  config.unlock_in = 30.minutes
 
   # Warn on the last attempt before the account is locked.
   config.last_attempt_warning = true
@@ -188,7 +188,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 24.hours
 
   # ==> Configuration for :encryptable
   # Allow you to use another encryption algorithm besides bcrypt (default). You can use
@@ -198,7 +198,7 @@ Devise.setup do |config|
   # REST_AUTH_SITE_KEY to pepper).
   #
   # Require the `devise-encryptable` gem when using anything other than bcrypt
-  config.encryptor = :sha512
+  # config.encryptor = :sha512
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
