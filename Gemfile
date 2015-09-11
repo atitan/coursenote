@@ -70,6 +70,9 @@ gem 'highline'
 gem 'sidekiq'
 gem 'devise-async'
 
+# Traffic throttling
+gem 'rack-attack'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

@@ -193,6 +193,8 @@ GEM
       pry (>= 0.9.10)
     puma (2.13.4)
     rack (1.6.4)
+    rack-attack (4.3.0)
+      rack
     rack-cache (1.2)
       rack (>= 0.4)
     rack-mini-profiler (0.9.7)
@@ -355,6 +357,7 @@ DEPENDENCIES
   pg
   pry-rails
   puma
+  rack-attack
   rack-mini-profiler
   rails (~> 4.2.0)
   rails-i18n (~> 4.0.0)

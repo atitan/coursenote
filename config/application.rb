@@ -23,5 +23,8 @@ module Coursenote
 
     # Queue processing
     config.active_job.queue_adapter = :sidekiq
+
+    # Traffic throttling
+    config.middleware.use Rack::Attack
   end
 end
