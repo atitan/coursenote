@@ -21,7 +21,7 @@
             a href='#'
               i.fa.fa-remove
               | 刪除
-      p = comment.content
+      = simple_format comment.content
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
         span

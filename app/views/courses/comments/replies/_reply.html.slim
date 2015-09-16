@@ -11,7 +11,7 @@
         a href='#'
           i.fa.fa-remove
           | 刪除
-  p = reply.content
+  = simple_format reply.content
   .vote
     span.date data-date="#{reply.created_at.utc.iso8601}"
     span
