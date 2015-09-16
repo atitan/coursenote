@@ -1,4 +1,16 @@
 .replies id="#{reply.id}_reply"
+  .dropdown.options.vote.text-right
+    a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+      i.fa.fa-caret-down
+    ul.dropdown-menu aria-labelledby='dropdownEditOptions'
+      li
+        a href='#'
+          i.fa.fa-pencil
+          | 編輯
+      li
+        a href='#'
+          i.fa.fa-remove
+          | 刪除
   p = reply.content
   .vote
     span.date data-date="#{reply.created_at.utc.iso8601}"

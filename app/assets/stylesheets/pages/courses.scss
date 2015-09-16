@@ -130,6 +130,37 @@
 
 
 /* Comments & Replies */
+
+.options {
+  font-size: $fz-s;
+  display: block;
+  .dropdown-menu {
+    right: 0;
+    left: initial;
+    background-color: $bg-color;
+    a {
+      transition: 0.5s;
+      color: $gray700;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+      &:hover {
+        background-color: lighten($orange, 40);
+        color: #000;
+      }
+      &:focus {
+        background-color: lighten($orange, 35);
+        color: #000;
+      }
+      i {
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
 .comment-panel {
   padding: 0 10px;
 }
@@ -171,11 +202,11 @@
       display: table-cell;
       padding-right: $inner-padding;
       padding-left: $inner-padding;
+      width: 100%;
       p {
         min-height: 60px;
       }
       .comment-info {
-        padding-bottom: $inner-padding;
         color: $gray500;
         transition: 0.3s;
         span {

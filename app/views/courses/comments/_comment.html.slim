@@ -9,6 +9,18 @@
         = link_to comment_vote_path(comment_id: comment.id, upvote: false), method: :post, remote: true, class: 'btn-vote-comment' do
           i.fa.fa-chevron-down
     .comment-content
+      .dropdown.options.comment-info.text-right
+        a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+          i.fa.fa-caret-down
+        ul.dropdown-menu aria-labelledby='dropdownEditOptions'
+          li
+            a href='#'
+              i.fa.fa-pencil
+              | 編輯
+          li
+            a href='#'
+              i.fa.fa-remove
+              | 刪除
       p = comment.content
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
