@@ -7,7 +7,7 @@ section.comment-panel
         a.switch aria-controls="#{course.id}_comment" aria-expanded='true' data-toggle='collapse' href="##{course.id}_comment"
           span id="comments_count_on_#{course.id}"
             = course.comments.size
-            | &ensp;則留言&ensp;
+            | 則留言
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
       = render partial: 'courses/comments/comment', collection: course.comments, as: :comment, locals: {course: course}

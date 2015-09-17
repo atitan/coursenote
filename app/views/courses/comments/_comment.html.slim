@@ -25,16 +25,14 @@
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
         span
-          | &ensp;&#8901;&ensp;
           a.switch aria-controls="#{comment.id}_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_reply"
             span id="replies_count_on_#{comment.id}"
               = comment.replies.size
-              | &nbsp;則回覆&ensp;
+              | 則回覆
             i.fa.fa-minus
-          | &ensp;&#8901;&ensp;
         span
           a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
-            | 回覆&ensp;
+            | 回覆
             i.fa.fa-reply
 = render 'courses/comments/replies/form', comment: comment, course: course
 = render 'courses/comments/replies/index', comment: comment

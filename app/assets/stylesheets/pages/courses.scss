@@ -155,7 +155,7 @@
         color: #000;
       }
       i {
-        padding-right: 5px;
+        margin-right: 0.5rem;
       }
     }
   }
@@ -170,6 +170,9 @@
   width: 100%;
   h1 {
     margin-bottom: 15px;
+    i {
+      margin-left: 0.5rem;
+    }
   }
 }
 
@@ -213,6 +216,16 @@
         transition: 0.3s;
         span {
           white-space: nowrap;
+          &:nth-child(2) {
+            &::before,
+            &::after {
+              content: '\00B7';
+              margin: 0 0.5rem;
+            }
+          }
+        }
+        i {
+          margin-left: 0.5rem;
         }
       }
     }
@@ -265,6 +278,9 @@
 
 .comment-block,
 .reply-block {
+  i {
+    margin-right: 0.5rem;
+  }
   textarea {
     padding: 10px;
     width: 100%;
