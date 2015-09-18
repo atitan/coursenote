@@ -33,6 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Custom fields
       t.jsonb  :time_filter, null: false, default: {}
       t.string :passed_courses, array: true, null: false, default: []
+      t.string :favorite_courses, array: true, null: false, default: []
       t.boolean :is_student, null: false
       t.datetime :banned_until
 

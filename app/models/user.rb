@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :votes
 
   before_create :check_identity
-  before_save :sanitize_passed_courses
+  before_save :sanitize_array_column
 
   validates :time_filter, json: { schema: Rails.root.join('app', 'models', 'schemas', 'time_filter.json').to_s }
 
@@ -24,8 +24,9 @@ class User < ActiveRecord::Base
     true
   end
 
-  def sanitize_passed_courses
+  def sanitize_array_column
     self[:passed_courses].uniq!
+    self[:favorite_courses].uniq!
     true
   end
 

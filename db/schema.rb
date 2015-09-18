@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.datetime "locked_at"
     t.jsonb    "time_filter",            default: {}, null: false
     t.string   "passed_courses",         default: [], null: false, array: true
+    t.string   "favorite_courses",       default: [], null: false, array: true
     t.boolean  "is_student",                          null: false
     t.datetime "banned_until"
     t.datetime "created_at"
@@ -105,9 +106,15 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
+    t.integer  "user_id",    null: false
+    t.integer  "course_id",  null: false
+    t.integer  "parent_id"
   end
 
+  add_index "versions", ["course_id"], name: "index_versions_on_course_id", using: :btree
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["parent_id"], name: "index_versions_on_parent_id", using: :btree
+  add_index "versions", ["user_id"], name: "index_versions_on_user_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",   null: false
