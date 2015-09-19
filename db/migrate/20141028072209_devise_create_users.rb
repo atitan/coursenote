@@ -31,10 +31,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :locked_at
 
       ## Custom fields
-      t.jsonb  :time_filter, null: false, default: {}
-      t.string :passed_courses, array: true, null: false, default: []
-      t.string :favorite_courses, array: true, null: false, default: []
-      t.boolean :is_student, null: false
+      t.jsonb    :time_filter, null: false, default: {}
+      t.string   :passed_courses, array: true, null: false, default: []
+      t.string   :favorite_courses, array: true, null: false, default: []
+      t.boolean  :is_student, null: false
+      t.string   :student_id
       t.datetime :banned_until
 
       t.timestamps

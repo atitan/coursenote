@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
 
   def check_identity
     exp = /\A((s|g)(\d{7,8})@cycu\.edu\.tw)\z/i
-    self[:is_student] = !self[:email].match(exp).nil?
+    matches = self[:email].match(exp)
+    self[:is_student] = !matches.nil?
+    self[:student_id] = matches[3] if self[:is_student]
     true
   end
 

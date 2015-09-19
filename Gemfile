@@ -73,6 +73,15 @@ gem 'devise-async'
 # Traffic throttling
 gem 'rack-attack'
 
+# Course bookmarking
+gem 'cycu_csys_bookmarker', '~> 0.0.2'
+
+# Redis
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -89,13 +98,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
   gem 'rack-mini-profiler'
-end
-
-group :production do
-  gem 'redis'
-  gem 'redis-namespace'
-  gem 'redis-rails'
-  gem 'redis-rack-cache'
 end
 
 # Use ActiveModel has_secure_password

@@ -119,6 +119,7 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     connection_pool (2.2.0)
+    cycu_csys_bookmarker (0.0.2)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -342,6 +343,7 @@ DEPENDENCIES
   bullet
   capistrano-rails
   coffee-rails (~> 4.0.0)
+  cycu_csys_bookmarker (~> 0.0.2)
   devise (~> 3.5.2)
   devise-async
   devise-i18n

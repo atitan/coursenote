@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.string   "passed_courses",         default: [], null: false, array: true
     t.string   "favorite_courses",       default: [], null: false, array: true
     t.boolean  "is_student",                          null: false
+    t.string   "student_id"
     t.datetime "banned_until"
     t.datetime "created_at"
     t.datetime "updated_at"
