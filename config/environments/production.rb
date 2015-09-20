@@ -43,7 +43,7 @@ Rails.application.configure do
 
   # Set to :debug to see everything in the log.
   #config.log_level = :info
-  config.log_level = :error # Prevent password logging in ActiveJob
+  config.log_level = :warn # Prevent password logging in ActiveJob
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
