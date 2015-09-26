@@ -25,9 +25,11 @@ class BookmarkingCoursesJob < ActiveJob::Base
     end
   end
 
-  def logging(user_id, **args)
-    state = JSON.parse($job_redis.get(user_id) || '{}')
-    state.merge!(args)
-    $job_redis.set(user_id, state.to_json)
-  end
+  private
+
+    def logging(user_id, **args)
+      state = JSON.parse($job_redis.get(user_id) || '{}')
+      state.merge!(args)
+      $job_redis.set(user_id, state.to_json)
+    end
 end
