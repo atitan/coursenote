@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def vote_status(object, btn_type)
-    return false if @votes.nil? || @votes.empty?
+    return '' if @votes.nil? || @votes.empty?
 
     found = nil
 
@@ -36,9 +36,9 @@ module ApplicationHelper
     end
 
     if found.nil? || found.upvote != btn_type
-      false
+      ''
     else
-      true
+      'vote-actived pure-disabled'
     end
   end
 

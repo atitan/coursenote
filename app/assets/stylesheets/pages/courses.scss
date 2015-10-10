@@ -304,6 +304,56 @@
   }
 }
 
+.like,
+.dislike {
+	background-color: $green;
+	border: 2px $green solid;
+	&::before {
+		border-color: $green;
+	}
+    &:focus {
+        color: $font-color;
+    }
+}
+
+.dislike {
+	background-color: $red;
+	border: 2px $red solid;
+	&::before {
+		border-color: $red;
+	}
+}
+
+.vote-actived {
+	&.like {
+		color: $green;
+		&::before {
+			right: -20%;
+		}
+		&::after {
+			background-color: #fff;
+			color: $green;
+			transition: all 0.5s 0.2s;
+		}
+	}
+	&.dislike {
+		color: $red;
+		&::before {
+			right: -20%;
+		}
+		&::after {
+			background-color: #fff;
+			color: $red;
+			transition: all 0.5s 0.2s;
+		}
+	}
+}
+
+.pure-disabled {
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
 // a.btn-vote-course {
 //   color: white;
 //   margin-right: 5px;

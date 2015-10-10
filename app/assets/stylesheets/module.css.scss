@@ -61,3 +61,46 @@ input.m-btn {
     }
   }
 }
+a.m-btn-check,
+button.m-btn-check {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+    color: $font-color;
+	&::before {
+		position: absolute;
+		z-index: -1;
+		content: '';
+		display: block;
+		padding: 2rem 3rem;
+		right: 120%;
+		top: -20%;
+		border-style: dotted;
+		border-width: 0 5px 0 0;
+		background-color: #fff;
+		transition: right 0.5s;
+	}
+	&::after {
+		position: absolute;
+		display: block;
+		content: '\2713';
+		width: 50%;
+		right: 0;
+		top: 40%;
+		transform: translateY(-50%);
+		font-size: 2rem;
+		font-weight: bold;
+		color: transparent;
+		background-color: transparent;
+	}
+	span {
+		margin-right: 0;
+		margin-left: 0.5rem;
+	}
+	&:hover {
+		color: $font-color;
+		span {
+			animation: beating 0.5s;
+		}
+	}
+}

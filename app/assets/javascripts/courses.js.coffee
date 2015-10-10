@@ -8,11 +8,14 @@ ready = ->
     'theme': 'air'
   }
 
-  $('form.btn-vote-course').unbind()
+  $('.btn-vote-course').unbind()
   $('a.btn-vote-comment').unbind()
   $('a.btn-vote-reply').unbind()
 
-  $('form.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
+  $('.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
+    $(this).addClass 'vote-actived pure-disabled'
+           .siblings '.btn-vote-course'
+           .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_course_' + data.votable_id)
     target_credit.html data.rank_value
     vote_success_msg = Messenger().post

@@ -32,12 +32,12 @@
                     h2 = course.category
                   ul
                     li.col-xs-6.col-sm-9
-                      = button_to course_vote_path(course_id: course.id, upvote: true), disabled: vote_status(course, true), class: 'btn btn-success mg-t-10 btn-vote-course', form_class: 'btn-vote-course button_to', 'aria-label':  '推', method: :post, remote: true do
+                      = link_to  course_vote_path(course_id: course.id, upvote: true), class: "btn m-btn-check like mg-t-10 button_to btn-vote-course #{vote_status(course, true)}", method: :post, remote: true do
+                        | 推
                         span.fa.fa-thumbs-o-up aria-hidden='true'
-                        | &ensp;推
-                      = button_to course_vote_path(course_id: course.id, upvote: false), disabled: vote_status(course, false), class: 'btn btn-danger mg-t-10 btn-vote-course', form_class: 'btn-vote-course button_to', 'aria-label':  '噓', method: :post, remote: true do
-                        span.fa.fa-thumbs-o-down aria-hidden='true'
-                        | &ensp;噓
+                      = link_to  course_vote_path(course_id: course.id, upvote: false), class: "btn m-btn-check dislike mg-t-10 btn-vote-course #{vote_status(course, false)}", method: :post, remote: true do
+                        | 噓
+                        span.fa.fa-thumbs-o-up aria-hidden='true'
                     li.col-xs-6.col-sm-3
                       a.btn.m-btn.mg-t-10 href="##{course.instructor}_#{course.id}" data-toggle='collapse' aria-expanded='true' aria-controls="#{course.instructor}_#{course.id}"
                         | 開課資訊
