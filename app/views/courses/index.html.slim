@@ -37,7 +37,7 @@
                         span.fa.fa-thumbs-o-up aria-hidden='true'
                       = link_to  course_vote_path(course_id: course.id, upvote: false), class: "btn m-btn-check dislike mg-t-10 btn-vote-course #{vote_status(course, false)}", method: :post, remote: true do
                         | 噓
-                        span.fa.fa-thumbs-o-up aria-hidden='true'
+                        span.fa.fa-thumbs-o-down aria-hidden='true'
                     li.col-xs-6.col-sm-3
                       a.btn.m-btn.mg-t-10 href="##{course.instructor}_#{course.id}" data-toggle='collapse' aria-expanded='true' aria-controls="#{course.instructor}_#{course.id}"
                         | 開課資訊
