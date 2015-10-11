@@ -314,19 +314,9 @@
     &:focus {
         color: $font-color;
     }
-}
-
-.dislike {
-	background-color: $red;
-	border: 2px $red solid;
-	&::before {
-		border-color: $red;
-	}
-}
-
-.vote-actived {
-	&.like {
-		color: $green;
+    &:hover,
+    &.vote-actived {
+        color: $green;
 		&::before {
 			right: -20%;
 		}
@@ -335,18 +325,22 @@
 			color: $green;
 			transition: all 0.5s 0.2s;
 		}
+    }
+}
+
+.dislike {
+	background-color: $red;
+	border: 2px $red solid;
+	&::before {
+		border-color: $red;
 	}
-	&.dislike {
-		color: $red;
-		&::before {
-			right: -20%;
-		}
+    &:hover,
+    &.vote-actived {
+        color: $red;
 		&::after {
-			background-color: #fff;
 			color: $red;
-			transition: all 0.5s 0.2s;
 		}
-	}
+    }
 }
 
 .pure-disabled {

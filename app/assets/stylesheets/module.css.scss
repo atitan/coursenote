@@ -97,10 +97,4 @@ button.m-btn-check {
 		margin-right: 0;
 		margin-left: 0.5rem;
 	}
-	&:hover {
-		color: $font-color;
-		span {
-			animation: beating 0.5s;
-		}
-	}
 }
