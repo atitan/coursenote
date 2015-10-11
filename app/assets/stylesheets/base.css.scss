@@ -5,6 +5,10 @@ body {
   background-image: image-url('main-bg.png');
 }
 
+p {
+    @include word-wrap;
+}
+
 .wrapper {
 	min-height: 80vh;
 }

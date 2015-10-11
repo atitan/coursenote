@@ -34,3 +34,12 @@
     transform: scale(1.2, 1.2);
   }
 }
+
+@mixin word-wrap {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
+}

@@ -208,8 +208,6 @@
       width: 100%;
       p {
         min-height: 60px;
-        word-wrap: break-word;
-        word-break: break-word;
       }
       .comment-info {
         color: $gray500;
@@ -245,10 +243,6 @@
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 0.5em 1em 1em;
-  p {
-    word-wrap: break-word;
-    word-break: break-word;
-  }
   &:last-child {
     margin-bottom: 0;
   }
