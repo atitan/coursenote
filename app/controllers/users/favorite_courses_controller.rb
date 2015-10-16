@@ -2,6 +2,7 @@ class Users::FavoriteCoursesController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @courses = Course.show_favorite_courses(current_user.favorite_courses).includes(:entries, comments: :replies)
   end
 
   def create
