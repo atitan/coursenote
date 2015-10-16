@@ -3,12 +3,12 @@ class BookmarkingCoursesJob < ActiveJob::Base
 
   after_enqueue do |job|
     user = job.arguments.first
-    logging(user.id, queued: true)
+    logging(user.id, queued: true, time: DateTime.now)
   end
 
   after_perform do |job|
     user = job.arguments.first
-    logging(user.id, queued: false, locked_until: DateTime.now + 1.minutes)
+    logging(user.id, queued: false, time: DateTime.now)
   end
 
   def perform(user, csys_password)
