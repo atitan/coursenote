@@ -9,12 +9,12 @@ Rails.application.routes.draw do
   namespace :users do
     get 'favorite_courses' => 'favorite_courses#show'
     post 'favorite_courses' => 'favorite_courses#create'
-    destroy 'favorite_courses' => 'favorite_courses#destroy'
+    delete 'favorite_courses' => 'favorite_courses#destroy'
     post 'favorite_courses/export' => 'favorite_courses#export'
 
     get 'passed_courses' => 'passed_courses#show'
     post 'passed_courses' => 'passed_courses#create'
-    destroy 'passed_courses' => 'passed_courses#destroy'
+    delete 'passed_courses' => 'passed_courses#destroy'
 
     get 'time_filter' => 'time_filter#show'
     patch 'time_filter' => 'time_filter#update'
