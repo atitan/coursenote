@@ -30,7 +30,7 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def export
-    unless @state[:queued]
+    if current_user.student? && !@state[:queued]
       BookmarkingCoursesJob.perform_later(current_user, params[:csys_password])
     end
   end
