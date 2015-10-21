@@ -31,17 +31,10 @@ class CoursesController < ApplicationController
   def vote
     course = Course.find(params[:course_id])
     vote = current_user.votes.find_or_initialize_by(votable: course)
-    if vote.update(vote_params)
+    if vote.update(upvote: params[:upvote])
       render json: vote.as_json(include: { votable: { only: [:score, :votes_count] }})
     else
       render json: { error: vote.errors.full_messages }, status: :internal_server_error
     end
-  end
-
-  private
-
-  def vote_params
-    params[:upvote] = nil if params[:upvote] == 'nil'
-    { upvote: params[:upvote] }
   end
 end

@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   def vote
     comment = Comment.find(params[:comment_id])
     vote = current_user.votes.find_or_initialize_by(votable: comment)
-    if vote.update(vote_params)
+    if vote.update(upvote: params[:upvote])
       render json: vote.as_json(include: { votable: { only: [:score, :votes_count] }})
     else
       render json: { error: vote.errors.full_messages }, status: :internal_server_error
@@ -50,10 +50,5 @@ class CommentsController < ApplicationController
     params_allowed = [:content]
     params_allowed << :course_id << :parent_id if action_name == 'create'
     params.require(:comment).permit(params_allowed)
-  end
-
-  def vote_params
-    params[:upvote] = nil if params[:upvote] == 'nil'
-    { upvote: params[:upvote] }
   end
 end
