@@ -5,6 +5,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :category, null: false
       t.string :instructor, null: false
       t.integer :score, null: false, default: 0
+      t.integer :votes_count, null: false, default: 0
       t.boolean :available, null: false, default: true
       t.timestamps
     end

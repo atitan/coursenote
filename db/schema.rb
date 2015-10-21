@@ -17,11 +17,12 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",                null: false
-    t.integer  "course_id",              null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "course_id",               null: false
     t.integer  "parent_id"
-    t.integer  "score",      default: 0, null: false
-    t.text     "content",                null: false
+    t.integer  "score",       default: 0, null: false
+    t.integer  "votes_count", default: 0, null: false
+    t.text     "content",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,11 +33,12 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",                     null: false
-    t.string   "category",                  null: false
-    t.string   "instructor",                null: false
-    t.integer  "score",      default: 0,    null: false
-    t.boolean  "available",  default: true, null: false
+    t.string   "title",                      null: false
+    t.string   "category",                   null: false
+    t.string   "instructor",                 null: false
+    t.integer  "score",       default: 0,    null: false
+    t.integer  "votes_count", default: 0,    null: false
+    t.boolean  "available",   default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
