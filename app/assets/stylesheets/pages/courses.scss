@@ -61,7 +61,6 @@
     margin-bottom: 30px;
     .panel-heading {
       background-image: image-url('jumbotron-bg.png');
-      color: $primary-color;
     }
     .panel-body {
       background-color: #fff;
@@ -80,18 +79,6 @@
           color: $black;
         }
       }
-      a.m-btn,
-      input.m-btn,
-      button.m-btn {
-        color: #fff;
-        background-color: lighten($orange, 10);
-        &:hover {
-          background-color: lighten($orange, 5);
-        }
-        &:focus {
-          background-color: lighten($orange, 0);
-        }
-      }
     }
     .panel-footer {
       background-image: image-url('jumbotron-bg.png');
@@ -104,7 +91,7 @@
   }
 }
 
-.course-info li {
+.course-info > li {
   display: inline-block;
   position: relative;
   color: $orange;
@@ -353,45 +340,75 @@
 .like,
 .dislike {
 	background-color: $green;
-	border: 2px $green solid;
+	border-color: $green;
 	&::before {
 		border-color: $green;
 	}
-    &:focus {
-        color: $font-color;
+  &.vote-actived {
+    background-color: #fff;
+    &::before {
+      // mimic hover-disabled
+      border-color: transparent;
     }
-    &:hover,
-    &.vote-actived {
-        color: $green;
-		&::before {
-			right: -20%;
+  }
+  &:hover,
+  &.vote-actived {
+    color: $green;
+	  &::after {
+		color: $green;
 		}
-		&::after {
-			background-color: #fff;
-			color: $green;
-			transition: all 0.5s 0.2s;
-		}
+    span {
+      color: transparent;
     }
+  }
 }
 
 .dislike {
 	background-color: $red;
-	border: 2px $red solid;
+  border-color: $red;
 	&::before {
 		border-color: $red;
 	}
-    &:hover,
-    &.vote-actived {
-        color: $red;
+  &:hover,
+  &.vote-actived {
+    color: $red;
 		&::after {
 			color: $red;
 		}
-    }
+  }
 }
 
 .pure-disabled {
 	cursor: not-allowed;
 	pointer-events: none;
+}
+
+.follow {
+  background-color: $orange;
+  border-color: $orange;
+  &::before {
+    border-color: $orange;
+  }
+  &:focus {
+    color: $font-color;
+  }
+  &.follow-actived {
+    background-color: #fff;
+    &::before {
+      // mimic hover-disabled
+      border-color: transparent;
+    }
+  }
+  &:hover,
+  &.follow-actived {
+    color: $orange;
+    &::after {
+      color: $orange;
+    }
+    span {
+      color: transparent;
+    }
+  }
 }
 
 // a.btn-vote-course {

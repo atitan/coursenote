@@ -61,12 +61,17 @@ input.m-btn {
     }
   }
 }
-a.m-btn-check,
-button.m-btn-check {
-	position: relative;
-	z-index: 1;
-	overflow: hidden;
+
+.m-btn-check {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  color: $font-color;
+  background-color: $primary-color;
+	border: 2px $primary-color solid;
+  &:link {
     color: $font-color;
+  }
 	&::before {
 		position: absolute;
 		z-index: -1;
@@ -97,4 +102,19 @@ button.m-btn-check {
 		margin-right: 0;
 		margin-left: 0.5rem;
 	}
+  &:hover {
+    color: $primary-color;
+    &::before {
+		  right: -10%;
+	  }
+    &::after {
+      color: $primary-color;
+    }
+    span {
+      color: transparent;
+    }
+  }
+  &:focus {
+    color: $font-color;
+  }
 }
