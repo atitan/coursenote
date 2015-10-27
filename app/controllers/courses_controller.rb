@@ -11,10 +11,10 @@ class CoursesController < ApplicationController
     value ? scope : scope.available_only
   end
   has_scope :hide_passed_courses, type: :boolean, if: :user_signed_in? do |controller, scope|
-    scope.hide_passed_courses(controller.current_user.passed_courses)
+    scope.hide_by_title(controller.current_user.passed_courses)
   end
   has_scope :apply_time_filter, type: :boolean, if: :user_signed_in? do |controller, scope|
-    scope.apply_time_filter(controller.current_user.time_filter)
+    scope.by_time(controller.current_user.time_filter)
   end
 
   def index

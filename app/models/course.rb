@@ -8,12 +8,12 @@ class Course < ActiveRecord::Base
   has_many :entries
 
   scope :available_only, -> { where(available: true) }
-  scope :by_title, -> search { where('title LIKE ?', "%#{search}%") }
-  scope :by_instructor, -> search { where('instructor LIKE ?', "%#{search}%") }
-  scope :by_department, -> search { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.department LIKE ?', "%#{search}%").uniq }
+  scope :by_title, -> title { where('title LIKE ?', "%#{title}%") }
+  scope :by_instructor, -> instructor { where('instructor LIKE ?', "%#{instructor}%") }
+  scope :by_department, -> department { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.department LIKE ?', "%#{department}%").uniq }
+  scope :by_category, -> category { where(category: category) }
+  scope :by_code, -> code { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(code: code).uniq }
+  scope :by_time, -> time { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.timetable <@ ?', time.to_json).where('entries.timetable <> ?', {}.to_json).uniq }
+  scope :hide_by_title, -> title { where.not(title: title) }
   scope :cross_department, -> { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(entries: {cross_department: true}).uniq }
-  scope :by_category, -> search { where(category: search) }
-  scope :hide_passed_courses, -> courses_name { where.not(title: courses_name) }
-  scope :show_favorite_courses, -> courses_code { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(code: courses_code).uniq }
-  scope :apply_time_filter, -> time_filter { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.timetable <@ ?', time_filter.to_json).where('entries.timetable <> ?', {}.to_json).uniq }
 end
