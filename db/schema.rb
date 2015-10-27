@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.integer  "parent_id"
     t.integer  "score",       default: 0, null: false
     t.integer  "votes_count", default: 0, null: false
+    t.string   "avatar",                  null: false
     t.text     "content",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.string   "favorite_courses",       default: [], null: false, array: true
     t.boolean  "is_student",                          null: false
     t.string   "student_id"
+    t.string   "secure_random",                       null: false
     t.datetime "banned_until"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -100,6 +102,8 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["secure_random"], name: "index_users_on_secure_random", unique: true, using: :btree
+  add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|

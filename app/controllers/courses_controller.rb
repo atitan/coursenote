@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(score: :desc)
+    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(votes_count: :desc, score: :desc)
     @new_comment = Comment.new
     @votes = current_user.votes if user_signed_in?
   end

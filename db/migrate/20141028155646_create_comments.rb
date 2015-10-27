@@ -6,6 +6,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :parent_id
       t.integer :score, null: false, default: 0
       t.integer :votes_count, null: false, default: 0
+      t.string :avatar, null: false
       t.text :content, null: false
 
       t.timestamps

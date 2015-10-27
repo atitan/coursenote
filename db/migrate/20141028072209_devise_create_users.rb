@@ -36,6 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :favorite_courses, array: true, null: false, default: []
       t.boolean  :is_student, null: false
       t.string   :student_id
+      t.string   :secure_random, null: false
       t.datetime :banned_until
 
       t.timestamps
@@ -45,5 +46,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+    add_index :users, :secure_random,        unique: true
+    add_index :users, :student_id,           unique: true
   end
 end
