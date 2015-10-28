@@ -27,6 +27,15 @@
       <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="軍訓">軍訓</label>
       <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="科技">科技</label>
     </div>
+    <div class="filter-checkbox checkbox">
+      <label class="m-label-checkbox"><input type="checkbox" name="show_all" value="true">顯示未開課程</label>
+      <% if user_signed_in? %>
+        <label class="m-label-checkbox"><input type="checkbox" class="hide-passed-courses" name="hide_passed_courses" value="true">隱藏修過課程</label>
+      <% else %>
+        <label class="m-label-checkbox disabled"><input type="checkbox" disabled>隱藏修過課程
+        <span class="label label-info">需登入</span></label>
+      <% end %>
+    </div>
     <div class="btn-submit">
       <button type="submit" class="btn btn-lg btn-block m-btn">查詢</button>
     </div>
