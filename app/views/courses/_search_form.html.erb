@@ -13,19 +13,9 @@
       <input type="text" class="form-control" id="by_instructor" placeholder="授課教師" name="by_instructor" value="<%= params[:by_instructor] %>">
     </div>
     <div data-toggle="buttons" class="search-buttons">
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="天">天學</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="人">人學</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="物">物學</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="我">我學</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="宗哲">宗哲</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="人哲">人哲</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="歷史">歷史</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="體育">體育</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="公民">公民</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="英聽">英聽</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="文學">文學</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="軍訓">軍訓</label>
-      <label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="科技">科技</label>
+      <% %w(天 人 物 我 宗哲 人哲 歷史 體育 公民 英聽 文學 軍訓 科技).each do |name| %>
+        <%=raw category_button(name) %>
+      <% end %>
     </div>
     <div class="filter-checkbox checkbox">
       <label class="m-label-checkbox"><input type="checkbox" name="show_all" value="true" <%= 'checked' if params[:show_all] %>>顯示未開課程</label>
