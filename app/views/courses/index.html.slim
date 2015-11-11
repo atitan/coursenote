@@ -9,7 +9,7 @@
         strong 課程查詢結果
       dl#courseInfoList.panel-group role='tablist' aria-multiselectable='true'
         - @courses.each do |course|
-          - cache course do
+          - cache [course, current_user] do
             dd.panel
             h1.sr-only = course.title
             section.panel-heading role='tab' id="heading_#{course.id}"
