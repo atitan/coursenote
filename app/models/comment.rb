@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   # Belongs to these models
   belongs_to :user
-  belongs_to :course
+  belongs_to :course, touch: true
 
   # Self association
   has_many :replies, -> { order(:created_at) }, class_name: 'Comment',

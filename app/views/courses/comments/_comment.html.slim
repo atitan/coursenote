@@ -34,5 +34,5 @@
           a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
             | 回覆
             i.fa.fa-reply
-= render 'courses/comments/replies/form', comment: comment, course: course
-= render 'courses/comments/replies/index', comment: comment
+= render 'courses/comments/replies/form', comment: comment, course: course, cache: true
+= render 'courses/comments/replies/index', comment: comment, cache: true

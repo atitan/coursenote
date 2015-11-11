@@ -8,10 +8,11 @@ module CoursesHelper
 
   def category_button(name)
     active = params[:by_category].include?(name) unless params[:by_category].nil?
+    name2 = name.length == 1 ? name + '學' : name
     if active
-      '<label class="btn btn-warning mg-b-10 active"><input type="checkbox" name="by_category[]" value="'+ name +'" checked>'+ name +'</label>'
+      '<label class="btn btn-warning mg-b-10 active"><input type="checkbox" name="by_category[]" value="'+ name +'" checked>'+ name2 +'</label>'
     else
-      '<label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="'+ name +'">'+ name +'</label>'
+      '<label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="'+ name +'">'+ name2 +'</label>'
     end
   end
 end

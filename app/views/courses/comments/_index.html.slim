@@ -10,4 +10,4 @@ section.comment-panel
             | 則留言
           i.fa.fa-minus
     div.collapse.in id="#{course.id}_comment"
-      = render partial: 'courses/comments/comment', collection: course.comments, as: :comment, locals: {course: course}
+      = render partial: 'courses/comments/comment', collection: course.comments, as: :comment, locals: {course: course}, cache: true

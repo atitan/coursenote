@@ -9,7 +9,8 @@
         strong 課程查詢結果
       dl#courseInfoList.panel-group role='tablist' aria-multiselectable='true'
         - @courses.each do |course|
-          dd.panel
+          - cache course do
+            dd.panel
             h1.sr-only = course.title
             section.panel-heading role='tab' id="heading_#{course.id}"
               header.panel-title
@@ -43,10 +44,10 @@
                         | 開課資訊
 
             section.panel-collapse.collapse.in id="#{course.instructor}_#{course.id}" role='tabpanel' aria-labelledby="heading_#{course.id}"
-              = render 'courses/entries/index', course: course
+              = render 'courses/entries/index', course: course, cache: true
 
             footer.panel-footer
-              = render 'courses/comments/index', course: course
+              = render 'courses/comments/index', course: course, cache: true
 
     .text-center
       = paginate @courses, :window => 2
