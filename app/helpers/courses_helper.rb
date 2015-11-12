@@ -16,7 +16,7 @@ module CoursesHelper
     end
   end
 
-  def course_state(state)
+  def course_status(state)
       if state
         '是'
       else
