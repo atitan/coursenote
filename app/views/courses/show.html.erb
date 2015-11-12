@@ -24,10 +24,10 @@
       <dd class="info-item">
         <p>學分數：<%= entry.credit %></p>
         <p>開課系級：<%= entry.department %></p>
-        <p>跨系：<%= entry.cross_department %></p>
-        <p>跨部：<%= entry.cross_graduate %></p>
-        <p>可退選：<%= entry.quittable %></p>
-        <p>必修：<%= entry.required %></p>
+        <p>跨系：<%= course_state( entry.cross_department ) %></p>
+        <p>跨部：<%= course_state( entry.cross_graduate ) %></p>
+        <p>可退選：<%= course_state( entry.quittable ) %></p>
+        <p>必修：<%= course_state( entry.required ) %></p>
         <p>備註：<%= entry.note %></p>
         <p><a class="btn btn-sm m-btn-check follow">追蹤<span class="fa fa-heart"></span></a></p>
       </dd>

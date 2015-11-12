@@ -15,4 +15,12 @@ module CoursesHelper
       '<label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="'+ name +'">'+ name2 +'</label>'
     end
   end
+
+  def course_state(state)
+      if state
+        '是'
+      else
+        '否'
+      end
+    end
 end
