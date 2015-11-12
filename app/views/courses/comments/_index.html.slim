@@ -1,0 +1,13 @@
+section.comment-panel
+  = render 'courses/comments/form', course: course
+
+  article.comment-table
+    h1
+      span
+        a.switch aria-controls="#{course.id}_comment" aria-expanded='true' data-toggle='collapse' href="##{course.id}_comment"
+          span id="comments_count_on_#{course.id}"
+            = course.comments.size
+            | 則留言
+          i.fa.fa-minus
+    div.collapse.in id="#{course.id}_comment"
+      = render partial: 'courses/comments/comment', collection: course.comments, as: :comment, locals: {course: course}, cache: true

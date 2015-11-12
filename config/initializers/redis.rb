@@ -1,0 +1,1 @@
+$job_redis = Redis::Namespace.new("activejob", :redis => Redis.new)

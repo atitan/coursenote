@@ -5,18 +5,24 @@
 /* Search form */
 .fixed-aside {
   position: fixed;
+  width: 25%;
+  max-width: 360px;
   @include breakpoint(tablet) {
+    max-width: none;
     position: relative;
+    width: 100%;
   }
 }
 
 .search-form {
-  width: 45%;
   margin-top: 30px;
   .jumbotron {
+    overflow-y: auto;
+    max-height: 90vh;
+    height: 100%;
     padding-right: 20px;
     padding-left: 20px;
-    opacity: 0.5;
+    opacity: 0.75;
     box-shadow: none;
     transition: 0.5s ease;
     &:hover {
@@ -24,19 +30,18 @@
       box-shadow: 0 5px 15px 3px lightgray;
     }
     @include breakpoint(tablet) {
+      max-height: none;
       opacity: 1;
       box-shadow: 0 5px 15px 3px lightgray;
     }
   }
   .search-buttons {
-    margin: 30px 0;
-    text-align: justify;
+    margin-top: 30px 0 20px;
   }
-  @include breakpoint(laptop) {
-    width: 37%;
+  .filter-checkbox {
+    margin-bottom: 20px;
   }
   @include breakpoint(tablet) {
-    width: 100%;
     margin-top: 0px;
   }
 }
@@ -59,7 +64,6 @@
     margin-bottom: 30px;
     .panel-heading {
       background-image: image-url('jumbotron-bg.png');
-      color: $primary-color;
     }
     .panel-body {
       background-color: #fff;
@@ -78,18 +82,6 @@
           color: $black;
         }
       }
-      a.m-btn,
-      input.m-btn,
-      button.m-btn {
-        color: #fff;
-        background-color: lighten($orange, 10);
-        &:hover {
-          background-color: lighten($orange, 5);
-        }
-        &:focus {
-          background-color: lighten($orange, 0);
-        }
-      }
     }
     .panel-footer {
       background-image: image-url('jumbotron-bg.png');
@@ -102,7 +94,7 @@
   }
 }
 
-.course-info li {
+.course-info > li {
   display: inline-block;
   position: relative;
   color: $orange;
@@ -126,17 +118,103 @@
   }
 }
 
+// Responsive table
+.break-table {
+    @include breakpoint(mobileonly) {
+        // hack bootstrap settings
+        &.table > tbody > tr > td {
+            padding-left: 50%;
+        }
+
+    	table,
+    	thead,
+    	tbody,
+    	th,
+    	td,
+    	tr {
+    		display: block;
+    	}
+
+    	// Hide table headers (but not display: none;, for accessibility)
+    	thead tr {
+    		position: absolute;
+    		top: -9999px;
+    		left: -9999px;
+    	}
+
+    	tr {
+            border: 1px solid darken(#ddd, 10);
+        }
+
+    	td {
+    		// Behave  like a "row"
+    		border: none;
+    		border-bottom: 1px solid #ddd;
+    		position: relative;
+            min-height: 3em;
+    		padding-left: 50%;
+    		white-space: normal;
+    		text-align:left;
+        	&::before {
+                content: attr(data-title);
+        		// Now like a table header
+        		position: absolute;
+        		// Top/left values mimic padding
+        		top: 8px;
+        		left: 8px;
+        		padding-right: 8px;
+        		width: 45%;
+        		white-space: nowrap;
+        		text-align:left;
+        		font-weight: bold;
+        	}
+        }
+    }
+}
 
 /* Comments & Replies */
+
+.options {
+  font-size: $fz-s;
+  display: block;
+  .dropdown-menu {
+    right: 0;
+    left: initial;
+    background-color: $bg-color;
+    a {
+      transition: 0.5s;
+      color: $gray700;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+      &:hover {
+        background-color: lighten($orange, 40);
+        color: #000;
+      }
+      &:focus {
+        background-color: lighten($orange, 35);
+        color: #000;
+      }
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
 .comment-panel {
   padding: 0 10px;
 }
 
 .comment-table {
-  display: table;
   width: 100%;
   h1 {
     margin-bottom: 15px;
+    i {
+      margin-left: 0.5rem;
+    }
   }
 }
 
@@ -169,15 +247,25 @@
       display: table-cell;
       padding-right: $inner-padding;
       padding-left: $inner-padding;
+      width: 100%;
       p {
         min-height: 60px;
       }
       .comment-info {
-        padding-bottom: $inner-padding;
         color: $gray500;
         transition: 0.3s;
         span {
           white-space: nowrap;
+          &:nth-child(2) {
+            &::before,
+            &::after {
+              content: '\00B7';
+              margin: 0 0.5rem;
+            }
+          }
+        }
+        i {
+          margin-left: 0.5rem;
         }
       }
     }
@@ -196,7 +284,7 @@
   border-radius: 4px;
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 1em;
+  padding: 0.5em 1em 1em;
   &:last-child {
     margin-bottom: 0;
   }
@@ -226,6 +314,9 @@
 
 .comment-block,
 .reply-block {
+  i {
+    margin-right: 0.5rem;
+  }
   textarea {
     padding: 10px;
     width: 100%;
@@ -249,3 +340,117 @@
   }
 }
 
+.like,
+.dislike {
+	background-color: $green;
+	border-color: $green;
+	&::before {
+		border-color: $green;
+	}
+  &.vote-actived {
+    background-color: #fff;
+    &::before {
+      // mimic hover-disabled
+      border-color: transparent;
+    }
+  }
+  &:hover,
+  &.vote-actived {
+    color: $green;
+	  &::after {
+		color: $green;
+		}
+    span {
+      color: transparent;
+    }
+  }
+}
+
+.dislike {
+	background-color: $red;
+  border-color: $red;
+	&::before {
+		border-color: $red;
+	}
+  &:hover,
+  &.vote-actived {
+    color: $red;
+		&::after {
+			color: $red;
+		}
+  }
+}
+
+.pure-disabled {
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.follow {
+  background-color: $orange;
+  border-color: $orange;
+  &::before {
+    border-color: $orange;
+  }
+  &:focus {
+    color: $font-color;
+  }
+  &.follow-actived {
+    background-color: #fff;
+    &::before {
+      // mimic hover-disabled
+      border-color: transparent;
+    }
+  }
+  &:hover,
+  &.follow-actived {
+    color: $orange;
+    &::after {
+      color: $orange;
+    }
+    span {
+      color: transparent;
+    }
+  }
+}
+
+// course#show
+.course-details {
+  .comment-panel {
+    border-top: 2px solid $primary-color;
+    background-image: image-url('jumbotron-bg.png');
+    background-color: #fefefe;
+    margin-bottom: 20px;
+    padding: 20px;
+    h1 {
+      font-size: $fz-s;
+    }
+  }
+}
+
+.list-group {
+  font-size: $fz-s;
+  border-top: 2px solid $primary-color;
+  background-image: image-url('jumbotron-bg.png');
+  background-color: #fefefe;
+  .info-title {
+    background-color: $primary-color;
+    color: $font-color;
+    padding: 10px;
+  }
+  .info-item {
+    padding-top: 10px;
+  }
+  @include breakpoint(phablet) {
+    border: 2px solid $primary-color;
+    border-radius: 4px;
+    .info-item {
+      padding: 10px;
+    }
+  }
+}
+
+// a.btn-vote-course {
+//   color: white;
+//   margin-right: 5px;
+// }

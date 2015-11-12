@@ -11,7 +11,15 @@
  * file per style scope.
  *
  *= require shared/bootstrap-base
+ *= require shared/font-awesome-base
+ *= require messenger
+ *= require messenger-spinner
+ *= require messenger-theme-air
  *= require main
  * require_tree .
  *= require_self
  */
+.button_to {
+  margin-right: 5px;
+  display: inline-block;
+}

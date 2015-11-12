@@ -1,0 +1,18 @@
+// Trigger Reset Action on Corresponding Form to Clear Form
+| $("#new_comment_on_#{@comment.course_id}").trigger('reset');
+| autosize.update($("#new_comment_on_#{@comment.course_id} > textarea"));
+
+// Update Comments Count of Corresponding Parent Object
+| $("span#comments_count_on_#{@comment.course_id}").html("#{@comment.course.comments.count}&ensp;則留言&ensp;");
+
+// Render Newly Created Comments
+| $("##{@comment.course_id}_comment").prepend('
+= j render 'courses/comments/comment', comment: @comment, course: @comment.course
+| ');
+
+// Processing Relative Time
+| $('##{@comment.course_id}_comment .date').each(function() {
+|  var date = $(this).data('date');
+|  var date_formatted = moment(date).startOf('minute').fromNow();
+|  $(this).text(date_formatted);
+|});

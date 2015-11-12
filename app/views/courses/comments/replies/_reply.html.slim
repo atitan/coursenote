@@ -1,0 +1,23 @@
+.replies id="#{reply.id}_reply"
+  .dropdown.options.vote.text-right
+    a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+      i.fa.fa-caret-down
+    ul.dropdown-menu aria-labelledby='dropdownEditOptions'
+      li
+        a href='#'
+          i.fa.fa-pencil
+          | 編輯
+      li
+        a href='#'
+          i.fa.fa-remove
+          | 刪除
+  = simple_format reply.content
+  .vote
+    span.date data-date="#{reply.created_at.utc.iso8601}"
+    span
+      | &ensp;&#8901;&ensp;
+      = link_to comment_vote_path(comment_id: reply.id, upvote: true), method: :post, remote: true, class: 'btn-vote-reply' do
+        i.fa.fa-chevron-up
+      span id="rank_on_reply_#{reply.id}" = "#{reply.score}/#{reply.votes_count}"
+      = link_to comment_vote_path(comment_id: reply.id, upvote: false), method: :post, remote: true, class: 'btn-vote-reply' do
+        i.fa.fa-chevron-down

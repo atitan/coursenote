@@ -4,9 +4,6 @@
   <meta charset="utf8">
   <title>中原選課大全</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -16,16 +13,6 @@
   <script type="text/javascript">
     function autoheight(textbox) {
       autosize($(textbox));
-    }
-    function sendVote(id, vote) {
-      $.ajax ({
-        type:       'post',
-        url:        '/courses/'+id+'/vote',
-        data:       {upvote: +vote},
-        success: function(msg) {
-          alert("Vote Succeed.");
-        }
-      });
     }
   </script>
 </head>

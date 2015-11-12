@@ -5,7 +5,7 @@ namespace :data do
 
     # pass yearterm using this sort of command `rake data:import[1031]`
     print 'Downloading...'
-    uri = URI('http://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
+    uri = URI('https://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
     raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
     puts "completed"
 

@@ -1,9 +1,12 @@
 body {
-	font-family: 'Ubuntu', 'Microsoft JhengHei', sans-serif;
+  font-family: 'Ubuntu', 'Microsoft JhengHei', 微軟正黑體, sans-serif;
   padding-top: 70px;  /* Fix navbar overlay problem */
   background-color: $bg-color;
   background-image: image-url('main-bg.png');
-  font-size: $fz-xs;
+}
+
+p {
+    @include word-wrap;
 }
 
 .wrapper {
@@ -27,28 +30,26 @@ body {
 }
 
 .hover-effect {
-  a {
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      display: block;
-      background-color: $orange;
-      bottom: 0;
-      height: 0;
-      width: 30%;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-         -moz-transform: translateX(-50%);
-              transform: translateX(-50%);
-      -webkit-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
-         -moz-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
-           -o-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
-              transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
-    }
-    &:hover::before {
-      height: 5px;
-      width: 80%;
-    }
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: $orange;
+    bottom: 0;
+    height: 0;
+    width: 30%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+       -moz-transform: translateX(-50%);
+            transform: translateX(-50%);
+    -webkit-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+       -moz-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+         -o-transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+            transition: height 0.15s ease, width 0.3s ease-in-out 0.15s;
+  }
+  &:hover::before {
+    height: 5px;
+    width: 80%;
   }
 }

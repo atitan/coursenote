@@ -17,11 +17,13 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",                null: false
-    t.integer  "course_id",              null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "course_id",               null: false
     t.integer  "parent_id"
-    t.integer  "score",      default: 0, null: false
-    t.text     "content",                null: false
+    t.integer  "score",       default: 0, null: false
+    t.integer  "votes_count", default: 0, null: false
+    t.string   "avatar",                  null: false
+    t.text     "content",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,11 +34,12 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",                     null: false
-    t.string   "category",                  null: false
-    t.string   "instructor",                null: false
-    t.integer  "score",      default: 0,    null: false
-    t.boolean  "available",  default: true, null: false
+    t.string   "title",                      null: false
+    t.string   "category",                   null: false
+    t.string   "instructor",                 null: false
+    t.integer  "score",       default: 0,    null: false
+    t.integer  "votes_count", default: 0,    null: false
+    t.boolean  "available",   default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,10 +88,12 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.string   "password_salt",                       null: false
     t.jsonb    "time_filter",            default: {}, null: false
     t.string   "passed_courses",         default: [], null: false, array: true
+    t.string   "favorite_courses",       default: [], null: false, array: true
     t.boolean  "is_student",                          null: false
+    t.string   "student_id"
+    t.string   "secure_random",                       null: false
     t.datetime "banned_until"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -97,6 +102,8 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["secure_random"], name: "index_users_on_secure_random", unique: true, using: :btree
+  add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
@@ -106,9 +113,15 @@ ActiveRecord::Schema.define(version: 20150119091453) do
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
+    t.integer  "user_id",    null: false
+    t.integer  "course_id",  null: false
+    t.integer  "parent_id"
   end
 
+  add_index "versions", ["course_id"], name: "index_versions_on_course_id", using: :btree
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+  add_index "versions", ["parent_id"], name: "index_versions_on_parent_id", using: :btree
+  add_index "versions", ["user_id"], name: "index_versions_on_user_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",   null: false

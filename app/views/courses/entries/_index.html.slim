@@ -1,0 +1,28 @@
+h1.sr-only 開課資訊
+article.panel-body
+    h1.sr-only
+      = course.title
+      | &ensp;-&ensp;
+      = course.instructor
+      | : 開課詳細資訊
+
+    table.table.break-table
+      thead
+        tr
+          th 課程代碼
+          th 上課時段
+          th 學分數
+          th 開課系級
+          th 追蹤課程
+
+      tbody
+        - course.entries.each do |entry|
+          tr style="#{time_overlap?(entry.timetable, current_user)}"
+            td data-title='課程代碼' = entry.code
+            td data-title='上課時段' = entry.timestring
+            td data-title='學分數' = entry.credit
+            td data-title='開課系級' = entry.department
+            td data-title='追蹤課程'
+              a.btn.btn-sm.m-btn-check.follow
+                | 追蹤
+                span.fa.fa-heart

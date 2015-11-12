@@ -32,8 +32,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 3.4.0'
-gem 'devise-encryptable', '~> 0.2.0'
+gem 'devise', '~> 3.5.2'
 gem 'devise-i18n'
 
 # scope
@@ -43,10 +42,20 @@ gem 'has_scope'
 gem 'kaminari', '~> 0.16.1'
 
 # Record Versioning
-gem 'paper_trail', '~> 3.0.6'
+gem 'paper_trail', '~> 4.0.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
+
+# Use slim to simplify html code
+gem 'slim', '~> 3.0.6'
+gem 'slim-rails'
+
+# Official Font Awesome SASS Ruby Gem
+gem 'font-awesome-sass'
+
+# Messenger javascript library
+gem 'messengerjs-rails', '~> 1.4.1'
 
 # JSON validator
 gem 'activerecord_json_validator'
@@ -54,11 +63,30 @@ gem 'activerecord_json_validator'
 # Use puma server
 gem 'puma'
 
+# A higher level command-line oriented interface
+gem 'highline'
+
+# Queue processing
+gem 'sidekiq'
+gem 'devise-async'
+
+# Traffic throttling
+gem 'rack-attack'
+
+# Course bookmarking
+gem 'cycu_csys_bookmarker', '~> 0.0.2'
+
+# Redis
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # N+1 problem
-  gem "bullet"
+  gem 'bullet'
   # Deployment
   gem 'capistrano-rails'
   # console
@@ -67,8 +95,9 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
-  gem "factory_girl_rails", "~> 4.0"
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers'
+  gem 'rack-mini-profiler'
 end
 
 # Use ActiveModel has_secure_password
