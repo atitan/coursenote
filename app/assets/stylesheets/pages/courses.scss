@@ -414,6 +414,42 @@
   }
 }
 
+// course#show
+.course-details {
+  .comment-panel {
+    border-top: 2px solid $primary-color;
+    background-image: image-url('jumbotron-bg.png');
+    background-color: #fefefe;
+    margin-bottom: 20px;
+    padding: 20px;
+    h1 {
+      font-size: $fz-s;
+    }
+  }
+}
+
+.list-group {
+  font-size: $fz-s;
+  border-top: 2px solid $primary-color;
+  background-image: image-url('jumbotron-bg.png');
+  background-color: #fefefe;
+  .info-title {
+    background-color: $primary-color;
+    color: $font-color;
+    padding: 10px;
+  }
+  .info-item {
+    padding-top: 10px;
+  }
+  @include breakpoint(phablet) {
+    border: 2px solid $primary-color;
+    border-radius: 4px;
+    .info-item {
+      padding: 10px;
+    }
+  }
+}
+
 // a.btn-vote-course {
 //   color: white;
 //   margin-right: 5px;

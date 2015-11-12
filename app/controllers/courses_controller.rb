@@ -24,8 +24,8 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.includes(:entries, :comments).find(params[:id])
-    @new_comment = current_user.comments.new if user_signed_in?
+    @course = Course.includes(:entries, comments: :replies).find(params[:id])
+    @new_comment = Comment.new
   end
 
   def vote
