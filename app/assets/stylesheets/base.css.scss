@@ -9,6 +9,31 @@ p {
     @include word-wrap;
 }
 
+// Customize scrollbar
+::-webkit-scrollbar {
+    width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #aaa;
+  &:hover {
+		background-color: darken(#aaa, 10);
+	}
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background-color: #ccc;
+}
+
+::-webkit-scrollbar-track:window-inactive {
+	background-color: #eee;
+}
+
 .wrapper {
 	min-height: 80vh;
 }
