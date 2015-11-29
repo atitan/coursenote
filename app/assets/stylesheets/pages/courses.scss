@@ -3,25 +3,53 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* Search form */
-.fixed-aside {
-  position: fixed;
-  width: 25%;
-  max-width: 360px;
-  @include breakpoint(tablet) {
-    max-width: none;
-    position: relative;
-    width: 100%;
-  }
+.scrollable {
+	overflow: hidden;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.aside {
+	float: left;
+	width: 33%;
+	margin-right: 2%;
+	height: auto;
+	max-height: 80vh;
+	/* 解決 fixed 的時候 33% 抓 body 而非 container 所以爆炸的問題 */
+	max-width: 350px;
+	@include breakpoint(laptop) {
+		max-width: 290px;
+	}
+	&.affix-bottom {
+		position: absolute;
+	}
+	@include breakpoint(tablet) {
+		position: relative;
+		width: 100%;
+		max-width: none;
+		max-height: none;
+		float: none;
+	}
+}
+
+.main {
+	float: right;
+	width: 65%;
+	@include breakpoint(tablet) {
+		position: relative;
+		width: 100%;
+		max-width: none;
+		float: none;
+		height: auto;
+	}
 }
 
 .search-form {
-  margin-top: 30px;
+  position: relative;
   .jumbotron {
-    overflow-y: auto;
-    max-height: 90vh;
-    height: 100%;
     padding-right: 20px;
     padding-left: 20px;
+    margin-bottom: 0;
     opacity: 0.75;
     box-shadow: none;
     transition: 0.5s ease;
