@@ -368,6 +368,13 @@
   }
 }
 
+.btn-vote-comment,
+.btn-vote-reply {
+  &.vote-actived {
+    color: $orange;
+  }
+}
+
 .like,
 .dislike {
 	background-color: $green;
