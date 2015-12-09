@@ -5,11 +5,29 @@
   <title>中原選課大全</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
     <script src="//raw.githubusercontent.com/aFarkas/html5shiv/master/dist/html5shiv.min.js" type="text/javascript"></script>
   <![endif]-->
+</head>
+<body>
+<%= render 'common/github' %>
+
+<%= render 'common/navbar' %>
+
+<div class="wrapper">
+  <div class="container">
+    <%= display_flash! %>
+
+    <%= yield %>
+  </div>
+</div>
+
+<a href="#" class="totop"><span>Top</span></a>
+
+<%= render 'common/footer' %>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script type="text/javascript">
     function autoheight(textbox) {
       autosize($(textbox));
@@ -32,23 +50,5 @@
       s.parentNode.insertBefore(wf, s);
    })(document);
   </script>
-</head>
-<body>
-<%= render 'common/github' %>
-
-<%= render 'common/navbar' %>
-
-<div class="wrapper">
-  <div class="container">
-    <%= display_flash! %>
-
-    <%= yield %>
-  </div>
-</div>
-
-<a href="#" class="totop"><span>Top</span></a>
-
-<%= render 'common/footer' %>
-
 </body>
 </html>
