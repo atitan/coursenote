@@ -51,9 +51,6 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'slim', '~> 3.0.6'
 gem 'slim-rails'
 
-# Official Font Awesome SASS Ruby Gem
-gem 'font-awesome-sass'
-
 # Messenger javascript library
 gem 'messengerjs-rails', '~> 1.4.1'
 
