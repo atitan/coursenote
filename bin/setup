@@ -11,7 +11,7 @@ Dir.chdir APP_ROOT do
 
   puts "\n== Copying sample files =="
   unless File.exist?("config/database.yml")
-    system "cp config/database.yml.example config/database.yml"
+    system "cp config/database.yml.travis config/database.yml"
   end
 
   puts "\n== Preparing database =="
