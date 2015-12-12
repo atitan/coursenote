@@ -22,21 +22,15 @@ RSpec.describe Course, type: :model do
   it { should have_db_index(:score) }
   it { should have_db_index(:title) }
 
-  it "has a valid factory" do
-    # Using the shortened version of FactoryGirl syntax.
-    # Add:  "config.include FactoryGirl::Syntax::Methods" (no quotes) to your spec_helper.rb
-    expect(build(:course)).to be_valid
-  end
-
-  # Lazily loaded to ensure it's only used when it's needed
-  # RSpec tip: Try to avoid @instance_variables if possible. They're slow.
-  let(:course) { build(:course) }
-
   describe "scopes" do
     before do
-      create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '天')
-      create(:course, available: false, title: '自然科學導論', instructor: '老皮', category: '人')
-      create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '物')
+      @course1 = create(:course, available: true, title: '宗教哲學', instructor: '老皮', category: '天')
+      @course2 = create(:course, available: false, title: '自然科學導論', instructor: '歐趴雄', category: '天')
+      @course3 = create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '物')
+
+      create(:entry, course: @course1, code: 'AB', department: '通識', timetable: {'1': ['3','4']}, cross_department: false)
+      create(:entry, course: @course2, code: 'CD', department: '企管', timetable: {'3': ['3','4']}, cross_department: true)
+      create(:entry, course: @course3, code: 'EF', department: '語言', timetable: {'5': ['3','4']}, cross_department: false)
     end
 
     # It's a good idea to create specs that test a failing result for each scope, but that's up to you
@@ -52,16 +46,28 @@ RSpec.describe Course, type: :model do
       expect(Course.by_instructor('歐趴雄')).to all(have_attributes(instructor: '歐趴雄'))
     end
 
-    #it ".by_department" do
-    #  expect(model.scope_name(conditions)).to eq(result_expected)
-    #end
-
-    it ".by_category" do
-      expect(Course.by_category('人')).to all(have_attributes(category: '人'))
+    it ".by_department" do
+      expect(Course.by_department('通識')).to include(@course1)
     end
 
-    #it ".hide_passed_courses" do
-    #  expect(model.scope_name(conditions)).to eq(result_expected)
-    #end
+    it ".by_category" do
+      expect(Course.by_category('天')).to all(have_attributes(category: '天'))
+    end
+
+    it ".by_code" do
+      expect(Course.by_code('CD')).to include(@course2)
+    end
+
+    it ".by_time" do
+      expect(Course.by_time({'5': ['1','2','3','4']})).to include(@course3)
+    end
+
+    it ".hide_by_title" do
+      expect(Course.hide_by_title('自然科學導論')).not_to include(@course2)
+    end
+
+    it ".cross_department" do
+      expect(Course.cross_department).to include(@course2)
+    end
   end 
 end
