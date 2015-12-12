@@ -1,6 +1,14 @@
 #中原大學選課大全
 
-[![Build Status](https://travis-ci.org/atitan/coursenote.svg?branch=master)](https://travis-ci.org/atitan/coursenote) [![Code Climate](https://codeclimate.com/github/atitan/coursenote/badges/gpa.svg)](https://codeclimate.com/github/atitan/coursenote)
+[![Build Status](https://travis-ci.org/atitan/coursenote.svg?branch=master)](https://travis-ci.org/atitan/coursenote) [![Code Climate](https://codeclimate.com/github/atitan/coursenote/badges/gpa.svg)](https://codeclimate.com/github/atitan/coursenote) [![Test Coverage](https://codeclimate.com/github/atitan/coursenote/badges/coverage.svg)](https://codeclimate.com/github/atitan/coursenote/coverage)
+
+## 系統需求
+
+**Ruby 2.2以上**
+
+**PostgreSQL 9.4以上**
+
+**Redis**
 
 ## 安裝使用
 
