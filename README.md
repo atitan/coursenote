@@ -1,5 +1,6 @@
 #中原大學選課大全
 
+[![Build Status](https://travis-ci.org/atitan/coursenote.svg?branch=master)](https://travis-ci.org/atitan/coursenote) [![Code Climate](https://codeclimate.com/github/atitan/coursenote/badges/gpa.svg)](https://codeclimate.com/github/atitan/coursenote)
 
 ## 安裝使用
 
