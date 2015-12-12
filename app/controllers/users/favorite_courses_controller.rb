@@ -32,12 +32,20 @@ class Users::FavoriteCoursesController < ApplicationController
   def export
     if current_user.student? && !@state[:queued]
       BookmarkingCoursesJob.perform_later(current_user, params[:csys_password])
+    else
+      if current_user.student?
+        redis_state(message: '工作尚未結束')
+      else
+        redis_state(message: '非學生帳號，請洽管理員')
+      end
     end
   end
 
   private
 
-  def get_redis_state
+  def redis_state(**args)
     @state = JSON.parse($job_redis.get(current_user.id) || '{}')
+    @state.merge!(args)
+    $job_redis.set(current_user.id, @state.to_json)
   end
 end
