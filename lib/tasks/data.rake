@@ -1,9 +1,13 @@
 namespace :data do
   desc "import data from url to database"
   task :import , [:yearterm] => :environment do |_task, args|
-    require 'net/http'
+    unless args.yearterm
+      puts "No yearterm specified...aborting"
+      next
+    end
 
     # pass yearterm using this sort of command `rake data:import[1031]`
+    require 'net/http'
     print 'Downloading...'
     uri = URI('https://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
     raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
