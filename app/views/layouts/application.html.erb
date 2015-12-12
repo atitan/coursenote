@@ -4,9 +4,7 @@
   <meta charset="utf8">
   <title>中原選課大全</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta rel="preconnect" href="//ajax.googleapis.com">
-  <meta rel="preconnect" href="//fonts.googleapis.com">
-  <meta rel="preconnect" href="//fonts.gstatic.com">
+  <link href='//fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
@@ -35,19 +33,6 @@
     function autoheight(textbox) {
       autosize($(textbox));
     }
-  </script>
-  <script>
-    WebFontConfig = {
-      google: {
-        families: ['Ubuntu'],
-      }
-    };
-
-   (function(d) {
-      var wf = d.createElement('script'), s = d.scripts[0];
-      wf.src = '//ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
-      s.parentNode.insertBefore(wf, s);
-   })(document);
   </script>
 </body>
 </html>

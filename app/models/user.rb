@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   before_create :generate_secure_random
   before_save :sanitize_array_column
 
+  validates_length_of :passed_courses, maximum: 100
+  validates_length_of :favorite_courses, maximum: 100
   validates :time_filter, json: { schema: Rails.root.join('app', 'models', 'schemas', 'time_filter.json').to_s }
 
   def student?

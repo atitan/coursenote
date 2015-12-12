@@ -20,7 +20,7 @@ class BookmarkingCoursesJob < ActiveJob::Base
       bookmarker.logout
     rescue RuntimeError => e
       logging(user.id, message: e.message)
-    rescue StandardError => e
+    rescue StandardError
       logging(user.id, message: '發生錯誤，請稍後再試')
     end
   end
