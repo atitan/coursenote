@@ -2,8 +2,10 @@ require "rails_helper"
 
 RSpec.describe Comment, type: :model do
   it { should have_many :votes }
+  it { should have_many(:replies).order(:created_at) }
+  it { should belong_to :parent }
   it { should belong_to :user }
-  it { should belong_to :course }
+  it { should belong_to(:course).touch(true) }
 
   it { should validate_presence_of :content }
   it { should validate_presence_of :course }
@@ -24,4 +26,10 @@ RSpec.describe Comment, type: :model do
   it { should have_db_index(:parent_id) }
   it { should have_db_index(:user_id) }
   it { should have_db_index(:score) }
+
+  context "callbacks" do
+    let(:comment) { create(:comment) }
+
+    it { expect(comment).to callback(:generate_avatar).before(:create) }
+  end
 end

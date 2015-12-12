@@ -37,6 +37,14 @@ RSpec.describe User, type: :model do
   it { should have_db_index(:student_id) }
   it { should have_db_index(:unlock_token) }
 
+  context "callbacks" do
+    let(:user) { create(:user) }
+
+    it { expect(user).to callback(:check_identity).before(:create) }
+    it { expect(user).to callback(:generate_secure_random).before(:create) }
+    it { expect(user).to callback(:sanitize_array_column).before(:save) }
+  end
+
   describe ".student?" do
     it "returns true if user is a student" do
       user = build(:user, is_student: true)

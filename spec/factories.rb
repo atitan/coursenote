@@ -24,7 +24,7 @@ FactoryGirl.define do
 
   factory :comment do
     course
-    parent
+    parent nil
     user
     score { (-10..10).to_a.shuffle.first }
     content 'This is a comment'
@@ -32,10 +32,16 @@ FactoryGirl.define do
 
   factory :user do
     sequence(:email) { |n| "s#{(10200000 + n).to_s}@cycu.edu.tw" }
+    password 'a12345678'
   end
 
-  factory :vote do
+  factory :course_vote, class: "Vote" do
     user
-    votable
+    association :votable, factory: :course
+  end
+
+  factory :comment_vote, class: "Vote" do
+    user
+    association :votable, factory: :comment
   end
 end
