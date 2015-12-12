@@ -40,6 +40,9 @@ ready = ->
                   action: ->
                       vote_errmsg.hide()
   $('a.btn-vote-comment').on("ajax:success", (e, data, status, xhr) ->
+    $(this).addClass 'vote-actived pure-disabled'
+    $('p a.btn-vote-comment').not this
+		 	                       .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_comment_' + data.votable_id)
     target_credit.html data.votable.score + '/' + data.votable.votes_count
     vote_success_msg = Messenger().post
@@ -64,6 +67,9 @@ ready = ->
                   action: ->
                       vote_errmsg.hide()
   $('a.btn-vote-reply').on("ajax:success", (e, data, status, xhr) ->
+    $(this).addClass 'vote-actived pure-disabled'
+           .siblings '.btn-vote-reply'
+           .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_reply_' + data.votable_id)
     target_credit.html data.votable.score + '/' + data.votable.votes_count
     vote_success_msg = Messenger().post

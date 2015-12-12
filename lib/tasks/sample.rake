@@ -4,14 +4,14 @@ require 'json'
 
 namespace :sample do
   desc 'import sample account and comments into database'
-  task :import => :environment do
+  task :import, [:skip] => :environment do |task, args|
     puts '接下來，將導引您建立 Sample User，並隨機幫您建立 500 筆假留言。'
 
     puts '首先，將導引建立 Sample User 帳號，請依照指示進行'
     user = User.new
-    user.email                    = ask('請輸使用者的 Email：'){ |q| q.default = 'testing@cycu.edu.tw' }
-    user.password                 = ask('請輸入使用者的 密碼：') {|q| q.echo = '*'}
-    user.password_confirmation    = ask("請再次輸入使用者的 密碼 以供確認：") {|q| q.echo = '*'}
+    user.email                    = args.skip ? 'test@cycu.edu.tw' : ask('請輸使用者的 Email：'){ |q| q.default = 'testing@cycu.edu.tw' }
+    user.password                 = args.skip ? 'a12345678' : ask('請輸入使用者的 密碼：') {|q| q.echo = '*'}
+    user.password_confirmation    = args.skip ? 'a12345678' : ask("請再次輸入使用者的 密碼 以供確認：") {|q| q.echo = '*'}
     user.save!
     user.confirm!
 
