@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(votes_count: :desc, score: :desc)
+    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order('CASE WHEN (votes_count = 0 and score = 0) THEN 1 ELSE 0 END ASC, score DESC')
     @new_comment = Comment.new
     @votes = current_user.votes if user_signed_in?
   end
