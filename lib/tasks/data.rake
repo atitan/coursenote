@@ -1,6 +1,6 @@
 namespace :data do
   desc "import data from url to database"
-  task :import , [:yearterm] => :environment do |task, args|
+  task :import , [:yearterm] => :environment do |_task, args|
     require 'net/http'
 
     # pass yearterm using this sort of command `rake data:import[1031]`
@@ -74,7 +74,6 @@ namespace :data do
   end
 
   def convert2timetable(time)
-    offset = %w(A 1 2 3 4 B 5 6 7 8 C D E F G H)
     output = {}
 
     time.each do |x|
@@ -85,6 +84,7 @@ namespace :data do
       sec = tmp[2].split('')
       output[day] = sec
     end
+    
     output
   end
 end

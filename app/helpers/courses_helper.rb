@@ -17,10 +17,10 @@ module CoursesHelper
   end
 
   def course_status(state)
-      if state
+    if state
         '是'
-      else
+    else
         '否'
-      end
     end
+  end
 end

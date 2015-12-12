@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  include ActionVoter
+
   before_action :authenticate_user!, only: :vote
 
   has_scope :by_title
@@ -7,7 +9,7 @@ class CoursesController < ApplicationController
   has_scope :by_department
   has_scope :page, default: 1
   has_scope :cross_department, type: :boolean
-  has_scope :show_all, default: false, type: :boolean, allow_blank: true do |controller, scope, value|
+  has_scope :show_all, default: false, type: :boolean, allow_blank: true do |_controller, scope, value|
     value ? scope : scope.available_only
   end
   has_scope :hide_passed_courses, type: :boolean, if: :user_signed_in? do |controller, scope|
@@ -30,11 +32,6 @@ class CoursesController < ApplicationController
 
   def vote
     course = Course.find(params[:course_id])
-    vote = current_user.votes.find_or_initialize_by(votable: course)
-    if vote.update(upvote: params[:upvote])
-      render json: vote.as_json(include: { votable: { only: [:score, :votes_count] }})
-    else
-      render json: { error: vote.errors.full_messages }, status: :internal_server_error
-    end
+    vote_it(course, params[:upvote])
   end
 end
