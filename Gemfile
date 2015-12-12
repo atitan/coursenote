@@ -101,6 +101,7 @@ group :development, :test do
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'coveralls', require: false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
