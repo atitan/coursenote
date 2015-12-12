@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  include ActionVoter
+
   before_action :authenticate_user!
   before_action :find_comment, only: [:update, :destroy]
 
@@ -32,12 +34,7 @@ class CommentsController < ApplicationController
 
   def vote
     comment = Comment.find(params[:comment_id])
-    vote = current_user.votes.find_or_initialize_by(votable: comment)
-    if vote.update(upvote: params[:upvote])
-      render json: vote.as_json(include: { votable: { only: [:score, :votes_count] }})
-    else
-      render json: { error: vote.errors.full_messages }, status: :internal_server_error
-    end
+    vote_it(comment, params[:upvote])
   end
 
   private

@@ -29,8 +29,6 @@ module ApplicationHelper
   def vote_status(object, btn_type)
     return '' if @votes.nil? || @votes.empty?
 
-    found = nil
-
     found = @votes.find do |vote|
       vote[:votable_type] == object.class.name && vote[:votable_id] == object.id
     end
