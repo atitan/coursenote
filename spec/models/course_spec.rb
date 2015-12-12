@@ -25,18 +25,18 @@ RSpec.describe Course, type: :model do
   it "has a valid factory" do
     # Using the shortened version of FactoryGirl syntax.
     # Add:  "config.include FactoryGirl::Syntax::Methods" (no quotes) to your spec_helper.rb
-    expect(FactoryGirl.build(:course)).to be_valid
+    expect(build(:course)).to be_valid
   end
 
   # Lazily loaded to ensure it's only used when it's needed
   # RSpec tip: Try to avoid @instance_variables if possible. They're slow.
-  let(:course) { FactoryGirl.build(:course) }
+  let(:course) { build(:course) }
 
   describe "scopes" do
     before do
-      FactoryGirl.create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '天')
-      FactoryGirl.create(:course, available: false, title: '自然科學導論', instructor: '老皮', category: '人')
-      FactoryGirl.create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '物')
+      create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '天')
+      create(:course, available: false, title: '自然科學導論', instructor: '老皮', category: '人')
+      create(:course, available: true, title: '宗教哲學', instructor: '歐趴雄', category: '物')
     end
 
     # It's a good idea to create specs that test a failing result for each scope, but that's up to you
