@@ -7,10 +7,10 @@ class Users::PassedCoursesController < ApplicationController
   end
 
   def create
-    append_course(params[:passed_course])
+    append_course(:passed_courses, params[:passed_course])
   end
 
   def destroy
-    delete_course(params[:passed_course])
+    delete_course(:passed_courses, params[:passed_course])
   end
 end

@@ -9,11 +9,11 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def create
-    append_course(params[:favorite_course])
+    append_course(:favorite_courses, params[:favorite_course])
   end
 
   def destroy
-    delete_course(params[:favorite_course])
+    delete_course(:favorite_courses, params[:favorite_course])
   end
 
   def export
