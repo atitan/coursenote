@@ -23,5 +23,6 @@ RSpec.describe Entry, type: :model do
   it { should have_db_index(:course_id) }
   it { should have_db_index(:code) }
   it { should have_db_index(:department) }
+  it { should have_db_index(:cross_department) }
   it { should have_db_index(:timetable) }
 end
