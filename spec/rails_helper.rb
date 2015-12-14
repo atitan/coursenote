@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'factory_girl_rails'
+require 'devise'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -22,7 +23,7 @@ require 'factory_girl_rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/*.rb')].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -53,6 +54,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
 
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
