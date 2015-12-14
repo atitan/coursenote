@@ -1,3 +1,37 @@
 // Place all the styles related to the favorite_courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tab-group {
+  margin-right: -30px;
+  @include breakpoint(tablet) {
+    margin-right: 0;
+  }
+}
+.tab-item {
+  text-align: right;
+  a {
+    padding: 15px;
+    display: block;
+    color: $gray500;
+	  background-color: $bg-color;
+	  border-width: 0 0 0 5px;
+    border-style: solid;
+    border-color: $gray500;
+    .fa {
+      padding: 0 5px;
+    }
+    &:hover,
+    &.active {
+      transition: all 0.5s;
+      border-color: $primary-color;
+      color: $black;
+    }
+    @include breakpoint(tablet) {
+      border-width: 5px 0 0 0;
+    }
+  }
+  @include breakpoint(tablet) {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+}

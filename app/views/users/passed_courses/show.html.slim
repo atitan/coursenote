@@ -1,0 +1,44 @@
+section
+  .container
+    h1.sr-only 自訂
+    aside.col-md-3
+      h1.sr-only = current_user.email
+      ul.tab-group
+        li.tab-item.h4
+          = link_to users_favorite_courses_path do
+            span.hidden-xs 已追蹤課程
+            i.fa.fa-heart
+        li.tab-item.h4
+          = link_to users_passed_courses_path, class: 'active' do
+            span.hidden-xs 已修過課程
+            i.fa.fa-book
+        li.tab-item.h4
+          = link_to users_time_filter_path do
+            span.hidden-xs 時間表
+            i.fa.fa-table
+    article.col-md-9
+      .jumbotron
+        h2.m-title.text-center 已修過課程
+        form.form-horizontal
+          h4 登記已修過課程
+          .input-group
+            input.form-control placeholder='課程名稱'
+              span.input-group-btn
+                a.btn.btn-default type='submit' 登記
+        hr
+        table.table.table-condensed.table-hover.break-table
+          h4 已修過課程列表
+          thead
+            tr
+              th 課程分類
+              th 課程名稱
+              th 取消登記
+          tbody
+            - 5.times do |x|
+              tr
+                td data-title='課程分類' 天
+                td data-title='課程名稱' 人類行為學研究
+                td
+                  button.btn.btn-danger.btn-sm type='button'
+                    span.fa.fa-times
+                    | 取消
