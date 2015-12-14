@@ -2,8 +2,7 @@ namespace :data do
   desc "import data from url to database"
   task :import , [:yearterm] => :environment do |_task, args|
     unless args.yearterm
-      puts "No yearterm specified...aborting"
-      next
+      raise "No yearterm specified...aborting"
     end
 
     # pass yearterm using this sort of command `rake data:import[1031]`
@@ -20,8 +19,7 @@ namespace :data do
 
     # abort task if contains empty dataset
     if data.include?('')
-      puts "\nEmpty dataset detected...aborting"
-      next
+      raise "\nEmpty dataset detected...aborting"
     end
 
     data.map!{ |x| x.split('|') }

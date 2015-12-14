@@ -13,7 +13,7 @@ namespace :sample do
     user.password                 = args.skip ? 'a12345678' : ask('請輸入使用者的 密碼：') {|q| q.echo = '*'}
     user.password_confirmation    = args.skip ? 'a12345678' : ask("請再次輸入使用者的 密碼 以供確認：") {|q| q.echo = '*'}
     user.save!
-    user.confirm!
+    user.confirm
 
     puts  "\n接下來將隨機產生 500 則評論。"
     print 'Downloading Random Sentences...'
