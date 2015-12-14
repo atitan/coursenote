@@ -104,6 +104,8 @@ group :development, :test do
   gem 'simplecov', require: false
 end
 
+gem 'newrelic_rpm', group: :production
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
