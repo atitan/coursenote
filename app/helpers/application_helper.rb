@@ -55,14 +55,13 @@ module ApplicationHelper
   end
 
   def tab_li text, url, icon
-		active = nil
-		active = :active if request.path == url
-		content_tag :li, class: "tab-item h4" do
+    active = :active if request.path == url
+    content_tag :li, class: "tab-item h4" do
       link_to url, class: active do
         content_tag(:span, text, class: 'hidden-xs') +
         content_tag(:i, '', class: "fa #{icon}")
       end
-		end
-	end
+    end
+  end
 
 end
