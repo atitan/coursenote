@@ -5,7 +5,8 @@ ready = ->
   Messenger.options = {
     'extraClasses': 'messenger-fixed messenger-on-top messenger-on-right',
     'maxMessages': 5,
-    'theme': 'air'
+    'theme': 'air',
+    'hideAfter': 3
   }
 
   $('.btn-vote-course').unbind()
