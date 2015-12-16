@@ -9,11 +9,9 @@ class Users::PassedCoursesController < ApplicationController
 
   def create
     append_course(:passed_courses, params[:passed_course])
-    redirect_to users_passed_courses_path
   end
 
   def destroy
     delete_course(:passed_courses, params[:passed_course])
-    redirect_to users_passed_courses_path
   end
 end
