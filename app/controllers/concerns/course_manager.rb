@@ -3,7 +3,7 @@ module CourseManager
 
   def append_course(list_name, course)
     current_user.send(list_name).push(course)
-    save_course('新增')
+    save_course(list_name, '新增')
   end
 
   def delete_course(list_name, course)
@@ -12,10 +12,10 @@ module CourseManager
     else
       current_user.send("#{list_name}=", [])
     end
-    save_course('刪除')
+    save_course(list_name, '刪除')
   end
 
-  def save_course(action)
+  def save_course(list_name, action)
     if current_user.save
       respond_to do |format|
         format.html { redirect_to action: :show, notice: "#{action}成功" }
