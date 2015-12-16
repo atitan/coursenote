@@ -11,10 +11,12 @@ class Users::FavoriteCoursesController < ApplicationController
   def create
     raise ActiveRecord::RecordNotFound if Entry.where(code: params[:favorite_course]).empty?
     append_course(:favorite_courses, params[:favorite_course])
+    redirect_to users_favorite_courses_path
   end
 
   def destroy
     delete_course(:favorite_courses, params[:favorite_course])
+    redirect_to users_favorite_courses_path
   end
 
   def export
@@ -27,6 +29,7 @@ class Users::FavoriteCoursesController < ApplicationController
         redis_state(message: '非學生帳號，請洽管理員')
       end
     end
+    redirect_to users_favorite_courses_path
   end
 
   private

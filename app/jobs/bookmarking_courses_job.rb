@@ -3,7 +3,7 @@ class BookmarkingCoursesJob < ActiveJob::Base
 
   after_enqueue do |job|
     user = job.arguments.first
-    logging(user.id, queued: true, time: DateTime.now)
+    logging(user.id, queued: true, message: '工作已排程')
   end
 
   after_perform do |job|
