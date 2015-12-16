@@ -8,6 +8,7 @@ class Users::PassedCoursesController < ApplicationController
   end
 
   def create
+    render status: 422 unless params[:passed_course].is_a?(String)
     append_course(:passed_courses, params[:passed_course])
   end
 
