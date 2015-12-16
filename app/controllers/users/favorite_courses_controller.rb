@@ -9,7 +9,7 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def create
-    redirect_to action: :show, alert: '課程不存在' if Entry.where(code: params[:favorite_course]).empty?
+    return redirect_to action: :show, alert: '課程不存在' if Entry.where(code: params[:favorite_course]).empty?
     append_course(:favorite_courses, params[:favorite_course])
   end
 
