@@ -8,6 +8,9 @@ section
         h2.m-title.text-center 已追蹤課程
         table.table.table-condensed.table-hover.break-table
           h4 已追蹤課程列表
+          = link_to users_favorite_courses_path, class: 'btn btn-danger pull-right', method: :delete do
+            span.fa.fa-times
+              | &ensp;全部取消追蹤
           thead
             tr
               th 課程類別
