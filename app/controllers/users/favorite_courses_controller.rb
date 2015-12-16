@@ -18,8 +18,8 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def export
-    if current_user.student? && !@state[:queued] && !params[:csys_password].blank?
-      BookmarkingCoursesJob.perform_later(current_user, params[:csys_password])
+    if current_user.student? && !@state[:queued] && !params[:password].blank?
+      BookmarkingCoursesJob.perform_later(current_user, params[:password])
     else
       if current_user.student?
         redis_state(message: '工作尚未結束或密碼空白')
