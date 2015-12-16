@@ -8,9 +8,11 @@ section
         h2.m-title.text-center 已追蹤課程
         table.table.table-condensed.table-hover.break-table
           h4 已追蹤課程列表
-          = link_to users_favorite_courses_path, class: 'btn btn-danger pull-right', method: :delete do
-            span.fa.fa-times
-              | &ensp;全部取消追蹤
+          .pull-right
+            button.btn.btn-success.button_to 匯出追蹤課程
+            = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
+              span.fa.fa-times
+                | &ensp;全部取消追蹤
           thead
             tr
               th 課程類別
@@ -34,3 +36,19 @@ section
                   = link_to users_favorite_courses_path(favorite_course: entry.code), class: 'btn btn-danger', method: :delete do
                     span.fa.fa-times
                     | &ensp;取消
+      .well
+        = form_for :favorite_courses, url: {action: "export"}, method: :post, html: {class: 'form-horizontal'} do |f|
+          .form-group
+            label.col-sm-2.control-label 學號
+            .col-sm-10
+              p.form-control-static = current_user.student_id
+              p.help-block 不是你的學號？請與管理者聯繫
+          .form-group
+            label.col-sm-2.control-label 選課系統密碼
+            .col-sm-10
+              input#inputPassword.form-control name='csys_password' placeholder="Password" type="password"
+          .form-group
+            label.col-sm-2.control-label 條款
+            .col-sm-10
+              p.form-control-static Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi qui, recusandae. Voluptates praesentium ad voluptate molestias facere dicta laboriosam nihil laudantium, ipsa, a, nobis sit aliquid iste inventore. Obcaecati, voluptatem!
+          = f.submit 'submit', class: 'btn btn-success col-sm-offset-2'
