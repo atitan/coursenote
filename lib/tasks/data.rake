@@ -71,6 +71,15 @@ namespace :data do
           print "\rImporting...#{percentage}% completed"
         end
       end
+
+      # sync users' course list
+      users = User.where.not(favorite_courses: [])
+      users.each do |user|
+        entries = Entry.where(code: user.favorite_courses)
+        if user.favorite_courses.size != entries.size
+          user.update(favorite_courses: entries.map{|x| x.code })
+        end
+      end
     end
     puts "\n\rDone!"
   end
