@@ -23,6 +23,6 @@ article.panel-body
             td data-title='學分數' = entry.credit
             td data-title='開課系級' = entry.department
             td data-title='追蹤課程'
-              a.btn.btn-sm.m-btn-check.follow
+              = link_to users_favorite_courses_path(favorite_course: entry.code), class: "btn btn-sm m-btn-check follow btn-follow-course #{fav_course_status(entry.code)}", method: :post, remote: true do
                 | 追蹤
                 span.fa.fa-heart
