@@ -5,7 +5,7 @@ class Users::FavoriteCoursesController < ApplicationController
   before_action :redis_state, only: [:show, :export]
 
   def show
-    @courses = Course.by_code(current_user.favorite_courses).includes(:entries, comments: :replies)
+    @entries = Entry.where(code: current_user.favorite_courses).includes(:course)
   end
 
   def create
