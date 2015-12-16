@@ -5,8 +5,7 @@ ready = ->
   Messenger.options = {
     'extraClasses': 'messenger-fixed messenger-on-top messenger-on-right',
     'maxMessages': 5,
-    'theme': 'air',
-    'hideAfter': 3
+    'theme': 'air'
   }
 
   $('.btn-follow-course').unbind()
@@ -15,6 +14,7 @@ ready = ->
     $(this).addClass 'follow-actived pure-disabled'
     follow_success_msg = Messenger().post
         message: '已成功追蹤課程！'
+        hideAfter: 3
         actions:
             cancel:
                 label: '關閉訊息'
@@ -25,6 +25,7 @@ ready = ->
       follow_errmsg = Messenger().post
           message: xhr.responseText
           type: 'error'
+          hideAfter: 3
           actions:
               login:
                   label: '按此登入'

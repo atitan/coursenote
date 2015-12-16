@@ -5,8 +5,7 @@ ready = ->
   Messenger.options = {
     'extraClasses': 'messenger-fixed messenger-on-top messenger-on-right',
     'maxMessages': 5,
-    'theme': 'air',
-    'hideAfter': 3
+    'theme': 'air'
   }
 
   $('.btn-vote-course').unbind()
@@ -21,6 +20,7 @@ ready = ->
     target_credit.html data.votable.score + '/' + data.votable.votes_count
     vote_success_msg = Messenger().post
         message: '已成功送出課程投票！'
+        hideAfter: 3
         actions:
             cancel:
                 label: '關閉訊息'
@@ -30,6 +30,7 @@ ready = ->
     if xhr.status == 401
       vote_errmsg = Messenger().post
           message: xhr.responseText
+          hideAfter: 3
           type: 'error'
           actions:
               login:
@@ -48,6 +49,7 @@ ready = ->
     target_credit.html data.votable.score + '/' + data.votable.votes_count
     vote_success_msg = Messenger().post
         message: '已成功送出留言投票！'
+        hideAfter: 3
         actions:
             cancel:
                 label: '關閉訊息'
@@ -58,6 +60,7 @@ ready = ->
       vote_errmsg = Messenger().post
           message: xhr.responseText
           type: 'error'
+          hideAfter: 3
           actions:
               login:
                   label: '按此登入'
@@ -75,6 +78,7 @@ ready = ->
     target_credit.html data.votable.score + '/' + data.votable.votes_count
     vote_success_msg = Messenger().post
         message: '已成功送出評論投票！'
+        hideAfter: 3
         actions:
             cancel:
                 label: '關閉訊息'
@@ -85,6 +89,7 @@ ready = ->
       vote_errmsg = Messenger().post
           message: xhr.responseText
           type: 'error'
+          hideAfter: 3
           actions:
               login:
                   label: '按此登入'
