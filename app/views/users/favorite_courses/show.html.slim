@@ -10,6 +10,9 @@ section
           h4 已追蹤課程列表
           .pull-right
             - if current_user.student?
+              pre
+                | 匯出狀態：
+                = @state['message']
               button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出到選課系統
             = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
               span.fa.fa-times
