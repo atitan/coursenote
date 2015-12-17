@@ -9,7 +9,8 @@ section
         table.table.table-condensed.table-hover.break-table
           h4 已追蹤課程列表
           .pull-right
-            button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出追蹤課程
+            - if current_user.student?
+              button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出追蹤課程
             = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
               span.fa.fa-times
                 | &ensp;全部取消追蹤
@@ -29,7 +30,7 @@ section
                 td data-title='授課教師' = entry.course.instructor
                 td data-title='上課時段' = entry.timestring
                 td data-title='詳細資訊'
-                  = link_to course_path(entry.course.id), class: 'btn m-btn btn-sm' do
+                  = link_to course_path(1), class: 'btn m-btn btn-sm' do
                     | 詳細資訊
                     span.fa.fa-external-link
                 td data-title='取消追蹤'
