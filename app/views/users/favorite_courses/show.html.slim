@@ -12,7 +12,7 @@ section
             - if current_user.student?
               pre
                 | 匯出狀態：
-                = @state['message']
+                = @state['message'] || '無'
               button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出到選課系統
             = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
               span.fa.fa-times
