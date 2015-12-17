@@ -1,3 +1,16 @@
 // Place all the styles related to the users/passed_courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+span.input-group-btn {
+	vertical-align: top;
+}
+
+div.selectize-dropdown.single.form-control {
+	top: 0 !important;
+}
+
+.selectize-input.items.not-full.has-options {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}

@@ -11,9 +11,9 @@ class BookmarkingCoursesJob < ActiveJob::Base
     logging(user.id, queued: false, time: DateTime.now)
   end
 
-  def perform(user, csys_password)
+  def perform(user, password)
     begin
-      bookmarker = CycuCsysBookmarker.new(user.student_id, csys_password)
+      bookmarker = CycuCsysBookmarker.new(user.student_id, password)
       bookmarker.login
       bookmarker.bookmark(user.favorite_courses)
       logging(user.id, message: '完成')

@@ -41,7 +41,7 @@ module ApplicationHelper
   end
 
   def fav_course_status(code)
-    return '' if current_user.favorite_courses.empty?
+    return '' if current_user.nil? || current_user.favorite_courses.empty?
 
     found = current_user.favorite_courses.find do |entry|
       entry == code
@@ -50,7 +50,7 @@ module ApplicationHelper
     if found.nil?
       ''
     else
-      'vote-actived pure-disabled'
+      'follow-actived pure-disabled'
     end
   end
 

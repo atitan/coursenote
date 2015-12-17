@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require messenger
 //= require messenger-theme-future
+//= require selectize
 //= require_tree .
 //= require autosize
 //= require moment
