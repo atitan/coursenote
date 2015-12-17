@@ -1,44 +1,33 @@
 class Users::FavoriteCoursesController < ApplicationController
+  include CourseManager
+
   before_action :authenticate_user!
-  before_action :get_redis_state, only: [:show, :export]
+  before_action :redis_state, only: [:show, :export]
 
   def show
-    @courses = Course.show_favorite_courses(current_user.favorite_courses).includes(:entries, comments: :replies)
+    @entries = Entry.where(code: current_user.favorite_courses).includes(:course)
   end
 
   def create
-    current_user.favorite_courses << params[:favorite_course]
-    if current_user.save
-      render json: current_user
-    else
-      render json: { error: current_user.errors.full_messages }, status: :internal_server_error
-    end
+    return redirect_to action: :show, alert: '課程不存在' if Entry.where(code: params[:favorite_course]).empty?
+    append_course(:favorite_courses, params[:favorite_course])
   end
 
   def destroy
-    if params[:favorite_course]
-      current_user.favorite_courses.delete(params[:favorite_course])
-    else
-      current_user.favorite_courses = []
-    end
-    
-    if current_user.save
-      render json: current_user
-    else
-      render json: { error: current_user.errors.full_messages }, status: :internal_server_error
-    end
+    delete_course(:favorite_courses, params[:favorite_course])
   end
 
   def export
-    if current_user.student? && !@state[:queued]
-      BookmarkingCoursesJob.perform_later(current_user, params[:csys_password])
+    if current_user.student? && !@state[:queued] && !params[:password].blank?
+      BookmarkingCoursesJob.perform_later(current_user, params[:password])
     else
       if current_user.student?
-        redis_state(message: '工作尚未結束')
+        redis_state(message: '工作尚未結束或密碼空白')
       else
         redis_state(message: '非學生帳號，請洽管理員')
       end
     end
+    redirect_to users_favorite_courses_path
   end
 
   private

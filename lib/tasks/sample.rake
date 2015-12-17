@@ -4,7 +4,7 @@ require 'json'
 
 namespace :sample do
   desc 'import sample account and comments into database'
-  task :import, [:skip] => :environment do |task, args|
+  task :import, [:skip] => :environment do |_task, args|
     puts '接下來，將導引您建立 Sample User，並隨機幫您建立 500 筆假留言。'
 
     puts '首先，將導引建立 Sample User 帳號，請依照指示進行'
@@ -13,7 +13,7 @@ namespace :sample do
     user.password                 = args.skip ? 'a12345678' : ask('請輸入使用者的 密碼：') {|q| q.echo = '*'}
     user.password_confirmation    = args.skip ? 'a12345678' : ask("請再次輸入使用者的 密碼 以供確認：") {|q| q.echo = '*'}
     user.save!
-    user.confirm!
+    user.confirm
 
     puts  "\n接下來將隨機產生 500 則評論。"
     print 'Downloading Random Sentences...'

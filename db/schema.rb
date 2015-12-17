@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119091453) do
+ActiveRecord::Schema.define(version: 20151213181843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,21 +34,24 @@ ActiveRecord::Schema.define(version: 20150119091453) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title",                      null: false
-    t.string   "category",                   null: false
-    t.string   "instructor",                 null: false
-    t.integer  "score",       default: 0,    null: false
-    t.integer  "votes_count", default: 0,    null: false
-    t.boolean  "available",   default: true, null: false
+    t.string   "title",                         null: false
+    t.string   "category",                      null: false
+    t.string   "instructor",                    null: false
+    t.integer  "score",         default: 0,     null: false
+    t.integer  "votes_count",   default: 0,     null: false
+    t.boolean  "available",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "received_vote", default: false, null: false
   end
 
   add_index "courses", ["available"], name: "index_courses_on_available", using: :btree
   add_index "courses", ["category"], name: "index_courses_on_category", using: :btree
   add_index "courses", ["instructor"], name: "index_courses_on_instructor", using: :btree
+  add_index "courses", ["received_vote"], name: "index_courses_on_received_vote", using: :btree
   add_index "courses", ["score"], name: "index_courses_on_score", using: :btree
   add_index "courses", ["title"], name: "index_courses_on_title", using: :btree
+  add_index "courses", ["votes_count"], name: "index_courses_on_votes_count", using: :btree
 
   create_table "entries", force: :cascade do |t|
     t.integer  "course_id",                     null: false
@@ -68,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150119091453) do
 
   add_index "entries", ["code"], name: "index_entries_on_code", using: :btree
   add_index "entries", ["course_id"], name: "index_entries_on_course_id", using: :btree
+  add_index "entries", ["cross_department"], name: "index_entries_on_cross_department", using: :btree
   add_index "entries", ["department"], name: "index_entries_on_department", using: :btree
   add_index "entries", ["timetable"], name: "index_entries_on_timetable", using: :gin
 

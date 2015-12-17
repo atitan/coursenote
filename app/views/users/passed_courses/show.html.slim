@@ -1,0 +1,33 @@
+section
+  .container
+    h1.sr-only 自訂
+    aside.col-md-2
+      = render 'users/aside_tabs'
+    article.col-md-10
+      .jumbotron
+        h2.m-title.text-center 已修過課程
+        = form_for :passed_courses do |f|
+          h4 登記已修過課程
+          .input-group
+            = f.select :passed_course, Course.pluck(:title, :title).uniq, {include_blank: '課程名稱'}, class: 'form-control', name: 'passed_course'
+            /input.form-control name='passed_course' value="#{params[:passed_course]}" placeholder='課程名稱'
+            span.input-group-btn
+              = f.submit '登記', class: 'btn btn-default'
+        hr
+        table.table.table-condensed.table-hover.break-table
+          h4 已修過課程列表
+          button.pull-right.btn.btn-danger type='submit'
+            span.fa.fa-times
+              | 全部取消登記
+          thead
+            tr
+              th 課程名稱
+              th 取消登記
+          tbody
+            - @list.each do |item|
+              tr
+                td data-title='課程名稱' = item
+                td data-title='取消登記'
+                  = link_to users_passed_courses_path(passed_course: item), class: 'btn btn-danger btn-sm', method: :delete do
+                    span.fa.fa-times
+                    | 取消

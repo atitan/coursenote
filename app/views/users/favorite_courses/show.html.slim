@@ -1,0 +1,66 @@
+section
+  .container
+    h1.sr-only 自訂
+    aside.col-md-2
+      = render 'users/aside_tabs'
+    article.col-md-10
+      .jumbotron
+        h2.m-title.text-center 已追蹤課程
+        table.table.table-condensed.table-hover.break-table
+          h4 已追蹤課程列表
+          .pull-right
+            - if current_user.student?
+              pre
+                | 匯出狀態：
+                = @state['message'] || '無'
+              button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出到選課系統
+            = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
+              span.fa.fa-times
+                | &ensp;全部取消追蹤
+          thead
+            tr
+              th 課程類別
+              th 課程名稱
+              th 授課教師
+              th 上課時段
+              th 詳細資訊
+              th 取消追蹤
+          tbody
+            - @entries.each do |entry|
+              tr
+                td data-title='課程類別' = entry.course.category
+                td data-title='課程名稱' = entry.course.title
+                td data-title='授課教師' = entry.course.instructor
+                td data-title='上課時段' = entry.timestring
+                td data-title='詳細資訊'
+                  = link_to course_path(entry.course.id), class: 'btn m-btn btn-sm' do
+                    | 詳細資訊
+                    span.fa.fa-external-link
+                td data-title='取消追蹤'
+                  = link_to users_favorite_courses_path(favorite_course: entry.code), class: 'btn btn-danger', method: :delete do
+                    span.fa.fa-times
+                    | &ensp;取消
+      .modal.fade#confirmed_form tabindex="-1" role="dialog" aria-labelledby="confirmedFormlLabel"
+        .modal-dialog.modal-lg role="document"
+          .modal-content
+            .modal-header
+              button.close aria-label="Close" data-dismiss="modal" type="button"
+                span aria-hidden="true"  &times;
+              h4#myModalLabel.modal-title 匯出追蹤課程
+            = form_for :favorite_courses, url: {action: "export"}, method: :post, html: {class: 'form-horizontal'} do |f|
+              .modal-body.h4
+                .form-group
+                  label.col-sm-2.control-label 學號
+                  .col-sm-10
+                    p.form-control-static = current_user.student_id
+                    p.help-block.h5 不是你的學號？請與管理者聯繫
+                .form-group
+                  label.col-sm-2.control-label 選課系統密碼
+                  .col-sm-10
+                    input#inputPassword.form-control name='password' placeholder="Password" type="password"
+                .form-group
+                  label.col-sm-2.control-label 注意
+                  .col-sm-10
+                    p.form-control-static 本系統不會收集密碼，即便如此，你還是必須了解將密碼交給第三者的風險。
+              .modal-footer
+                = f.submit '匯出', class: 'btn btn-success'

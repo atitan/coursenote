@@ -1,29 +1,18 @@
 class Users::PassedCoursesController < ApplicationController
+  include CourseManager
+
   before_action :authenticate_user!
 
   def show
+    @list = current_user.passed_courses
   end
 
   def create
-    current_user.passed_courses << params[:passed_course]
-    if current_user.save
-      render json: current_user
-    else
-      render json: { error: current_user.errors.full_messages }, status: :internal_server_error
-    end
+    return redirect_to action: :show, alert: '輸入錯誤' unless params[:passed_course].is_a?(String)
+    append_course(:passed_courses, params[:passed_course])
   end
 
   def destroy
-    if params[:passed_course]
-      current_user.passed_courses.delete(params[:passed_course])
-    else
-      current_user.passed_courses = []
-    end
-    
-    if current_user.save
-      render json: current_user
-    else
-      render json: { error: current_user.errors.full_messages }, status: :internal_server_error
-    end
+    delete_course(:passed_courses, params[:passed_course])
   end
 end

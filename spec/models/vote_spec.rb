@@ -20,4 +20,43 @@ RSpec.describe Vote, type: :model do
 
   it { should have_db_index(:votable_id) }
   it { should have_db_index([:votable_id, :votable_type, :user_id]) }
+
+  describe ".update_score" do
+    it "case 1+1" do
+      course = create(:course, score: 1)
+      vote = create(:course_vote, votable: course, upvote: true)
+
+      expect(course.score).to eq 2
+    end
+
+    it "case 1-1" do
+      course = create(:course, score: 1)
+      vote = create(:course_vote, votable: course, upvote: false)
+
+      expect(course.score).to eq 0
+    end
+
+    it "case -1+1" do
+      course = create(:course, score: -1)
+      vote = create(:course_vote, votable: course, upvote: true)
+
+      expect(course.score).to eq 0
+    end
+
+    it "case -1-1" do
+      course = create(:course, score: -1)
+      vote = create(:course_vote, votable: course, upvote: false)
+
+      expect(course.score).to eq -2
+    end
+  end
+
+  describe ".course_received_vote" do
+    it "changes course vote status upon vote creation" do
+      course = create(:course)
+      vote = create(:course_vote, votable: course)
+
+      expect(course.received_vote).to be true
+    end
+  end
 end

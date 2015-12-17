@@ -1,9 +1,12 @@
 namespace :data do
   desc "import data from url to database"
   task :import , [:yearterm] => :environment do |_task, args|
-    require 'net/http'
+    unless args.yearterm
+      raise "No yearterm specified...aborting"
+    end
 
     # pass yearterm using this sort of command `rake data:import[1031]`
+    require 'net/http'
     print 'Downloading...'
     uri = URI('https://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
     raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
@@ -16,8 +19,7 @@ namespace :data do
 
     # abort task if contains empty dataset
     if data.include?('')
-      puts "\nEmpty dataset detected...aborting"
-      next
+      raise "\nEmpty dataset detected...aborting"
     end
 
     data.map!{ |x| x.split('|') }
@@ -67,6 +69,15 @@ namespace :data do
         if current_percentage > percentage
           percentage = current_percentage
           print "\rImporting...#{percentage}% completed"
+        end
+      end
+
+      # sync users' course list
+      users = User.where.not(favorite_courses: [])
+      users.each do |user|
+        entries = Entry.where(code: user.favorite_courses)
+        if user.favorite_courses.size != entries.size
+          user.update(favorite_courses: entries.map{|x| x.code })
         end
       end
     end

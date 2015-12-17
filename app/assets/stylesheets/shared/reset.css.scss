@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-a {
+a:not(.btn) {
   &:link,
   &:hover,
   &:focus,

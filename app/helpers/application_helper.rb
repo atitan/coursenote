@@ -40,4 +40,28 @@ module ApplicationHelper
     end
   end
 
+  def fav_course_status(code)
+    return '' if current_user.nil? || current_user.favorite_courses.empty?
+
+    found = current_user.favorite_courses.find do |entry|
+      entry == code
+    end
+
+    if found.nil?
+      ''
+    else
+      'follow-actived pure-disabled'
+    end
+  end
+
+  def tab_li text, url, icon
+    active = :active if request.path == url
+    content_tag :li, class: "tab-item h4" do
+      link_to url, class: active do
+        content_tag(:span, text, class: 'hidden-xs') +
+        content_tag(:i, '', class: "fa #{icon}")
+      end
+    end
+  end
+
 end

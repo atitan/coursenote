@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   def sanitize_array_column
     self[:passed_courses].uniq!
     self[:favorite_courses].uniq!
+    self[:passed_courses].reject!(&:blank?)
+    self[:favorite_courses].reject!(&:blank?)
     true
   end
 

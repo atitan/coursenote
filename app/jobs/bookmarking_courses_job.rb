@@ -3,7 +3,7 @@ class BookmarkingCoursesJob < ActiveJob::Base
 
   after_enqueue do |job|
     user = job.arguments.first
-    logging(user.id, queued: true, time: DateTime.now)
+    logging(user.id, queued: true, message: '工作已排程')
   end
 
   after_perform do |job|
@@ -11,9 +11,9 @@ class BookmarkingCoursesJob < ActiveJob::Base
     logging(user.id, queued: false, time: DateTime.now)
   end
 
-  def perform(user, csys_password)
+  def perform(user, password)
     begin
-      bookmarker = CycuCsysBookmarker.new(user.student_id, csys_password)
+      bookmarker = CycuCsysBookmarker.new(user.student_id, password)
       bookmarker.login
       bookmarker.bookmark(user.favorite_courses)
       logging(user.id, message: '完成')

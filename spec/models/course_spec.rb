@@ -12,7 +12,9 @@ RSpec.describe Course, type: :model do
   it { should have_db_column(:category).of_type(:string).with_options(null: false) }
   it { should have_db_column(:instructor).of_type(:string).with_options(null: false) }
   it { should have_db_column(:score).of_type(:integer).with_options(default: 0, null: false) }
-  it { should have_db_column(:available).of_type(:boolean).with_options(default: true, null: false) }
+  it { should have_db_column(:votes_count).of_type(:integer).with_options(default: 0, null: false) }
+  it { should have_db_column(:available).of_type(:boolean).with_options(default: false, null: false) }
+  it { should have_db_column(:received_vote).of_type(:boolean).with_options(default: false, null: false) }
   it { should have_db_column(:created_at).of_type(:datetime) }
   it { should have_db_column(:updated_at).of_type(:datetime) }
 
@@ -21,6 +23,8 @@ RSpec.describe Course, type: :model do
   it { should have_db_index(:instructor) }
   it { should have_db_index(:score) }
   it { should have_db_index(:title) }
+  it { should have_db_index(:received_vote) }
+  it { should have_db_index(:votes_count) }
 
   describe "scopes" do
     before do

@@ -32,4 +32,23 @@ RSpec.describe Comment, type: :model do
 
     it { expect(comment).to callback(:generate_avatar).before(:create) }
   end
+
+  describe ".generate_avatar" do
+    it "fills column avatar" do
+      user = create(:user, secure_random: '123')
+      comment = build(:comment, course_id: 10)
+      comment.generate_avatar
+
+      expect(comment.avatar.nil?).to be false
+    end
+  end
+
+  describe ".check_parent_course_id" do
+    it "add errors if parent's course_id doesn't equal to course_id" do
+      parent = create(:comment)
+      comment = build(:comment, parent: parent, course: create(:course))
+
+      expect{comment.save!}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
 end
