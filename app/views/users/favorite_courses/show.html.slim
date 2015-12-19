@@ -14,6 +14,7 @@ section
               th 課程名稱
               th 授課教師
               th 上課時段
+              th 備註
               th 詳細資訊
               th 取消追蹤
           tbody
@@ -23,6 +24,7 @@ section
                 td data-title='課程名稱' = entry.course.title
                 td data-title='授課教師' = entry.course.instructor
                 td data-title='上課時段' = entry.timestring
+                td data-title='備註' = entry.note
                 td data-title='詳細資訊'
                   = link_to course_path(entry.course.id), class: 'btn m-btn btn-sm' do
                     | 詳細資訊
