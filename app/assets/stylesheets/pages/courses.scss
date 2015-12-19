@@ -264,37 +264,40 @@
   }
   .comments {
     .vote {
-      display: table-cell;
       font-size: 20px;
-      width: $text-indent;
       text-align: center;
       color: $gray500;
       transition: 0.3s;
+      width: 10%;
+      box-sizing: border-box;
+      float: left;
+      @include breakpoint(mobileonly) {
+        width: 15%;
+      }
+    }
+    .avatar {
+      width: 7%;
+      box-sizing: border-box;
+      float: left;
+      @include breakpoint(mobileonly) {
+        width: 15%;
+      }
+    }
+    .options {
+      width: 5%;
+      float: right;
+      box-sizing: border-box;
     }
     .comment-content {
-      display: table-cell;
-      padding-right: $inner-padding;
+      width: 78%;
+      box-sizing: border-box;
+      float: left;
       padding-left: $inner-padding;
-      width: 100%;
+      @include breakpoint(mobileonly) {
+        width: 65%;
+      }
       p {
         min-height: 60px;
-      }
-      .comment-info {
-        color: $gray500;
-        transition: 0.3s;
-        span {
-          white-space: nowrap;
-          &:nth-child(2) {
-            &::before,
-            &::after {
-              content: '\00B7';
-              margin: 0 0.5rem;
-            }
-          }
-        }
-        i {
-          margin-left: 0.5rem;
-        }
       }
     }
     &:hover {
@@ -303,6 +306,24 @@
         color: $gray700;
       }
     }
+  }
+}
+
+.comment-info {
+  color: $gray500;
+  transition: 0.3s;
+  span {
+    white-space: nowrap;
+    &:nth-child(2) {
+      &::before,
+      &::after {
+        content: '\00B7';
+        margin: 0 0.5rem;
+      }
+    }
+  }
+  i {
+    margin-left: 0.5rem;
   }
 }
 
@@ -315,6 +336,29 @@
   padding: 0.5em 1em 1em;
   &:last-child {
     margin-bottom: 0;
+  }
+  .avatar {
+    float: left;
+    box-sizing: border-box;
+    width: 7%;
+    @include breakpoint(mobileonly) {
+      clear: both;
+    }
+  }
+  .options {
+    float: right;
+    box-sizing: border-box;
+    width: 3%;
+    @include breakpoint(mobileonly) {
+      clear: both;
+    }
+  }
+  .reply-content {
+    float: left;
+    box-sizing: border-box;
+    width: 90%;
+    padding-right: $inner-padding;
+    padding-left: $inner-padding;
   }
   .vote {
     display: block;
