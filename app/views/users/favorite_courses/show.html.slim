@@ -7,16 +7,17 @@ section
       .jumbotron
         h2.m-title.text-center 已追蹤課程
         table.table.table-condensed.table-hover.break-table
-          h4 已追蹤課程列表
           .pull-right
             - if current_user.student?
-              pre
-                | 匯出狀態：
-                = @state['message'] || '無'
               button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出到選課系統
             = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
               span.fa.fa-times
                 | &ensp;全部取消追蹤
+          - if current_user.student?
+            .state
+              pre
+                | 匯出狀態：
+                = @state['message'] || '無'
           thead
             tr
               th 課程類別
