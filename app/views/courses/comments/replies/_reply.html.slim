@@ -1,6 +1,6 @@
 .replies.clearfix id="#{reply.id}_reply"
   .avatar
-      = image_tag "http://gravatar.com/avatar", class: 'img-responsive'
+      = image_tag "https://secure.gravatar.com/avatar/#{reply.avatar}?d=identicon&s=32", class: 'img-responsive'
   .options.dropdown.vote.text-right
     a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
       i.fa.fa-caret-down
