@@ -263,6 +263,7 @@
     margin-bottom: 15px;
   }
   .comments {
+    position: relative;
     .vote {
       font-size: 20px;
       text-align: center;
@@ -276,11 +277,12 @@
       }
     }
     .avatar {
-      width: 7%;
+      width: 5%;
       box-sizing: border-box;
       float: left;
       @include breakpoint(mobileonly) {
-        width: 15%;
+        width: 80%;
+        padding-left: 10px;
       }
     }
     .options {
@@ -289,12 +291,14 @@
       box-sizing: border-box;
     }
     .comment-content {
-      width: 78%;
+      width: 80%;
       box-sizing: border-box;
       float: left;
       padding-left: $inner-padding;
       @include breakpoint(mobileonly) {
-        width: 65%;
+        padding-left: 10px;
+        padding-top: 10px;
+        width: 85%;
       }
       p {
         min-height: 60px;
@@ -342,16 +346,13 @@
     box-sizing: border-box;
     width: 7%;
     @include breakpoint(mobileonly) {
-      clear: both;
+      width: 95%;
     }
   }
   .options {
     float: right;
     box-sizing: border-box;
-    width: 3%;
-    @include breakpoint(mobileonly) {
-      clear: both;
-    }
+    width: 5%;
   }
   .reply-content {
     float: left;
@@ -359,6 +360,10 @@
     width: 90%;
     padding-right: $inner-padding;
     padding-left: $inner-padding;
+    @include breakpoint(mobileonly) {
+      width: 100%;
+      padding: 10px 0 0;
+    }
   }
   .vote {
     display: block;
@@ -380,8 +385,11 @@
 
 .reply-list,
 .reply-block {
-  margin-left: $text-indent;
+  margin-left: 15%;
   padding: 0 $inner-padding;
+  @include breakpoint(mobileonly) {
+    padding: 0 10px 0 0;
+  }
 }
 
 .comment-block,
