@@ -1,6 +1,5 @@
-h1.sr-only 留言
-article.comment-block
-  h1
+.comment-block
+  h2.h4
     i.fa.fa-comments-o
     | 留言
   = form_for [course, @new_comment], url: comments_path, html: {id: "new_comment_on_#{course.id}"}, remote: true do |f|

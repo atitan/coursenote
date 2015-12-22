@@ -39,7 +39,7 @@
     <% end %>
   </article>
   <article>
-    <h1 class="h2 text-center">課程評論</h1>
+    <p class="h2 text-center">課程評論</p>
     <% cache [@course, current_user] do %>
       <%= render 'courses/comments/index', course: @course, cache: true %>
     <% end %>

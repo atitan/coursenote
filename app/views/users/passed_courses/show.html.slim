@@ -1,13 +1,13 @@
 section
   .container
-    h1.sr-only 自訂
+    h1.sr-only 使用者課程設定
     aside.col-md-2
       = render 'users/aside_tabs'
     article.col-md-10
       .jumbotron
         h2.m-title.text-center 已修過課程
         = form_for :passed_courses do |f|
-          h4 登記已修過課程
+          h3.h4 登記已修過課程
           .input-group
             = f.select :passed_course, Course.pluck(:title, :title).uniq, {include_blank: '課程名稱'}, class: 'form-control', name: 'passed_course'
             /input.form-control name='passed_course' value="#{params[:passed_course]}" placeholder='課程名稱'
@@ -15,7 +15,7 @@ section
               = f.submit '登記', class: 'btn btn-default'
         hr
         table.table.table-condensed.table-hover.break-table
-          h4 已修過課程列表
+          h3.h4 已修過課程列表
           button.pull-right.btn.btn-danger type='submit'
             span.fa.fa-times
               | 全部取消登記
