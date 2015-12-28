@@ -9,7 +9,7 @@
     <meta itemprop="name" content="中原選課大全">
   </div>
   <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-    <meta itemprop="ratingValue" content="<%= @course.score/@course.votes_count %>">
+    <meta itemprop="ratingValue" content="<%= @course.score.to_f/@course.votes_count %>">
     <meta itemprop="bestRating" content="1">
     <meta itemprop="worstRating" content="-1">
   </div>
