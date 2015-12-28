@@ -1,7 +1,20 @@
-<section class="course-details">
-  <h1 class="m-title text-center"><strong><%= @course.title %></strong></h1>
+<section class="course-details" itemscope itemtype="http://schema.org/Review">
+  <div itemprop="itemReviewed">
+    <h1 class="m-title text-center" itemprop="name"><strong><%= @course.title %></strong></h1>
+  </div>
+  <div itemprop="author" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="中原選課大全">
+  </div>
+  <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="中原選課大全">
+  </div>
+  <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+    <meta itemprop="ratingValue" content="<%= @course.score/@course.votes_count %>">
+    <meta itemprop="bestRating" content="1">
+    <meta itemprop="worstRating" content="-1">
+  </div>
   <aside class="col-md-4">
-    <h1 class="h2 text-center">基本資訊</h1>
+    <h2 class="text-center">基本資訊</h2>
     <dl class="info-list list-group dl-horizontal">
       <dt class="info-title">課程分類</dt>
       <dd class="info-item"><%= @course.category %></dd>
@@ -14,7 +27,7 @@
     </dl>
   </aside>
   <article class="col-md-8">
-    <h1 class="h2 text-center">開課資訊</h1>
+    <h2 class="text-center">開課資訊</h2>
     <% @course.entries.each do |entry| %>
     <dl class="info-list list-group dl-horizontal">
       <dt class="info-title">
@@ -38,7 +51,7 @@
     </dl>
     <% end %>
   </article>
-  <article>
+  <article itemprop="reviewBody">
     <p class="h2 text-center">課程評論</p>
     <% cache [@course, current_user] do %>
       <%= render 'courses/comments/index', course: @course, cache: true %>
