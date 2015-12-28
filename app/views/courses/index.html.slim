@@ -50,7 +50,7 @@
                 .panel-collapse.collapse.in id="#{course.instructor}_#{course.id}" role='tabpanel' aria-labelledby="heading_#{course.id}"
                   = render 'courses/entries/index', course: course, cache: true
 
-                footer.panel-footer
+                footer.panel-footer itemprop="reviews" itemscope=true itemtype="http://schema.org/Review"
                   = render 'courses/comments/index', course: course, cache: true
 
       .text-center

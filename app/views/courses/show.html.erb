@@ -1,17 +1,10 @@
-<section class="course-details" itemscope itemtype="http://schema.org/Review">
-  <div itemprop="itemReviewed">
-    <h1 class="m-title text-center" itemprop="name"><strong><%= @course.title %></strong></h1>
-  </div>
-  <div itemprop="author" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="中原選課大全">
-  </div>
-  <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="中原選課大全">
-  </div>
-  <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+<section class="course-details" itemscope itemtype="http://schema.org/EducationEvent">
+  <h1 class="m-title text-center" itemprop="name"><strong><%= @course.title %></strong></h1>
+  <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
     <meta itemprop="ratingValue" content="<%= @course.score.to_f/@course.votes_count %>">
     <meta itemprop="bestRating" content="1">
     <meta itemprop="worstRating" content="-1">
+    <meta itemprop="ratingCount" content="<%= @course.votes_count %>">
   </div>
   <aside class="col-md-4">
     <h2 class="text-center">基本資訊</h2>
@@ -19,7 +12,7 @@
       <dt class="info-title">課程分類</dt>
       <dd class="info-item"><%= @course.category %></dd>
       <dt class="info-title">授課教師</dt>
-      <dd class="info-item"><%= @course.instructor %></dd>
+      <dd class="info-item"><span itemprop="performer" itemscope itemtype="http://schema.org/Person"><%= @course.instructor %></span></dd>
       <dt class="info-title">課程評分</dt>
       <dd class="info-item"><%= @course.score %></dd>
       <dt class="info-title">投票人數</dt>
@@ -51,7 +44,7 @@
     </dl>
     <% end %>
   </article>
-  <article itemprop="reviewBody">
+  <article itemprop="reviews" itemscope itemtype="http://schema.org/Review">
     <p class="h2 text-center">課程評論</p>
     <% cache [@course, current_user] do %>
       <%= render 'courses/comments/index', course: @course, cache: true %>
