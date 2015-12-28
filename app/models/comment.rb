@@ -16,7 +16,7 @@ class Comment < ActiveRecord::Base
   belongs_to :parent, class_name: 'Comment',
     foreign_key: 'parent_id'
 
-  validates :content, length: { maximum: 500 }, presence: true
+  validates :content, length: { maximum: 1000 }, presence: true
   validates_presence_of :course, :user
   validates_presence_of :parent, unless: 'parent_id.nil?'
   validate :check_parent_course_id, unless: 'parent_id.nil?'

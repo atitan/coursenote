@@ -41,7 +41,7 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     #Bullet.console = true
     #Bullet.growl = true
-    Bullet.raise = true
+    #Bullet.raise = true
     #Bullet.rails_logger = true
     #Bullet.bugsnag = true
     Bullet.add_footer = true

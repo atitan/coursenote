@@ -263,38 +263,45 @@
     margin-bottom: 15px;
   }
   .comments {
+    position: relative;
     .vote {
-      display: table-cell;
       font-size: 20px;
-      width: $text-indent;
       text-align: center;
       color: $gray500;
       transition: 0.3s;
+      width: 10%;
+      box-sizing: border-box;
+      float: left;
+      @include breakpoint(mobileonly) {
+        width: 15%;
+      }
+    }
+    .avatar {
+      width: 5%;
+      box-sizing: border-box;
+      float: left;
+      @include breakpoint(mobileonly) {
+        width: 80%;
+        padding-left: 10px;
+      }
+    }
+    .options {
+      width: 5%;
+      float: right;
+      box-sizing: border-box;
     }
     .comment-content {
-      display: table-cell;
-      padding-right: $inner-padding;
+      width: 80%;
+      box-sizing: border-box;
+      float: left;
       padding-left: $inner-padding;
-      width: 100%;
+      @include breakpoint(mobileonly) {
+        padding-left: 10px;
+        padding-top: 10px;
+        width: 85%;
+      }
       p {
         min-height: 60px;
-      }
-      .comment-info {
-        color: $gray500;
-        transition: 0.3s;
-        span {
-          white-space: nowrap;
-          &:nth-child(2) {
-            &::before,
-            &::after {
-              content: '\00B7';
-              margin: 0 0.5rem;
-            }
-          }
-        }
-        i {
-          margin-left: 0.5rem;
-        }
       }
     }
     &:hover {
@@ -303,6 +310,24 @@
         color: $gray700;
       }
     }
+  }
+}
+
+.comment-info {
+  color: $gray500;
+  transition: 0.3s;
+  span {
+    white-space: nowrap;
+    &:nth-child(2) {
+      &::before,
+      &::after {
+        content: '\00B7';
+        margin: 0 0.5rem;
+      }
+    }
+  }
+  i {
+    margin-left: 0.5rem;
   }
 }
 
@@ -315,6 +340,30 @@
   padding: 0.5em 1em 1em;
   &:last-child {
     margin-bottom: 0;
+  }
+  .avatar {
+    float: left;
+    box-sizing: border-box;
+    width: 7%;
+    @include breakpoint(mobileonly) {
+      width: 95%;
+    }
+  }
+  .options {
+    float: right;
+    box-sizing: border-box;
+    width: 5%;
+  }
+  .reply-content {
+    float: left;
+    box-sizing: border-box;
+    width: 90%;
+    padding-right: $inner-padding;
+    padding-left: $inner-padding;
+    @include breakpoint(mobileonly) {
+      width: 100%;
+      padding: 10px 0 0;
+    }
   }
   .vote {
     display: block;
@@ -336,8 +385,11 @@
 
 .reply-list,
 .reply-block {
-  margin-left: $text-indent;
+  margin-left: 15%;
   padding: 0 $inner-padding;
+  @include breakpoint(mobileonly) {
+    padding: 0 10px 0 0;
+  }
 }
 
 .comment-block,

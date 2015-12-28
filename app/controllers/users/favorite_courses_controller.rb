@@ -18,13 +18,15 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def export
-    if current_user.student? && !@state[:queued] && !params[:password].blank?
+    return redirect_to users_favorite_courses_path unless current_user.student?
+
+    if !current_user.favorite_courses.empty? && !@state[:queued] && !params[:password].blank?
       BookmarkingCoursesJob.perform_later(current_user, params[:password])
     else
-      if current_user.student?
-        redis_state(message: '工作尚未結束或密碼空白')
+      if current_user.favorite_courses.empty?
+        redis_state(message: '追蹤清單是空的')
       else
-        redis_state(message: '非學生帳號，請洽管理員')
+        redis_state(message: '工作尚未結束或密碼空白')
       end
     end
     redirect_to users_favorite_courses_path

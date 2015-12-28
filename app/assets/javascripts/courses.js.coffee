@@ -17,7 +17,7 @@ ready = ->
            .siblings '.btn-vote-course'
            .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_course_' + data.votable_id)
-    target_credit.html data.votable.score + '/' + data.votable.votes_count
+    target_credit.html data.votable.score + '|' + data.votable.votes_count
     vote_success_msg = Messenger().post
         message: '已成功送出課程投票！'
         hideAfter: 3
@@ -46,7 +46,7 @@ ready = ->
     $('p a.btn-vote-comment').not this
 		 	                       .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_comment_' + data.votable_id)
-    target_credit.html data.votable.score + '/' + data.votable.votes_count
+    target_credit.html data.votable.score + '|' + data.votable.votes_count
     vote_success_msg = Messenger().post
         message: '已成功送出留言投票！'
         hideAfter: 3
@@ -75,7 +75,7 @@ ready = ->
            .siblings '.btn-vote-reply'
            .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_reply_' + data.votable_id)
-    target_credit.html data.votable.score + '/' + data.votable.votes_count
+    target_credit.html data.votable.score + '|' + data.votable.votes_count
     vote_success_msg = Messenger().post
         message: '已成功送出評論投票！'
         hideAfter: 3

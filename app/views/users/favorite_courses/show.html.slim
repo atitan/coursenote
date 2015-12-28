@@ -1,28 +1,31 @@
 section
   .container
-    h1.sr-only 自訂
+    h1.sr-only 使用者課程設定
     aside.col-md-2
       = render 'users/aside_tabs'
     article.col-md-10
       .jumbotron
         h2.m-title.text-center 已追蹤課程
         table.table.table-condensed.table-hover.break-table
-          h4 已追蹤課程列表
+          h3.h4 已追蹤課程列表
           .pull-right
             - if current_user.student?
-              pre
-                | 匯出狀態：
-                = @state['message'] || '無'
               button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出到選課系統
             = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
               span.fa.fa-times
                 | &ensp;全部取消追蹤
+          - if current_user.student?
+            .state
+              pre
+                | 匯出狀態：
+                = @state['message'] || '無'
           thead
             tr
               th 課程類別
               th 課程名稱
               th 授課教師
               th 上課時段
+              th 備註
               th 詳細資訊
               th 取消追蹤
           tbody
@@ -32,6 +35,7 @@ section
                 td data-title='課程名稱' = entry.course.title
                 td data-title='授課教師' = entry.course.instructor
                 td data-title='上課時段' = entry.timestring
+                td data-title='備註' = entry.note
                 td data-title='詳細資訊'
                   = link_to course_path(entry.course.id), class: 'btn m-btn btn-sm' do
                     | 詳細資訊
@@ -46,7 +50,7 @@ section
             .modal-header
               button.close aria-label="Close" data-dismiss="modal" type="button"
                 span aria-hidden="true"  &times;
-              h4#myModalLabel.modal-title 匯出追蹤課程
+              h3.h4#myModalLabel.modal-title 匯出追蹤課程
             = form_for :favorite_courses, url: {action: "export"}, method: :post, html: {class: 'form-horizontal'} do |f|
               .modal-body.h4
                 .form-group
