@@ -23,6 +23,7 @@ class CoursesController < ApplicationController
     @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(received_vote: :desc, score: :desc, votes_count: :desc, id: :asc)
     @new_comment = Comment.new
     @votes = current_user.votes if user_signed_in?
+    render status: 404 if @courses.empty?
   end
 
   def show
