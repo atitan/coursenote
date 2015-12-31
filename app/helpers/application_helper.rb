@@ -64,4 +64,12 @@ module ApplicationHelper
     end
   end
 
+  def full_title(page_title = '')
+    base_title = "中原選課大全"
+    if page_title.empty?
+      base_title
+    else
+      page_title + " - " + base_title
+    end
+  end
 end

@@ -1,3 +1,4 @@
+<% provide(:title, "#{@course.title}(#{@course.instructor})") %>
 <section class="course-details" itemscope itemtype="http://schema.org/EducationEvent">
   <h1 class="m-title text-center" itemprop="name"><strong><%= @course.title %></strong></h1>
   <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
