@@ -50,13 +50,4 @@ RSpec.describe Vote, type: :model do
       expect(course.score).to eq -2
     end
   end
-
-  describe ".course_received_vote" do
-    it "changes course vote status upon vote creation" do
-      course = create(:course)
-      vote = create(:course_vote, votable: course)
-
-      expect(course.received_vote).to be true
-    end
-  end
 end
