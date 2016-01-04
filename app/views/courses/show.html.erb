@@ -7,7 +7,7 @@
     <meta itemprop="address" content="桃園市中壢區中北路200號">
   </div>
   <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-    <meta itemprop="ratingValue" content="<%= (course.votes_count != 0) ? course.score.to_f/course.votes_count : 0 %>">
+    <meta itemprop="ratingValue" content="<%= (@course.votes_count != 0) ? @course.score.to_f/@course.votes_count : 0 %>">
     <meta itemprop="bestRating" content="1">
     <meta itemprop="worstRating" content="-1">
     <meta itemprop="ratingCount" content="<%= @course.votes_count %>">
