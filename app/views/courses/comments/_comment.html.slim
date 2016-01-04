@@ -1,4 +1,7 @@
-.comment-list itemprop="review"
+.comment-list itemprop="review" itemscope=true itemtype="http://schema.org/Review"
+  span itemprop="author" itemscope=true itemtype="http://schema.org/Person"
+    meta itemprop="name" content="Anonymous"
+  meta itemprop="dateCreated" content="#{comment.created_at.utc.iso8601}"
   .comments.clearfix
     .vote
       p
@@ -22,8 +25,9 @@
           a href='#'
             i.fa.fa-remove
             | 刪除
-    .comment-content itemprop="reviewBody"
-      = simple_format comment.content
+    .comment-content
+      .text itemprop="reviewBody"
+        = simple_format comment.content
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
         span

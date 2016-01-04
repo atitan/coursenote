@@ -1,4 +1,5 @@
-.replies.clearfix id="#{reply.id}_reply" itemprop="comment"
+.replies.clearfix id="#{reply.id}_reply" itemprop="comment" itemscope=true itemtype="http://schema.org/Comment"
+  meta itemprop="dateCreated" content="#{reply.created_at.utc.iso8601}"
   .avatar
       = image_tag "https://secure.gravatar.com/avatar/#{reply.avatar}?d=identicon&s=32", class: 'img-responsive'
   .options.dropdown.vote.text-right
@@ -13,8 +14,9 @@
         a href='#'
           i.fa.fa-remove
           | 刪除
-  .reply-content itemprop="text"
-    = simple_format reply.content
+  .reply-content
+    .text itemprop="text"
+      = simple_format reply.content
     .vote
       span.date data-date="#{reply.created_at.utc.iso8601}"
       span
