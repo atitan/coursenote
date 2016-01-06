@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :update, :destroy] do
     post 'vote'
   end
+
+  scope 'sitemaps' do
+    get 'course' => 'sitemap#course', defaults: { format: 'xml' }
+  end
   
   #namespace :api do
   #  namespace :v1 do
