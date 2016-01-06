@@ -5,7 +5,7 @@ xml.urlset('xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
       cache course do
         xml.url do
           xml.loc(course_url(course.id))
-          xml.lastmod(course.updated_at)
+          xml.lastmod(course.updated_at.utc.iso8601)
           xml.changefreq(frequency(course.updated_at))
         end
       end
