@@ -99,6 +99,50 @@ ready = ->
                   label: '關閉訊息'
                   action: ->
                       vote_errmsg.hide()
+
+  $('#by_title').selectize
+      labelField: 'title'
+      valueField: 'title'
+      searchField: 'title'
+      closeAfterSelect: true
+      create: false
+      render:
+          option: (item, escape) ->
+              '<div><span>' + escape(item.title) + '</span></div>'
+      load: (query, callback) ->
+          return callback if !query.length
+          $.ajax
+              url: '/courses/title'
+              type: 'POST'
+              dataType: 'json'
+              data:
+                  name: query
+              success: (res) ->
+                  callback(res)
+              error: ->
+                  callback
+  $('#by_instructor').selectize
+      labelField: 'instructor'
+      valueField: 'instructor'
+      searchField: 'instructor'
+      closeAfterSelect: true
+      create: false
+      render:
+          option: (item, escape) ->
+              '<div><span>' + escape(item.instructor) + '</span></div>'
+      load: (query, callback) ->
+          return callback if !query.length
+          $.ajax
+              url: '/courses/instructor'
+              type: 'POST'
+              dataType: 'json'
+              data:
+                  name: query
+              success: (res) ->
+                  callback(res)
+              error: ->
+                  callback
+
 $(document).ready(ready)
 $(document).ajaxComplete(ready)
 $(document).on('page:load', ready)

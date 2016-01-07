@@ -21,12 +21,17 @@ Rails.application.routes.draw do
     put 'time_filter' => 'time_filter#update'
   end
 
-  resources :courses, only: [:index, :show] do
+  resources :courses, only: [:index, :show, :title] do
     post 'vote'
   end
 
   resources :comments, only: [:create, :update, :destroy] do
     post 'vote'
+  end
+
+  scope 'courses' do
+    post 'title' => 'courses#title'
+    post 'instructor' => 'courses#instructor'
   end
 
   scope 'sitemaps' do

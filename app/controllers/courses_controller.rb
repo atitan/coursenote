@@ -20,7 +20,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(engaged: :desc, score: :desc, votes_count: :desc, id: :asc)
+    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order_by_rating
     @new_comment = Comment.new
     @votes = current_user.votes if user_signed_in?
     render status: 404 if @courses.empty?
@@ -34,5 +34,13 @@ class CoursesController < ApplicationController
   def vote
     course = Course.find(params[:course_id])
     vote_it(course, params[:upvote])
+  end
+
+  def title
+    render json: Course.by_title(params[:name]).order_by_rating.uniq.as_json(only: :title)
+  end
+
+  def instructor
+    render json: Course.by_instructor(params[:name]).uniq.as_json(only: :instructor)
   end
 end
