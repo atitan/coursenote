@@ -9,7 +9,10 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def create
-    return redirect_to action: :show, alert: '課程不存在' if Entry.where(code: params[:favorite_course]).empty?
+    if Entry.where(code: params[:favorite_course]).empty?
+      flash[:alert] = '課程不存在'
+      return redirect_to action: :show
+    end
     append_course(:favorite_courses, params[:favorite_course])
   end
 
@@ -24,9 +27,9 @@ class Users::FavoriteCoursesController < ApplicationController
       BookmarkingCoursesJob.perform_later(current_user, params[:password])
     else
       if current_user.favorite_courses.empty?
-        redis_state(message: '追蹤清單是空的')
+        flash[:alert] = '追蹤清單是空的'
       else
-        redis_state(message: '工作尚未結束或密碼空白')
+        flash[:alert] = '工作尚未結束或密碼空白'
       end
     end
     redirect_to users_favorite_courses_path

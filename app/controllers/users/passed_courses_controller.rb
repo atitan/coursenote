@@ -8,7 +8,10 @@ class Users::PassedCoursesController < ApplicationController
   end
 
   def create
-    return redirect_to action: :show, alert: '輸入錯誤' unless params[:passed_course].is_a?(String)
+    unless params[:passed_course].is_a?(String)
+      flash[:alert] = '輸入錯誤'
+      return redirect_to action: :show
+    end
     append_course(:passed_courses, params[:passed_course])
   end
 
