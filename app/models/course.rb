@@ -16,6 +16,7 @@ class Course < ActiveRecord::Base
   scope :by_time, -> time { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where('entries.timetable <@ ?', time.to_json).where('entries.timetable <> ?', {}.to_json).uniq }
   scope :hide_by_title, -> title { where.not(title: title) }
   scope :cross_department, -> { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(entries: {cross_department: true}).uniq }
+  scope :optional, -> { joins('RIGHT JOIN entries ON courses.id = entries.course_id').where(entries: {required: false}).uniq }
   scope :order_by_rating, -> { order(engaged: :desc, score: :desc, votes_count: :desc, id: :asc) }
 
   after_touch :check_engagement

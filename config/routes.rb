@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     put 'time_filter' => 'time_filter#update'
   end
 
-  resources :courses, only: [:index, :show, :title] do
+  resources :courses, only: [:index, :show] do
     post 'vote'
   end
 
