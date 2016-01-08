@@ -190,6 +190,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    rambulance (0.3.1)
+      actionpack
+      activesupport
+      railties
     rdoc (4.2.0)
     redis (3.2.2)
     redis-actionpack (4.0.1)
@@ -328,6 +332,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 4.2.0)
   rails-i18n (~> 4.0.0)
+  rambulance
   redis
   redis-namespace
   redis-rack-cache
