@@ -140,6 +140,8 @@ GEM
     net-ssh (3.0.1)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
+    oj (2.14.3)
+    oj_mimic_json (1.0.1)
     orm_adapter (0.5.0)
     paper_trail (4.0.0)
       activerecord (>= 3.0, < 6.0)
@@ -324,6 +326,8 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 0.16.1)
   messengerjs-rails (~> 1.4.1)
+  oj
+  oj_mimic_json
   paper_trail (~> 4.0.0)
   pg
   pry-rails

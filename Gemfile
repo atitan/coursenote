@@ -85,6 +85,10 @@ gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 
+# JSON lib
+gem 'oj'
+gem 'oj_mimic_json'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
