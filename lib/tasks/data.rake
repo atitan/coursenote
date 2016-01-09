@@ -82,6 +82,29 @@ namespace :data do
       end
     end
     puts "\n\rDone!"
+
+    Rake::Task['data:build_sitemap'].reenable
+    Rake::Task['data:build_sitemap'].invoke
+  end
+
+  task :build_sitemap => :environment do |_task, _args|
+    courses = Course.select(:id)
+
+    require 'builder'
+    builder = Builder::XmlMarkup.new(indent: 2)
+    builder.instruct!
+
+    xml = builder.urlset('xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
+      courses.each do |course|
+        builder.url do
+          builder.loc(Rails.application.routes.url_helpers.course_url(course.id, host: 'http://coursenote.dev'))
+        end
+      end
+    end
+
+    File.open(Rails.root.join('public/sitemap.xml'), 'w') do |f|
+      f << xml
+    end
   end
 
   def convert2timetable(time)

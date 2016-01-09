@@ -33,10 +33,6 @@ Rails.application.routes.draw do
     post 'title' => 'courses#title'
     post 'instructor' => 'courses#instructor'
   end
-
-  scope 'sitemaps' do
-    get 'course' => 'sitemap#course', defaults: { format: 'xml' }
-  end
   
   #namespace :api do
   #  namespace :v1 do
