@@ -97,7 +97,7 @@ namespace :data do
     xml = builder.urlset('xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
       courses.each do |course|
         builder.url do
-          builder.loc(Rails.application.routes.url_helpers.course_url(course.id, host: 'http://coursenote.dev'))
+          builder.loc(Rails.application.routes.url_helpers.course_url(course.id, host: 'https://coursewiki.cyim.tw'))
         end
       end
     end
