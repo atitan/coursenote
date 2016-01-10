@@ -73,13 +73,4 @@ module ApplicationHelper
       add_title + ' - ' + base_title
     end
   end
-
-  def page_to_title
-    page = params[:page]
-    if page.nil?
-      ''
-    else
-      "第#{page}頁"
-    end
-  end
 end

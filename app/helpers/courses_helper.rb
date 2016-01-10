@@ -27,6 +27,10 @@ module CoursesHelper
     end
   end
 
+  def page_to_title(page)
+    "第#{page}頁"
+  end
+
   def course_status(state)
     if state
         '是'
