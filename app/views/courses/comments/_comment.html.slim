@@ -12,7 +12,7 @@
         = link_to comment_vote_path(comment_id: comment.id, upvote: false), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, false)}" do
           i.fa.fa-chevron-down
     .avatar
-      = image_tag "https://secure.gravatar.com/avatar/#{comment.avatar}?d=identicon&s=32", class: 'img-responsive'
+      = image_tag avatar_path(comment), class: 'img-responsive'
     .options.dropdown.comment-info.text-right.clearfix
       a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
         i.fa.fa-caret-down

@@ -1,7 +1,7 @@
 .replies.clearfix id="#{reply.id}_reply" itemprop="comment" itemscope=true itemtype="http://schema.org/Comment"
   meta itemprop="dateCreated" content="#{reply.created_at.utc.iso8601}"
   .avatar
-      = image_tag "https://secure.gravatar.com/avatar/#{reply.avatar}?d=identicon&s=32", class: 'img-responsive'
+      = image_tag avatar_path(reply), class: 'img-responsive'
   .options.dropdown.vote.text-right
     a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
       i.fa.fa-caret-down

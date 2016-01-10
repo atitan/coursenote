@@ -16,6 +16,17 @@ module CoursesHelper
     end
   end
 
+  def avatar_path(comment)
+    gravatar = "https://secure.gravatar.com/avatar/#{comment.avatar}?d=identicon&s=40"
+    return gravatar unless user_signed_in?
+
+    if comment.user_id == current_user.id
+      'user-indicator.png'
+    else
+      gravatar
+    end
+  end
+
   def course_status(state)
     if state
         '是'
