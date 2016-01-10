@@ -64,12 +64,22 @@ module ApplicationHelper
     end
   end
 
-  def full_title(page_title = '')
-    base_title = "中原選課大全"
-    if page_title.empty?
-      base_title
+  def concat_title(base_title = '', add_title = '', reverse = false)
+    return base_title if add_title.blank?
+    
+    if reverse
+      base_title + ' - ' + add_title
     else
-      page_title + " - " + base_title
+      add_title + ' - ' + base_title
+    end
+  end
+
+  def page_to_title
+    page = params[:page]
+    if page.nil?
+      ''
+    else
+      "第#{page}頁"
     end
   end
 end

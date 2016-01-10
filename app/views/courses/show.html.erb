@@ -1,4 +1,4 @@
-<% provide(:title, "#{@course.title}(#{@course.instructor})") %>
+<% provide(:title, concat_title(@course.title, @course.instructor, true)) %>
 <section class="course-details" itemscope itemtype="http://schema.org/EducationEvent">
   <h1 class="m-title text-center" itemprop="name"><strong><%= @course.title %></strong></h1>
   <meta itemprop="startDate" content="1970-01-01">
