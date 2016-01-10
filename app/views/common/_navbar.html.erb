@@ -17,6 +17,7 @@
           <ul class="dropdown-menu" aria-labelledby="themes">
             <li><%= link_to '已追蹤課程', users_favorite_courses_path%></li>
             <li><%= link_to '已修過課程', users_passed_courses_path%></li>
+            <li><%= link_to '時間表', users_time_filter_path%></li>
             <li><%= link_to '更改密碼', edit_user_registration_path%></li>
             <li><%= link_to '登出', destroy_user_session_path, method: :delete %></li>
           </ul>

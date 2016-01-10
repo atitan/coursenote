@@ -29,7 +29,7 @@ namespace :data do
       entries << {
         code: x[6], # 代號
         timetable: convert2timetable([x[16], x[18], x[20]]), # 時間表
-        timestring: "#{x[16]} #{x[18]} #{x[20]}".strip, # 字串時間表
+        timestring: concat_timestring([x[16], x[18], x[20]]), # 字串時間表
         cross_graduate: !x[1].empty?, # 跨部
         cross_department: !x[2].empty?, # 跨系
         department: x[9], # 開課系級
@@ -119,6 +119,19 @@ namespace :data do
       output[day] = sec
     end
     
+    output
+  end
+
+  def concat_timestring(time)
+    output = ''
+
+    time.each do |x|
+      next if x.blank?
+        
+      output = output + ', ' unless output.blank?
+      output = output + x
+    end
+
     output
   end
 end
