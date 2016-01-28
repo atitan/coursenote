@@ -76,11 +76,18 @@ gem 'rack-attack'
 # Course bookmarking
 gem 'cycu_csys_bookmarker', '~> 0.0.2'
 
+# Error handling
+gem 'rambulance'
+
 # Redis
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
+
+# JSON lib
+gem 'oj'
+gem 'oj_mimic_json'
 
 group :development do
   gem 'better_errors'
@@ -103,8 +110,6 @@ group :development, :test do
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false
 end
-
-gem 'newrelic_rpm', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

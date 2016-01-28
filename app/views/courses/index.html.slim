@@ -1,3 +1,4 @@
+- provide(:title, concat_title('課程查詢', page_to_title(@courses.current_page), true))
 .clearfix
   aside.aside.scrollable.clearfix data-spy="affix" data-offset-top="0" data-offset-bottom="120"
     h1.sr-only 課程搜尋表單
@@ -11,7 +12,17 @@
         dl#courseInfoList.panel-group role='tablist' aria-multiselectable='true'
           - @courses.each do |course|
             - cache [course, current_user] do
-              dd.panel
+              dd.panel itemscope=true itemtype="http://schema.org/EducationEvent"
+                meta itemprop="sameAs" content="#{course_path(course.id)}"
+                meta itemprop="startDate" content="1970-01-01"
+                .location itemprop="location" itemscope=true itemtype="http://schema.org/Place"
+                  meta itemprop="name" content="中原大學"
+                  meta itemprop="address" content="桃園市中壢區中北路200號"
+                .rating itemprop="aggregateRating" itemscope=true itemtype="http://schema.org/AggregateRating"
+                  meta itemprop="ratingValue" content="#{(course.votes_count != 0) ? course.score.to_f/course.votes_count : 0}"
+                  meta itemprop="bestRating" content="1"
+                  meta itemprop="worstRating" content="-1"
+                  meta itemprop="ratingCount" content="#{course.votes_count}"
                 h1.sr-only = course.title
                 header.panel-heading role='tab' id="heading_#{course.id}"
                   .panel-title
@@ -23,11 +34,11 @@
                       li.col-xs-6.col-sm-3
                         i.fa.fa-list-alt aria-hidden='true'
                         span.superscript-title 課程名稱
-                        h2 = course.title
-                      li.col-xs-6.col-sm-3
+                        h2 itemprop="name" = course.title
+                      li.col-xs-6.col-sm-3 itemprop="performer" itemscope=true itemtype="http://schema.org/Person"
                         i.fa.fa-user aria-hidden='true'
                         span.superscript-title 授課教師
-                        h2 = course.instructor
+                        h2 itemprop="name" = course.instructor
                       li.col-xs-6.col-sm-3
                         i.fa.fa-tag aria-hidden='true'
                         span.superscript-title 課程類別
@@ -50,7 +61,7 @@
                 .panel-collapse.collapse.in id="#{course.instructor}_#{course.id}" role='tabpanel' aria-labelledby="heading_#{course.id}"
                   = render 'courses/entries/index', course: course, cache: true
 
-                footer.panel-footer itemprop="reviews" itemscope=true itemtype="http://schema.org/Review"
+                footer.panel-footer
                   = render 'courses/comments/index', course: course, cache: true
 
       .text-center

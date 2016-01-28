@@ -29,7 +29,7 @@ namespace :data do
       entries << {
         code: x[6], # 代號
         timetable: convert2timetable([x[16], x[18], x[20]]), # 時間表
-        timestring: "#{x[16]} #{x[18]} #{x[20]}".strip, # 字串時間表
+        timestring: concat_timestring([x[16], x[18], x[20]]), # 字串時間表
         cross_graduate: !x[1].empty?, # 跨部
         cross_department: !x[2].empty?, # 跨系
         department: x[9], # 開課系級
@@ -82,6 +82,29 @@ namespace :data do
       end
     end
     puts "\n\rDone!"
+
+    Rake::Task['data:build_sitemap'].reenable
+    Rake::Task['data:build_sitemap'].invoke
+  end
+
+  task :build_sitemap => :environment do |_task, _args|
+    courses = Course.select(:id)
+
+    require 'builder'
+    builder = Builder::XmlMarkup.new(indent: 2)
+    builder.instruct!
+
+    xml = builder.urlset('xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
+      courses.each do |course|
+        builder.url do
+          builder.loc(Rails.application.routes.url_helpers.course_url(course.id, host: 'https://coursewiki.cyim.tw'))
+        end
+      end
+    end
+
+    File.open(Rails.root.join('public/sitemap.xml'), 'w') do |f|
+      f << xml
+    end
   end
 
   def convert2timetable(time)
@@ -96,6 +119,19 @@ namespace :data do
       output[day] = sec
     end
     
+    output
+  end
+
+  def concat_timestring(time)
+    output = ''
+
+    time.each do |x|
+      next if x.blank?
+        
+      output = output + ', ' unless output.blank?
+      output = output + x
+    end
+
     output
   end
 end

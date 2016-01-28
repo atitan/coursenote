@@ -28,6 +28,11 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :update, :destroy] do
     post 'vote'
   end
+
+  scope 'courses' do
+    post 'title' => 'courses#title'
+    post 'instructor' => 'courses#instructor'
+  end
   
   #namespace :api do
   #  namespace :v1 do

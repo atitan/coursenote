@@ -1,7 +1,13 @@
+<% provide(:title, concat_title(@course.title, @course.instructor, true)) %>
 <section class="course-details" itemscope itemtype="http://schema.org/EducationEvent">
   <h1 class="m-title text-center" itemprop="name"><strong><%= @course.title %></strong></h1>
+  <meta itemprop="startDate" content="1970-01-01">
+  <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+    <meta itemprop="name" content="中原大學">
+    <meta itemprop="address" content="桃園市中壢區中北路200號">
+  </div>
   <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-    <meta itemprop="ratingValue" content="<%= @course.score.to_f/@course.votes_count %>">
+    <meta itemprop="ratingValue" content="<%= (@course.votes_count != 0) ? @course.score.to_f/@course.votes_count : 0 %>">
     <meta itemprop="bestRating" content="1">
     <meta itemprop="worstRating" content="-1">
     <meta itemprop="ratingCount" content="<%= @course.votes_count %>">
@@ -12,7 +18,7 @@
       <dt class="info-title">課程分類</dt>
       <dd class="info-item"><%= @course.category %></dd>
       <dt class="info-title">授課教師</dt>
-      <dd class="info-item"><span itemprop="performer" itemscope itemtype="http://schema.org/Person"><%= @course.instructor %></span></dd>
+      <dd class="info-item"><span itemprop="performer" itemscope itemtype="http://schema.org/Person"><span itemprop="name"><%= @course.instructor %></span></span></dd>
       <dt class="info-title">課程評分</dt>
       <dd class="info-item"><%= @course.score %></dd>
       <dt class="info-title">投票人數</dt>
@@ -44,7 +50,7 @@
     </dl>
     <% end %>
   </article>
-  <article itemprop="reviews" itemscope itemtype="http://schema.org/Review">
+  <article>
     <p class="h2 text-center">課程評論</p>
     <% cache [@course, current_user] do %>
       <%= render 'courses/comments/index', course: @course, cache: true %>

@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf8">
-  <title><%= concat_title('中原選課大全', yield(:title)) %></title>
+  <title>中原選課大全</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='//fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -19,8 +19,6 @@
 
 <div class="wrapper">
   <div class="container">
-    <%= display_flash! %>
-
     <%= yield %>
   </div>
 </div>

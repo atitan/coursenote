@@ -193,6 +193,8 @@ nav {
   background-color: lighten($primary-color, 50);
   border-top: 10px solid $primary-color;
   box-shadow: 0 5px 15px 3px lightgray;
+  padding-top: 15px;
+  padding-bottom: 15px;
   .icon-float {
     position: relative;
     i {

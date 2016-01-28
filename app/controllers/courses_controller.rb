@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
   has_scope :by_department
   has_scope :page, default: 1
   has_scope :cross_department, type: :boolean
+  has_scope :optional, type: :boolean
   has_scope :show_all, default: false, type: :boolean, allow_blank: true do |_controller, scope, value|
     value ? scope : scope.available_only
   end
@@ -20,9 +21,10 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order(received_vote: :desc, score: :desc, votes_count: :desc, id: :asc)
+    @courses = apply_scopes(Course).includes(:entries, comments: :replies).order_by_rating
     @new_comment = Comment.new
     @votes = current_user.votes if user_signed_in?
+    render status: 404 if @courses.empty?
   end
 
   def show
@@ -33,5 +35,13 @@ class CoursesController < ApplicationController
   def vote
     course = Course.find(params[:course_id])
     vote_it(course, params[:upvote])
+  end
+
+  def title
+    render json: Course.by_title(params[:name]).order_by_rating.uniq.as_json(only: :title)
+  end
+
+  def instructor
+    render json: Course.by_instructor(params[:name]).uniq.as_json(only: :instructor)
   end
 end

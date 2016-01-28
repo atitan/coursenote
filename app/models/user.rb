@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
     self[:favorite_courses].uniq!
     self[:passed_courses].reject!(&:blank?)
     self[:favorite_courses].reject!(&:blank?)
+    self[:passed_courses].delete_if {|item| !item.is_a?(String) }
+    self[:favorite_courses].delete_if {|item| !item.is_a?(String) }
     true
   end
 

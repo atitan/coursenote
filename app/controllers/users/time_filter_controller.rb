@@ -5,10 +5,31 @@ class Users::TimeFilterController < ApplicationController
   end
 
   def update
-    if current_user.update(time_filter: params[:time_filter])
-      render json: current_user
+    current_user.time_filter = convert2timetable(params[:time_filter])
+
+    if current_user.save
+      flash[:notice] = '修改成功'
     else
-      render json: { error: current_user.errors.full_messages }, status: :internal_server_error
+      flash[:alert] = '修改失敗'
     end
+    redirect_to action: :show
+  end
+
+  private
+
+  def convert2timetable(time)
+    output = {}
+    time = time.split(',')
+
+    time.each do |x|
+      tmp = /([1-7])-([1-8ABCDEFG]+)/.match(x)
+      next if tmp.nil?
+
+      day = tmp[1].to_i
+      sec = tmp[2].split('')
+      output[day] = sec
+    end
+    
+    output
   end
 end

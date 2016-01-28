@@ -20,6 +20,7 @@
     <div class="filter-checkbox checkbox">
       <label class="m-label-checkbox"><input type="checkbox" name="show_all" value="true" <%= 'checked' if params[:show_all] %>>顯示未開課程</label>
       <label class="m-label-checkbox"><input type="checkbox" name="cross_department" value="true" <%= 'checked' if params[:cross_department] %>>僅顯示跨系課</label>
+      <label class="m-label-checkbox"><input type="checkbox" name="optional" value="true" <%= 'checked' if params[:optional] %>>僅顯示選修課</label>
       <% if user_signed_in? %>
         <label class="m-label-checkbox"><input type="checkbox" class="hide-passed-courses" name="hide_passed_courses" value="true" <%= 'checked' if params[:hide_passed_courses] %>>隱藏修過課程</label>
         <label class="m-label-checkbox"><input type="checkbox" class="apply_time_filter" name="apply_time_filter" value="true" <%= 'checked' if params[:apply_time_filter] %>>隱藏衝堂課程</label>

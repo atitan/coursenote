@@ -1,0 +1,16 @@
+- provide(:title, '時間表')
+section
+  .container
+    h1.sr-only 使用者時間表設定
+    aside.col-md-2
+      = render 'users/aside_tabs'
+    article.col-md-10
+      .jumbotron
+        h2.m-title.text-center 時間表
+        h3.h4 目前時間表
+        .box = timetable_to_string(current_user.time_filter)
+        = form_for :time_filter, method: :put do |f|
+          h3.h4 修改時間表(格式：1-ABCD,2-34567,4-1256CDE)
+          .input-group
+            = f.text_field :time_filter, class: 'form-control', name: 'time_filter'
+            = f.submit '修改', class: 'btn btn-default'
