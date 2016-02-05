@@ -120,7 +120,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    json-schema (2.6.0)
+    json-schema (2.5.2)
       addressable (~> 2.3.8)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -322,6 +322,7 @@ DEPENDENCIES
   highline
   jbuilder (~> 2.0)
   jquery-rails
+  json-schema (= 2.5.2)
   kaminari (~> 0.16.1)
   messengerjs-rails (~> 1.4.1)
   oj
