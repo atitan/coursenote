@@ -105,7 +105,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0', require: false
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
-  gem 'rack-mini-profiler'
+  #gem 'rack-mini-profiler'
   gem 'database_cleaner'
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false

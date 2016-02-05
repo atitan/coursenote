@@ -17,12 +17,17 @@ namespace :data do
     raw[0..1] = '' # remove '@@' from head of string
     data = raw.split('@@')
 
-    # abort task if contains empty dataset
+    # reject empty dataset
     if data.include?('')
       raise "\nEmpty dataset detected...aborting"
     end
 
     data.map!{ |x| x.split('|') }
+
+    # check if column differs
+    if data[0].size != 38
+      raise "\nColumn size incorrect...aborting"
+    end
 
     entries = []
     courses = data.collect do |x|
@@ -36,7 +41,8 @@ namespace :data do
         credit: x[14].to_i, # 學分
         required: x[11].include?('必'), # 必選修
         quittable: x[4].empty?, # 是否可停修
-        note: x[22] # 備註
+        note: x[22], # 備註
+        capacity: x[37] # 選課餘額(總額)
       }
 
       {

@@ -41,6 +41,7 @@
         <p>可退選：<%= course_status( entry.quittable ) %></p>
         <p>必修：<%= course_status( entry.required ) %></p>
         <p>備註：<%= entry.note %></p>
+        <p>選課餘額：<%= entry.capacity %></p>
         <p><%= link_to users_favorite_courses_path(favorite_course: entry.code), class: "btn btn-sm m-btn-check follow btn-follow-course #{fav_course_status(entry.code)}", method: :post, remote: true do %>
           追蹤
           <span class="fa fa-heart"></span>

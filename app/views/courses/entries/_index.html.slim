@@ -14,6 +14,7 @@ h2.sr-only 開課資訊
           th 學分數
           th 開課系級
           th 備註
+          th 選課餘額
           th 追蹤課程
 
       tbody
@@ -24,6 +25,7 @@ h2.sr-only 開課資訊
             td data-title='學分數' = entry.credit
             td data-title='開課系級' = entry.department
             td data-title='備註' = entry.note
+            td data-title='選課餘額' = entry.capacity
             td data-title='追蹤課程'
               = link_to users_favorite_courses_path(favorite_course: entry.code, format: :json), class: "btn btn-sm m-btn-check follow btn-follow-course #{fav_course_status(entry.code)}", method: :post, remote: true do
                 | 追蹤

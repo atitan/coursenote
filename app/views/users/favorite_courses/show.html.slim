@@ -27,20 +27,21 @@ section
               th 授課教師
               th 上課時段
               th 備註
-              th 詳細資訊
+              th 選課餘額
               th 取消追蹤
           tbody
             - @entries.each do |entry|
               tr
                 td data-title='課程類別' = entry.course.category
-                td data-title='課程名稱' = entry.course.title
+                td data-title='課程名稱'
+                  = link_to course_path(entry.course.id) do
+                    = entry.course.title
+                    | &ensp;
+                    span.fa.fa-external-link
                 td data-title='授課教師' = entry.course.instructor
                 td data-title='上課時段' = entry.timestring
                 td data-title='備註' = entry.note
-                td data-title='詳細資訊'
-                  = link_to course_path(entry.course.id), class: 'btn m-btn btn-sm' do
-                    | 詳細資訊
-                    span.fa.fa-external-link
+                td data-title='選課餘額' = entry.capacity
                 td data-title='取消追蹤'
                   = link_to users_favorite_courses_path(favorite_course: entry.code), class: 'btn btn-danger', method: :delete do
                     span.fa.fa-times
