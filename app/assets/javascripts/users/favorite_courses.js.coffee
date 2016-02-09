@@ -13,28 +13,28 @@ ready = ->
   $('.btn-follow-course').on("ajax:success", (e, data, status, xhr) ->
     $(this).addClass 'follow-actived pure-disabled'
     follow_success_msg = Messenger().post
-        message: '已成功追蹤課程！'
-        hideAfter: 3
-        actions:
-            cancel:
-                label: '關閉訊息'
-                action: ->
-                    follow_success_msg.hide()
+      message: '已成功追蹤課程！'
+      hideAfter: 3
+      actions:
+        cancel:
+          label: '關閉訊息'
+          action: ->
+            follow_success_msg.hide()
   ).on "ajax:error", (e, xhr, status, error) ->
     if xhr.status == 401
       follow_errmsg = Messenger().post
-          message: xhr.responseText
-          type: 'error'
-          hideAfter: 3
-          actions:
-              login:
-                  label: '按此登入'
-                  action: ->
-                      window.location = '/users/sign_in'
-              cancel:
-                  label: '關閉訊息'
-                  action: ->
-                      follow_errmsg.hide()
+        message: xhr.responseText
+        type: 'error'
+        hideAfter: 3
+        actions:
+          login:
+            label: '按此登入'
+            action: ->
+              window.location = '/users/sign_in'
+          cancel:
+            label: '關閉訊息'
+            action: ->
+              follow_errmsg.hide()
 
 $(document).ready(ready)
 $(document).ajaxComplete(ready)
