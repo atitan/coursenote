@@ -17,26 +17,32 @@ namespace :data do
     raw[0..1] = '' # remove '@@' from head of string
     data = raw.split('@@')
 
-    # abort task if contains empty dataset
+    # reject empty dataset
     if data.include?('')
       raise "\nEmpty dataset detected...aborting"
     end
 
     data.map!{ |x| x.split('|') }
 
+    # check if column differs
+    if data[0].size != 38
+      raise "\nColumn size incorrect...aborting"
+    end
+
     entries = []
     courses = data.collect do |x|
       entries << {
         code: x[6], # 代號
-        timetable: convert2timetable([x[16], x[18], x[20]]), # 時間表
-        timestring: concat_timestring([x[16], x[18], x[20]]), # 字串時間表
+        timetable: Entry.time_str_to_table(x[16], x[18], x[20]), # 時間表
+        timestring: concat_timestring(x[16], x[18], x[20]), # 字串時間表
         cross_graduate: !x[1].empty?, # 跨部
         cross_department: !x[2].empty?, # 跨系
         department: x[9], # 開課系級
         credit: x[14].to_i, # 學分
         required: x[11].include?('必'), # 必選修
         quittable: x[4].empty?, # 是否可停修
-        note: x[22] # 備註
+        note: x[22], # 備註
+        capacity: x[37] # 選課餘額(總額)
       }
 
       {
@@ -73,7 +79,8 @@ namespace :data do
       end
 
       # sync users' course list
-      users = User.where.not(favorite_courses: [])
+      print "\rImporting...100% completed\nSyncing user data..."
+      users = User.where("favorite_courses <> '{}'")
       users.each do |user|
         entries = Entry.where(code: user.favorite_courses)
         if user.favorite_courses.size != entries.size
@@ -81,10 +88,12 @@ namespace :data do
         end
       end
     end
-    puts "\n\rDone!"
+    print "completed\nGenerating sitemap..."
 
     Rake::Task['data:build_sitemap'].reenable
     Rake::Task['data:build_sitemap'].invoke
+
+    puts "completed\nDone!"
   end
 
   task :build_sitemap => :environment do |_task, _args|
@@ -107,31 +116,8 @@ namespace :data do
     end
   end
 
-  def convert2timetable(time)
-    output = {}
-
-    time.each do |x|
-      tmp = /(\d)-(\w+)/.match(x)
-      next if tmp.nil?
-
-      day = tmp[1].to_i
-      sec = tmp[2].split('')
-      output[day] = sec
-    end
-    
-    output
-  end
-
-  def concat_timestring(time)
-    output = ''
-
-    time.each do |x|
-      next if x.blank?
-        
-      output = output + ', ' unless output.blank?
-      output = output + x
-    end
-
-    output
+  def concat_timestring(*time)
+    time.delete_if {|t| t.blank? }
+    time.join(', ')
   end
 end

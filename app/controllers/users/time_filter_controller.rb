@@ -18,18 +18,7 @@ class Users::TimeFilterController < ApplicationController
   private
 
   def convert2timetable(time)
-    output = {}
     time = time.split(',')
-
-    time.each do |x|
-      tmp = /([1-7])-([1-8ABCDEFG]+)/.match(x)
-      next if tmp.nil?
-
-      day = tmp[1].to_i
-      sec = tmp[2].split('')
-      output[day] = sec
-    end
-    
-    output
+    Entry.time_str_to_table(time)
   end
 end

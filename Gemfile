@@ -57,8 +57,10 @@ gem 'font-awesome-sass'
 # Messenger javascript library
 gem 'messengerjs-rails', '~> 1.4.1'
 gem 'selectize-rails'
+
 # JSON validator
 gem 'activerecord_json_validator'
+gem 'json-schema', '2.5.2'
 
 # Use puma server
 gem 'puma'
@@ -105,7 +107,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0', require: false
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
-  gem 'rack-mini-profiler'
+  #gem 'rack-mini-profiler'
   gem 'database_cleaner'
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false
