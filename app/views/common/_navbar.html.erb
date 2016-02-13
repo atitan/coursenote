@@ -1,7 +1,7 @@
 <nav class="navbar-fixed-top" data-no-turbolink>
   <div class="container">
     <h1><a href="/">中原選課大全</a><span class="sr-only">導覽列</span></h1>
-    <span class="navbar-text visible-xs visible-sm">(<%= Entry.last.created_at.strftime("%g%m%d-%k%M") %>)</span>
+    <span class="navbar-text visible-xs visible-sm">(<%= Entry.last.created_at.strftime("%g%m%d-%H%M") %>)</span>
     <span class="navbar-text visible-md visible-lg visible-xl">最後更新：<%= Entry.last.created_at.strftime("%F %R") %></span>
     <button class="nav-btn visible-xs">
       <span class="icon-bar"></span>
