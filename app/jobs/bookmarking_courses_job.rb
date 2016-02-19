@@ -17,12 +17,11 @@ class BookmarkingCoursesJob < ActiveJob::Base
       bookmarker.login
       bookmarker.bookmark(user.favorite_courses)
       logging(user.id, message: '完成')
+      bookmarker.logout
     rescue RuntimeError => e
       logging(user.id, message: e.message)
     rescue StandardError
       logging(user.id, message: '發生錯誤，請稍後再試')
-    ensure
-      bookmarker.logout
     end
   end
 

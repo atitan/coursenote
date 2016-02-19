@@ -62,8 +62,9 @@ class CsysHandler
     resp = @http.get('/index.jsp')
     raw_cookies = resp.response['set-cookie']
 
+    cookies = []
     raw_cookies.split(/, ?/).each do |raw_cookie|
-      (cookies ||= []) << raw_cookie.split(';')[0]
+      cookies << raw_cookie.split(';')[0]
     end
 
     @headers['Cookie'] = cookies.join(';')
@@ -76,7 +77,6 @@ class CsysHandler
   end
 
   def login_hash
-    init_secure_random()
     OpenSSL::HMAC.hexdigest('sha256', @password, @student_id + secure_random)
   end
 end
