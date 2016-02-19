@@ -13,15 +13,16 @@ class BookmarkingCoursesJob < ActiveJob::Base
 
   def perform(user, password)
     begin
-      bookmarker = CycuCsysBookmarker.new(user.student_id, password)
+      bookmarker = CsysHandler.new(user.student_id, password)
       bookmarker.login
       bookmarker.bookmark(user.favorite_courses)
       logging(user.id, message: '完成')
-      bookmarker.logout
     rescue RuntimeError => e
       logging(user.id, message: e.message)
     rescue StandardError
       logging(user.id, message: '發生錯誤，請稍後再試')
+    ensure
+      bookmarker.logout
     end
   end
 
