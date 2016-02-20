@@ -75,6 +75,9 @@ gem 'devise-async'
 # Traffic throttling
 gem 'rack-attack'
 
+# Hash lib
+gem 'easy_diff'
+
 # Error handling
 gem 'rambulance'
 

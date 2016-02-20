@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'time_filter' => 'time_filter#show'
     patch 'time_filter' => 'time_filter#update'
     put 'time_filter' => 'time_filter#update'
+    post 'time_filter/import' => 'time_filter#import'
   end
 
   resources :courses, only: [:index, :show] do
