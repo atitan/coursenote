@@ -80,7 +80,6 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
-    cycu_csys_bookmarker (0.0.2)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (3.5.6)
@@ -95,6 +94,7 @@ GEM
     devise-i18n (0.12.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    easy_diff (1.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -311,11 +311,11 @@ DEPENDENCIES
   capistrano-rails
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
-  cycu_csys_bookmarker (~> 0.0.2)
   database_cleaner
   devise (~> 3.5.2)
   devise-async
   devise-i18n
+  easy_diff
   factory_girl_rails (~> 4.0)
   font-awesome-sass
   has_scope

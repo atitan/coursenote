@@ -75,8 +75,8 @@ gem 'devise-async'
 # Traffic throttling
 gem 'rack-attack'
 
-# Course bookmarking
-gem 'cycu_csys_bookmarker', '~> 0.0.2'
+# Hash lib
+gem 'easy_diff'
 
 # Error handling
 gem 'rambulance'

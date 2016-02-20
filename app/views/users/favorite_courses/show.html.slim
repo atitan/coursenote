@@ -8,18 +8,13 @@ section
       .jumbotron
         h2.m-title.text-center 已追蹤課程
         table.table.table-condensed.table-hover.break-table
-          h3.h4 已追蹤課程列表
           .pull-right
             - if current_user.student?
               button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 匯出到選課系統
             = link_to users_favorite_courses_path, class: 'btn btn-danger', method: :delete do
               span.fa.fa-times
                 | &ensp;全部取消追蹤
-          - if current_user.student?
-            .state
-              pre
-                | 匯出狀態：
-                = @state['message'] || '無'
+          h3.h4 已追蹤課程列表
           thead
             tr
               th 課程類別
@@ -31,7 +26,7 @@ section
               th 取消追蹤
           tbody
             - @entries.each do |entry|
-              tr
+              tr style="#{time_overlap?(entry.timetable, current_user)}"
                 td data-title='課程類別' = entry.course.category
                 td data-title='課程名稱'
                   = link_to course_path(entry.course.id) do

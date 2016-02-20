@@ -2,34 +2,38 @@ class BookmarkingCoursesJob < ActiveJob::Base
   queue_as :default
 
   after_enqueue do |job|
-    user = job.arguments.first
-    logging(user.id, queued: true, message: '工作已排程')
+    @user = job.arguments.first
+    flash(notice: '課程匯出已排程')
+    queued(true)
   end
 
   after_perform do |job|
-    user = job.arguments.first
-    logging(user.id, queued: false, time: DateTime.now)
+    @user = job.arguments.first
+    queued(false)
   end
 
   def perform(user, password)
+    @user = user
     begin
-      bookmarker = CycuCsysBookmarker.new(user.student_id, password)
-      bookmarker.login
-      bookmarker.bookmark(user.favorite_courses)
-      logging(user.id, message: '完成')
-      bookmarker.logout
+      csys = CsysHandler.new(user.student_id, password)
+      csys.login
+      csys.bookmark(user.favorite_courses)
+      csys.logout
+      flash(notice: '課程匯出完成')
     rescue RuntimeError => e
-      logging(user.id, message: e.message)
+      flash(alert: "課程匯出失敗：#{e.message}")
     rescue StandardError
-      logging(user.id, message: '發生錯誤，請稍後再試')
+      flash(alert: '課程匯出錯誤，請稍後再試')
     end
   end
 
   private
 
-    def logging(user_id, **args)
-      state = JSON.parse($job_redis.get(user_id) || '{}')
-      state.merge!(args)
-      $job_redis.set(user_id, state.to_json)
-    end
+  def queued(status)
+    Rails.cache.write("course_export_status_#{@user.id}", status)
+  end
+
+  def flash(**args)
+    Rails.cache.write("user_flash_#{@user.id}", args)
+  end
 end
