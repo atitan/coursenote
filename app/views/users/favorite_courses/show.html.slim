@@ -26,7 +26,7 @@ section
               th 取消追蹤
           tbody
             - @entries.each do |entry|
-              tr
+              tr style="#{time_overlap?(entry.timetable, current_user)}"
                 td data-title='課程類別' = entry.course.category
                 td data-title='課程名稱'
                   = link_to course_path(entry.course.id) do
