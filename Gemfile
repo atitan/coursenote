@@ -113,6 +113,10 @@ group :development, :test do
   gem 'simplecov', require: false
 end
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-autosize'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

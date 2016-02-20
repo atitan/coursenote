@@ -51,8 +51,10 @@ var ready = function() {
 	$('.switch').on('click', function(){
 		$(this).children('i').toggleClass('fa-minus fa-plus');
 	});
-
-
 };
 
 $(document).ready(ready);
+
+function autoheight(textbox) {
+	autosize($(textbox));
+}
