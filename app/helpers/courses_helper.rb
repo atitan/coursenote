@@ -1,12 +1,19 @@
 module CoursesHelper
   def category_button(name)
-    active = params[:by_category].include?(name) unless params[:by_category].nil?
-    name2 = name.length == 1 ? name + '學' : name
-    if active
-      '<label class="btn btn-warning mg-b-10 active"><input type="checkbox" name="by_category[]" value="'+ name +'" checked>'+ name2 +'</label>'
-    else
-      '<label class="btn btn-warning mg-b-10"><input type="checkbox" name="by_category[]" value="'+ name +'">'+ name2 +'</label>'
+    uri = params[:by_category]
+    if !uri.nil? && uri.include?(name)
+      active = true
     end
+    full_name = name.length == 1 ? "#{name}學" : name
+
+    html = <<-HTML
+      <label class="btn btn-warning mg-b-10 #{'active' if active}">
+      <input type="checkbox" name="by_category[]" value="#{name}" #{'checked' if active}>
+      #{full_name}
+      </label>
+    HTML
+
+    html.html_safe
   end
 
   def avatar_path(comment)
@@ -25,10 +32,6 @@ module CoursesHelper
   end
 
   def course_status(state)
-    if state
-        '是'
-    else
-        '否'
-    end
+    state ? '是' : '否'
   end
 end

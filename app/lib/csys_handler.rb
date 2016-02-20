@@ -9,7 +9,7 @@ class CsysHandler
     @http = Net::HTTP.new('csys.cycu.edu.tw')
     @headers = {}
     @loggedin = false
-    init_cookie()
+    init_cookie
   end
 
   def login
@@ -26,11 +26,11 @@ class CsysHandler
 
   def logout
     return false unless @loggedin
-    resp = @http.post('/sso/sso.srv', 'cmd=logout', @headers)
+    @http.post('/sso/sso.srv', 'cmd=logout', @headers)
     @loggedin = false
   end
 
-  def get_class_schedule
+  def fetch_class_schedule
     return false unless @loggedin
     path = '/student/op/StudentCourseTime.srv'
 

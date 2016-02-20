@@ -18,9 +18,9 @@ class ImportClassScheduleJob < ActiveJob::Base
       csys = CsysHandler.new(user.student_id, password)
       csys.login
 
-      schedule = csys.get_class_schedule
+      schedule = csys.fetch_class_schedule
       full_time = {}
-      (1..7).each{|x| full_time[x.to_s] = %w(A 1 2 3 4 B 5 6 7 8 C D E F G) }
+      (1..7).each{ |x| full_time[x.to_s] = %w(A 1 2 3 4 B 5 6 7 8 C D E F G) }
       user.update(time_filter: full_time.easy_unmerge(schedule))
 
       csys.logout

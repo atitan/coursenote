@@ -1,7 +1,6 @@
 module ApplicationHelper
-
   def display_flash!
-    buffer = ""
+    buffer = ''
     flash.each do |key, value|
       buffer << render_flash(key, value)
     end
@@ -9,21 +8,18 @@ module ApplicationHelper
   end
 
   def render_flash(key, value)
+    case key.to_s
+    when 'alert', 'error'
+      type = 'danger'
+    when 'warning'
+      type = 'warning'
+    when 'notice'
+      type = 'info'
+    when 'success'
+      type = 'success'
+    end
 
-      case key.to_s
-      when "alert", "error"
-        type = "danger"
-      when "warning"
-        type = "warning"
-      when "notice"
-        type = "info"
-      when "success"
-        type = "success"
-      else
-        type = "asd"
-      end
-
-      render partial: 'common/flash', locals: {type: type, message: value}
+    render partial: 'common/flash', locals: { type: type, message: value }
   end
 
   def vote_status(object, btn_type)
@@ -54,12 +50,12 @@ module ApplicationHelper
     end
   end
 
-  def tab_li text, url, icon
+  def tab_li(text, url, icon)
     active = :active if request.path == url
-    content_tag :li, class: "tab-item h4" do
+    content_tag :li, class: 'tab-item h4' do
       link_to url, class: active do
         content_tag(:span, text, class: 'hidden-xs') +
-        content_tag(:i, '', class: "fa #{icon}")
+          content_tag(:i, '', class: "fa #{icon}")
       end
     end
   end
@@ -76,8 +72,14 @@ module ApplicationHelper
 
   def time_overlap?(timetable, current_user)
     return '' if current_user.nil?
+    
     time_filter = current_user.time_filter
-    nonoverlap = time_filter.empty? || timetable.keys.all?{|key| time_filter.has_key?(key) && (timetable[key] - time_filter[key]).empty?}
+    nonoverlap = time_filter.empty?
+
+    nonoverlap ||= timetable.keys.all? do |key|
+      time_filter.key?(key) && (timetable[key] - time_filter[key]).empty?
+    end
+
     nonoverlap ? '' : 'background-color: #FFCCCC'
   end
 end

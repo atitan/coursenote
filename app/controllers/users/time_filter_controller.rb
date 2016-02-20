@@ -17,17 +17,25 @@ class Users::TimeFilterController < ApplicationController
   end
 
   def import
-    alert = []
-    alert << '非學生帳號' unless current_user.student?
-    alert << '密碼空白' if params[:password].blank?
-    alert << '工作尚未結束' if @queued
-    return redirect_to({action: :show}, alert: alert.join(', ')) unless alert.empty?
+    return redirect_to(action: :show) unless validate_input
 
     ImportClassScheduleJob.perform_later(current_user, params[:password])
     redirect_to action: :show
   end
 
   private
+
+  def validate_input
+    alert = []
+    alert << '非學生帳號' unless current_user.student?
+    alert << '密碼空白' if params[:password].blank?
+    alert << '工作尚未結束' if @queued
+
+    return true if alert.empty?
+
+    flash[:alert] = alert.join(', ')
+    false
+  end
 
   def job_state
     @queued = Rails.cache.fetch("class_schedule_import_status_#{current_user.id}")

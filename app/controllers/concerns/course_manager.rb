@@ -23,13 +23,13 @@ module CourseManager
   def save_course(list_name, action)
     if current_user.save
       respond_to do |format|
-        format.html { redirect_to({action: :show}, notice: "#{action}成功") }
+        format.html { redirect_to({ action: :show }, notice: "#{action}成功") }
         format.json { render json: current_user.as_json(only: list_name) }
       end
     else
       respond_to do |format|
-        format.html { redirect_to({action: :show}, alert: "#{action}失敗") }
-        format.json { render json: { error: current_user.errors.full_messages }, status: :internal_server_error }
+        format.html { redirect_to({ action: :show }, alert: "#{action}失敗") }
+        format.json { render json: { error: current_user.errors.full_messages }, status: 500 }
       end
     end
   end

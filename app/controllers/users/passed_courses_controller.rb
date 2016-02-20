@@ -8,7 +8,9 @@ class Users::PassedCoursesController < ApplicationController
   end
 
   def create
-    return redirect_to({action: :show}, alert: '課程不存在') if Course.where(title: params[:passed_course].to_s).empty?
+    if Course.where(title: params[:passed_course].to_s).empty?
+      return redirect_to({ action: :show }, alert: '課程不存在')
+    end
 
     append_course(:passed_courses, params[:passed_course])
   end

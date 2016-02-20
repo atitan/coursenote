@@ -7,12 +7,14 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
-      # render json: comment
       @new_comment = Comment.new
-      render 'courses/comments/created'         if  @comment.parent_id.nil?
-      render 'courses/comments/replies/created' if !@comment.parent_id.nil?
+      if  @comment.parent_id.nil?
+        render 'courses/comments/created'
+      else
+        render 'courses/comments/replies/created'
+      end
     else
-      render json: { error: @comment.errors.full_messages }, status: :internal_server_error
+      render json: { error: @comment.errors.full_messages }, status: 500
     end
   end
 
@@ -20,7 +22,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       render json: @comment
     else
-      render json: { error: @comment.errors.full_messages }, status: :internal_server_error
+      render json: { error: @comment.errors.full_messages }, status: 500
     end
   end
 
@@ -28,7 +30,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       render json: @comment
     else
-      render json: { error: @comment.errors.full_messages }, status: :internal_server_error
+      render json: { error: @comment.errors.full_messages }, status: 500
     end
   end
 
