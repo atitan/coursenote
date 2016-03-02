@@ -9,10 +9,10 @@ class Entry < ActiveRecord::Base
     output = {}
 
     str.each do |x|
-      tmp = /([1-7])-([1-8ABCDEFG]+)/.match(x)
+      tmp = /\A([1-7])-([1-8ABCDEFG]+)\z/.match(x)
       next if tmp.nil?
 
-      day = tmp[1].to_i
+      day = tmp[1]
       section = tmp[2].split('')
       output[day] = section
     end
