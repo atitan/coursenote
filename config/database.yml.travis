@@ -8,7 +8,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  # socket: /tmp/mysql.sock
   host: 127.0.0.1
   username: postgres
   timeout: 5000
