@@ -16,6 +16,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+gem 'rack-cache'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -111,6 +113,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false
+end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-autosize'
 end
 
 # Use ActiveModel has_secure_password

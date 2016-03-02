@@ -23,7 +23,7 @@ class Course < ActiveRecord::Base
 
   def check_engagement
     return if engaged
-    return unless comments.empty? || votes.empty?
+    return if comments.empty? && votes.empty?
 
     update(engaged: true)
   end

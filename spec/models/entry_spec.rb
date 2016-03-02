@@ -19,10 +19,41 @@ RSpec.describe Entry, type: :model do
   it { should have_db_column(:note).of_type(:string).with_options(default: '', null: false) }
   it { should have_db_column(:created_at).of_type(:datetime) }
   it { should have_db_column(:updated_at).of_type(:datetime) }
+  it { should have_db_column(:capacity).of_type(:integer).with_options(default: 0, null: false) }
 
   it { should have_db_index(:course_id) }
   it { should have_db_index(:code) }
   it { should have_db_index(:department) }
   it { should have_db_index(:cross_department) }
   it { should have_db_index(:timetable) }
+
+  describe "self.time_str_to_table" do
+    it "converts time to table 1" do
+      time = ["1-34", "", ""]
+      output = Entry.time_str_to_table(time)
+
+      expect(output).to eql({"1"=>["3","4"]})
+    end
+
+    it "converts time to table 2" do
+      time = ["1-34", "4-3456", ""]
+      output = Entry.time_str_to_table(time)
+
+      expect(output).to eql({"1"=>["3","4"],"4"=>["3","4","5","6"]})
+    end
+
+    it "converts time to table 3" do
+      time = ["1-34", "4-3456", "2-12"]
+      output = Entry.time_str_to_table(time)
+
+      expect(output).to eql({"1"=>["3","4"],"2"=>["1","2"],"4"=>["3","4","5","6"]})
+    end
+
+    it "outputs nothing if input is invalid" do
+      time = ["i r winner", "This is a cat", "how do you turn this on"]
+      output = Entry.time_str_to_table(time)
+
+      expect(output).to eql({})
+    end
+  end
 end
