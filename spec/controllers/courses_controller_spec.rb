@@ -8,12 +8,23 @@ RSpec.describe CoursesController, type: :controller do
       get :index
       expect(response).to render_template("index")
     end
+
+    it "returns http 404 if nothing found" do
+      get :index, page: 999999
+      expect(response).to have_http_status(404)
+    end
   end
 
   describe "show" do
     it "renders the show template" do
       get :show, id: course.id
       expect(response).to render_template("show")
+    end
+
+    it "returns http 404 if id not found" do
+      expect {
+        get :show, id: 999999
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -26,7 +37,18 @@ RSpec.describe CoursesController, type: :controller do
     describe 'logged in' do
       login_user
 
-
+      it 'returns http 200 if voted successfully' do
+        xhr :post, :vote, course_id: course.id
+        expect(response).to have_http_status(200)
+      end
     end
+  end
+
+  describe "title" do
+    
+  end
+
+  describe "instructor" do
+    
   end
 end
