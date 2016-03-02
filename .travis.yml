@@ -7,7 +7,7 @@ rvm:
 before_install:
   - gem install bundler
 before_script:
-  - bundle install
+  - bundle update
   - psql -c 'create database coursewiki_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bin/rake db:migrate RAILS_ENV=test
