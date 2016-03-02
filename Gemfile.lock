@@ -334,6 +334,7 @@ DEPENDENCIES
   pry-rails
   puma
   rack-attack
+  rack-cache
   rails (~> 4.2.0)
   rails-assets-autosize!
   rails-i18n (~> 4.0.0)
