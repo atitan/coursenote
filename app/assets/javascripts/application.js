@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery-ui/autocomplete
 //= require messenger
 //= require messenger-theme-future
 //= require selectize

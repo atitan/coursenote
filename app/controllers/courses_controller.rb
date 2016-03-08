@@ -38,10 +38,10 @@ class CoursesController < ApplicationController
   end
 
   def title
-    render json: Course.by_title(params[:name]).order_by_rating.uniq.as_json(only: :title)
+    render json: Course.by_title(params[:query]).order_by_rating.pluck(:title).uniq
   end
 
   def instructor
-    render json: Course.by_instructor(params[:name]).uniq.as_json(only: :instructor)
+    render json: Course.by_instructor(params[:query]).pluck(:instructor).sort.uniq
   end
 end

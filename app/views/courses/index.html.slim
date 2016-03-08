@@ -38,7 +38,11 @@
                       li.col-xs-6.col-sm-3 itemprop="performer" itemscope=true itemtype="http://schema.org/Person"
                         i.fa.fa-user aria-hidden='true'
                         span.superscript-title 授課教師
-                        h2 itemprop="name" = course.instructor
+                        h2 itemprop="name"
+                          = link_to courses_path(by_instructor: course.instructor) do
+                            = course.instructor
+                            | &ensp;
+                            span.fa.fa-external-link
                       li.col-xs-6.col-sm-3
                         i.fa.fa-tag aria-hidden='true'
                         span.superscript-title 課程類別
@@ -55,7 +59,7 @@
                           a.btn.m-btn.mg-t-10.button_to href="##{course.instructor}_#{course.id}" data-toggle='collapse' aria-expanded='true' aria-controls="#{course.instructor}_#{course.id}"
                             | 開課列表
                           = link_to course_path(course.id), class: 'btn m-btn mg-t-10' do
-                            | 詳細資訊
+                            | 詳細資訊&ensp;
                             span.fa.fa-external-link
 
                 .panel-collapse.collapse.in id="#{course.instructor}_#{course.id}" role='tabpanel' aria-labelledby="heading_#{course.id}"

@@ -537,6 +537,12 @@
   }
 }
 
+.ui-autocomplete {
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 // a.btn-vote-course {
 //   color: white;
 //   margin-right: 5px;
