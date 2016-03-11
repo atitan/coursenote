@@ -115,6 +115,7 @@ ready = ->
           response(res)
         error: ->
           response
+
   $('#by_instructor').autocomplete
     source: (request, response) ->
       $.ajax
