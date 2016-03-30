@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     post 'title' => 'courses#title'
     post 'instructor' => 'courses#instructor'
   end
-  
+
   #namespace :api do
   #  namespace :v1 do
   #    resources :courses, defaults: { format: 'json' }

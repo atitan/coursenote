@@ -5,7 +5,7 @@
     <div class="col-lg-8 col-lg-offset-2">
       <div class="well bs-component">
         <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form-horizontal" }) do |f| %>
-        
+
           <%= devise_error_messages! %>
 
           <div class="form-group">

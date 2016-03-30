@@ -109,6 +109,9 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
   #gem 'rack-mini-profiler'
+  gem 'brakeman', require: false
+  gem 'rails_best_practices', require: false
+  gem 'rubycritic', require: false
   gem 'database_cleaner'
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false

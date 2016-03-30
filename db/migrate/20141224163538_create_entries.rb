@@ -12,7 +12,7 @@ class CreateEntries < ActiveRecord::Migration
       t.boolean :quittable, null: false
       t.boolean :required, null: false
       t.string :note, null: false, default: ''
-      
+
       t.timestamps null: false
     end
 
