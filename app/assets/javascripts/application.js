@@ -16,7 +16,6 @@
 //= require jquery-ui/autocomplete
 //= require messenger
 //= require messenger-theme-future
-//= require selectize
 //= require_tree .
 //= require autosize
 //= require moment

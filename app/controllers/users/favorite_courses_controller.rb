@@ -18,10 +18,14 @@ class Users::FavoriteCoursesController < ApplicationController
 
       true
     end
+
+    redirect_to action: :show
   end
 
   def destroy
     userdata_delete(:favorite_courses, params[:favorite_course])
+    
+    redirect_to action: :show
   end
 
   def export

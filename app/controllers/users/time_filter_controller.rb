@@ -11,6 +11,8 @@ class Users::TimeFilterController < ApplicationController
   def update
     timetable = Entry.time_str_to_table(params[:time_filter].split(','))
     userdata_update(:time_filter, timetable)
+
+    redirect_to action: :show
   end
 
   def import

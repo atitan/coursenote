@@ -10,7 +10,7 @@ section
         = form_for :passed_courses do |f|
           h3.h4 登記已修過課程
           .input-group
-            = f.select :passed_course, Course.pluck(:title, :title).uniq, {include_blank: '課程名稱'}, class: 'form-control', name: 'passed_course'
+            = f.text_field :passed_course, placeholder: '課程名稱', class: 'form-control', name: 'passed_course'
             /input.form-control name='passed_course' value="#{params[:passed_course]}" placeholder='課程名稱'
             span.input-group-btn
               = f.submit '登記', class: 'btn btn-default'

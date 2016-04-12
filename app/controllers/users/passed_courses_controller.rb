@@ -13,12 +13,15 @@ class Users::PassedCoursesController < ApplicationController
         flash[:alert] = '課程不存在'
         next false
       end
-
       true
     end
+
+    redirect_to action: :show
   end
 
   def destroy
     userdata_delete(:passed_courses, params[:passed_course])
+
+    redirect_to action: :show
   end
 end
