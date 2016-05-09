@@ -5,12 +5,30 @@ namespace :data do
       raise "No yearterm specified...aborting"
     end
 
+    # read status file
+    fingerprint_file = Rails.root.join('lib/tasks/data.fingerprint')
+    if File.exist?(fingerprint_file)
+      fingerprint = Marshal.load(File.read(fingerprint_file))
+    else
+      fingerprint = ""
+    end
+
     # pass yearterm using this sort of command `rake data:import[1031]`
     require 'net/http'
     print 'Downloading...'
     uri = URI('https://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
     raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
     puts "completed"
+
+    # check content hash
+    require 'digest'
+    raw_digest = Digest::SHA1.hexdigest(raw)
+    if fingerprint == raw_digest
+      puts "Nothing to update."
+      next
+    else
+      fingerprint = raw_digest
+    end
 
     print 'Processing...'
     raw.gsub!(/(\s+|\r|\n)/, '') # remove space or newline
@@ -88,12 +106,9 @@ namespace :data do
         end
       end
     end
-    print "completed\nGenerating sitemap..."
-
-    Rake::Task['data:build_sitemap'].reenable
-    Rake::Task['data:build_sitemap'].invoke
-
-    puts "completed\nDone!"
+    File.write(fingerprint_file, Marshal.dump(fingerprint))
+    puts 'completed'
+    puts 'Done!'    
   end
 
   task :build_sitemap => :environment do |_task, _args|
@@ -106,7 +121,7 @@ namespace :data do
     xml = builder.urlset('xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9') do
       courses.each do |course|
         builder.url do
-          builder.loc(Rails.application.routes.url_helpers.course_url(course.id, host: 'https://coursewiki.cyim.tw'))
+          builder.loc(Rails.application.routes.url_helpers.course_url(course.id, host: 'https://coursewiki.clouder.today'))
         end
       end
     end

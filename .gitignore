@@ -29,3 +29,6 @@ coverage
 
 # Ignore sitemap
 /public/sitemap.xml
+
+# Ignore fingerprint file
+data.fingerprint
