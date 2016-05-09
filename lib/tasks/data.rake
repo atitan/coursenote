@@ -18,20 +18,23 @@ namespace :data do
     print 'Downloading...'
     uri = URI('https://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
     raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
-    puts "completed"
+    raw.gsub!(/(\s+|\r|\n)/, '') # remove space or newline
+    puts 'completed'
+
+    if raw.empty?
+      raise 'Empty response from server'
+    end
 
     # check content hash
     require 'digest'
     raw_digest = Digest::SHA1.hexdigest(raw)
     if fingerprint == raw_digest
-      puts "Nothing to update."
-      next
+      raise 'Nothing new to update'
     else
       fingerprint = raw_digest
     end
 
     print 'Processing...'
-    raw.gsub!(/(\s+|\r|\n)/, '') # remove space or newline
     raw[0..1] = '' # remove '@@' from head of string
     data = raw.split('@@')
 
@@ -112,6 +115,8 @@ namespace :data do
   end
 
   task :build_sitemap => :environment do |_task, _args|
+    puts 'Generating sitemap...'
+
     courses = Course.select(:id)
 
     require 'builder'
@@ -129,6 +134,8 @@ namespace :data do
     File.open(Rails.root.join('public/sitemap.xml'), 'w') do |f|
       f << xml
     end
+
+    puts 'Done!'
   end
 
   def concat_timestring(*time)
