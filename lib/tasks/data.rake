@@ -6,7 +6,7 @@ namespace :data do
     end
 
     # read status file
-    fingerprint_file = Rails.root.join('lib/tasks/data.fingerprint')
+    fingerprint_file = Rails.root.join('config/course_data.fingerprint')
     if File.exist?(fingerprint_file)
       fingerprint = Marshal.load(File.read(fingerprint_file))
     else
