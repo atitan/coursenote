@@ -1,5 +1,6 @@
 class Users::FavoriteCoursesController < ApplicationController
-  include CourseManager
+  include UserDataManager
+  include JobSupervisor
 
   before_action :authenticate_user!
   before_action :job_state, only: :export
@@ -9,38 +10,40 @@ class Users::FavoriteCoursesController < ApplicationController
   end
 
   def create
-    if Entry.where(code: params[:favorite_course].to_s).empty?
-      return redirect_to({ action: :show }, alert: '課程不存在')
+    userdata_append(:favorite_courses, params[:favorite_course]) do
+      if Entry.where(code: params[:favorite_course].to_s).empty?
+        flash[:alert] = '課程不存在'
+        next false
+      end
+
+      true
     end
 
-    append_course(:favorite_courses, params[:favorite_course])
+    redirect_to action: :show
   end
 
   def destroy
-    delete_course(:favorite_courses, params[:favorite_course])
+    userdata_delete(:favorite_courses, params[:favorite_course])
+    
+    redirect_to action: :show
   end
 
   def export
-    return redirect_to(action: :show) unless validate_input
+    delegate_job(BookmarkingCoursesJob, current_user, params[:password]) do
+      alert = []
+      alert << '非學生帳號' unless current_user.student?
+      alert << '追蹤清單是空的' if current_user.favorite_courses.empty?
+      alert << '密碼空白' if params[:password].blank?
+      alert << '工作尚未結束' if @queued
+      flash[:alert] = alert.join(', ') unless alert.empty?
+
+      alert.empty?
+    end
     
-    BookmarkingCoursesJob.perform_later(current_user, params[:password])
     redirect_to action: :show
   end
 
   private
-
-  def validate_input
-    alert = []
-    alert << '非學生帳號' unless current_user.student?
-    alert << '追蹤清單是空的' if current_user.favorite_courses.empty?
-    alert << '密碼空白' if params[:password].blank?
-    alert << '工作尚未結束' if @queued
-
-    return true if alert.empty?
-
-    flash[:alert] = alert.join(', ')
-    false
-  end
 
   def job_state
     @queued = Rails.cache.fetch("course_export_status_#{current_user.id}")

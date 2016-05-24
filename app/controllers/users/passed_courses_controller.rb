@@ -1,5 +1,5 @@
 class Users::PassedCoursesController < ApplicationController
-  include CourseManager
+  include UserDataManager
 
   before_action :authenticate_user!
 
@@ -8,14 +8,20 @@ class Users::PassedCoursesController < ApplicationController
   end
 
   def create
-    if Course.where(title: params[:passed_course].to_s).empty?
-      return redirect_to({ action: :show }, alert: '課程不存在')
+    userdata_append(:passed_courses, params[:passed_course]) do
+      if Course.where(title: params[:passed_course].to_s).empty?
+        flash[:alert] = '課程不存在'
+        next false
+      end
+      true
     end
 
-    append_course(:passed_courses, params[:passed_course])
+    redirect_to action: :show
   end
 
   def destroy
-    delete_course(:passed_courses, params[:passed_course])
+    userdata_delete(:passed_courses, params[:passed_course])
+
+    redirect_to action: :show
   end
 end

@@ -62,7 +62,7 @@ module ApplicationHelper
 
   def concat_title(base_title = '', add_title = '', reverse = false)
     return base_title if add_title.blank?
-    
+
     if reverse
       base_title + ' - ' + add_title
     else
@@ -72,7 +72,7 @@ module ApplicationHelper
 
   def time_overlap?(timetable, current_user)
     return '' if current_user.nil?
-    
+
     time_filter = current_user.time_filter
     nonoverlap = time_filter.empty?
 

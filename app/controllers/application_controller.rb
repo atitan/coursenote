@@ -5,11 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :flash_write_back, if: :user_signed_in?
-  after_filter :set_csrf_cookie_for_ng
-
-  def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
-  end
 
   protected
 
@@ -22,10 +17,6 @@ class ApplicationController < ActionController::Base
       flash[k] = v
     end
     Rails.cache.delete(cache_key)
-  end
-
-  def verified_request?
-    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 
   def configure_permitted_parameters

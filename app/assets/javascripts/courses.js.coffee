@@ -103,48 +103,31 @@ ready = ->
             action: ->
               vote_errmsg.hide()
 
-  $('#by_title').selectize
-    labelField: 'title'
-    valueField: 'title'
-    searchField: 'title'
-    closeAfterSelect: true
-    create: false
-    render:
-      option: (item, escape) ->
-        '<div><span>' + escape(item.title) + '</span></div>'
-    load: (query, callback) ->
-      return callback if !query.length
+  $('#by_title').autocomplete
+    source: (request, response) ->
       $.ajax
         url: '/courses/title'
         type: 'POST'
         dataType: 'json'
         data:
-          name: query
+          query: request.term
         success: (res) ->
-          callback(res)
+          response(res)
         error: ->
-          callback
-  $('#by_instructor').selectize
-    labelField: 'instructor'
-    valueField: 'instructor'
-    searchField: 'instructor'
-    closeAfterSelect: true
-    create: false
-    render:
-      option: (item, escape) ->
-        '<div><span>' + escape(item.instructor) + '</span></div>'
-    load: (query, callback) ->
-      return callback if !query.length
+          response
+
+  $('#by_instructor').autocomplete
+    source: (request, response) ->
       $.ajax
         url: '/courses/instructor'
         type: 'POST'
         dataType: 'json'
         data:
-          name: query
+          query: request.term
         success: (res) ->
-          callback(res)
+          response(res)
         error: ->
-          callback
+          response
 
 $(document).ready(ready)
 $(document).ajaxComplete(ready)
