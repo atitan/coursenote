@@ -34,4 +34,12 @@ module CoursesHelper
   def course_status(state)
     state ? '是' : '否'
   end
+
+  def is_author?(obj)
+    if user_signed_in? && obj.user_id == current_user.id
+      true
+    else
+      false
+    end
+  end
 end

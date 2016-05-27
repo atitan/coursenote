@@ -1,4 +1,4 @@
-.comment-list itemprop="review" itemscope=true itemtype="http://schema.org/Review"
+.comment-list id="#{comment.id}_comment" itemprop="review" itemscope=true itemtype="http://schema.org/Review"
   span itemprop="author" itemscope=true itemtype="http://schema.org/Person"
     meta itemprop="name" content="Anonymous"
   meta itemprop="dateCreated" content="#{comment.created_at.utc.iso8601}"
@@ -13,18 +13,19 @@
           i.fa.fa-chevron-down
     .avatar
       = image_tag avatar_path(comment), class: 'img-responsive'
-    .options.dropdown.comment-info.text-right.clearfix
-      a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
-        i.fa.fa-caret-down
-      ul.dropdown-menu aria-labelledby='dropdownEditOptions'
-        li
-          a href='#'
-            i.fa.fa-pencil
-            | 編輯
-        li
-          a href='#'
-            i.fa.fa-remove
-            | 刪除
+    - if is_author?(comment)
+      .options.dropdown.comment-info.text-right.clearfix
+        a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+          i.fa.fa-caret-down
+        ul.dropdown-menu aria-labelledby='dropdownEditOptions'
+          li
+            a href='#'
+              i.fa.fa-pencil
+              | 編輯
+          li
+            = link_to comment, method: :delete, remote: true, data: { confirm: '確定刪除？' } do
+              i.fa.fa-remove
+              | 刪除
     .comment-content
       .text itemprop="reviewBody"
         = simple_format comment.content

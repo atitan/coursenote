@@ -1,19 +1,21 @@
-.replies.clearfix id="#{reply.id}_reply" itemprop="comment" itemscope=true itemtype="http://schema.org/Comment"
+.replies.clearfix id="#{reply.id}_comment" itemprop="comment" itemscope=true itemtype="http://schema.org/Comment"
   meta itemprop="dateCreated" content="#{reply.created_at.utc.iso8601}"
   .avatar
       = image_tag avatar_path(reply), class: 'img-responsive'
-  .options.dropdown.vote.text-right
-    a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
-      i.fa.fa-caret-down
-    ul.dropdown-menu aria-labelledby='dropdownEditOptions'
-      li
-        a href='#'
-          i.fa.fa-pencil
-          | 編輯
-      li
-        a href='#'
-          i.fa.fa-remove
-          | 刪除
+  - if is_author?(reply)
+    .options.dropdown.vote.text-right
+      a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+        i.fa.fa-caret-down
+      ul.dropdown-menu aria-labelledby='dropdownEditOptions'
+        li
+          a href='#'
+            i.fa.fa-pencil
+            | 編輯
+        li
+          = link_to reply, method: :delete, remote: true, data: { confirm: '確定刪除？' } do
+            i.fa.fa-remove
+            | 刪除
+          
   .reply-content
     .text itemprop="text"
       = simple_format reply.content

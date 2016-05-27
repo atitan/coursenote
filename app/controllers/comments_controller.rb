@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment.destroy
-      render json: @comment
+      render 'courses/comments/deleted'
     else
       render json: { error: @comment.errors.full_messages }, status: 500
     end

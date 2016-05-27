@@ -9,8 +9,21 @@ ready = ->
   }
 
   $('.btn-vote-course').unbind()
+  $('.btn-follow-course').unbind()
   $('a.btn-vote-comment').unbind()
   $('a.btn-vote-reply').unbind()
+
+  $('.btn-follow-course').on("ajax:success", (e, data, status, xhr) ->
+    $(this).addClass 'follow-actived pure-disabled'
+    follow_success_msg = Messenger().post
+      message: '已成功追蹤課程！'
+      hideAfter: 3
+      actions:
+        cancel:
+          label: '關閉訊息'
+          action: ->
+            follow_success_msg.hide()
+  )
 
   $('.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
     $(this)
@@ -27,21 +40,8 @@ ready = ->
           label: '關閉訊息'
           action: ->
             vote_success_msg.hide()
-  ).on "ajax:error", (e, xhr, status, error) ->
-    if xhr.status == 401
-      vote_errmsg = Messenger().post
-        message: xhr.responseText
-        hideAfter: 3
-        type: 'error'
-        actions:
-          login:
-            label: '按此登入'
-            action: ->
-              window.location = '/users/sign_in'
-          cancel:
-            label: '關閉訊息'
-            action: ->
-              vote_errmsg.hide()
+  )
+
   $('a.btn-vote-comment').on("ajax:success", (e, data, status, xhr) ->
     $(this).addClass 'vote-actived pure-disabled'
     $('p a.btn-vote-comment')
@@ -57,21 +57,8 @@ ready = ->
           label: '關閉訊息'
           action: ->
             vote_success_msg.hide()
-  ).on "ajax:error", (e, xhr, status, error) ->
-    if xhr.status == 401
-      vote_errmsg = Messenger().post
-        message: xhr.responseText
-        type: 'error'
-        hideAfter: 3
-        actions:
-          login:
-            label: '按此登入'
-            action: ->
-              window.location = '/users/sign_in'
-          cancel:
-            label: '關閉訊息'
-            action: ->
-              vote_errmsg.hide()
+  )
+
   $('a.btn-vote-reply').on("ajax:success", (e, data, status, xhr) ->
     $(this)
       .addClass 'vote-actived pure-disabled'
@@ -87,10 +74,13 @@ ready = ->
           label: '關閉訊息'
           action: ->
             vote_success_msg.hide()
-  ).on "ajax:error", (e, xhr, status, error) ->
+  )
+
+  $('.btn-vote-course, a.btn-vote-comment, a.btn-vote-reply, .btn-follow-course')
+  .on "ajax:error", (e, xhr, status, error) ->
     if xhr.status == 401
-      vote_errmsg = Messenger().post
-        message: xhr.responseText
+      errmsg = Messenger().post
+        message: xhr.responseJSON.error
         type: 'error'
         hideAfter: 3
         actions:
@@ -101,7 +91,7 @@ ready = ->
           cancel:
             label: '關閉訊息'
             action: ->
-              vote_errmsg.hide()
+              errmsg.hide()
 
   $('#by_title').autocomplete
     source: (request, response) ->
