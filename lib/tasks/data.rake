@@ -4,13 +4,15 @@ namespace :data do
     unless args.yearterm
       raise "No yearterm specified...aborting"
     end
+    puts "Yearterm: #{args.yearterm}"
 
-    # read status file
+    # read fingerprint file
     fingerprint_file = Rails.root.join('config/course_data.fingerprint')
-    if File.exist?(fingerprint_file)
-      fingerprint = Marshal.load(File.read(fingerprint_file))
-    else
-      fingerprint = ""
+    raw_fingerprint = File.open(fingerprint_file, 'w+').read
+    begin
+      fingerprint = Marshal.load(raw_fingerprint)
+    rescue ArgumentError => e
+      fingerprint = ''
     end
 
     # pass yearterm using this sort of command `rake data:import[1031]`
