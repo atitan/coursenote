@@ -23,7 +23,7 @@
               i.fa.fa-pencil
               | 編輯
           li
-            = link_to comment, method: :delete, remote: true, data: { confirm: '確定刪除？' } do
+            = link_to comment, method: :delete, remote: true, class: "btn-delete-comment", data: { confirm: '確定刪除？' } do
               i.fa.fa-remove
               | 刪除
     .comment-content
@@ -32,13 +32,13 @@
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
         span
-          a.switch aria-controls="#{comment.id}_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_reply"
+          a.switch aria-controls="#{comment.id}_comment_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_comment_reply"
             span id="replies_count_on_#{comment.id}"
               = comment.replies.size
               | 則回覆
             i.fa.fa-minus
         span
-          a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
+          a aria-controls='reply_form_collapse' aria-expanded='false' data-toggle='collapse' href="##{comment.id}_comment_form"
             | 回覆
             i.fa.fa-reply
   = render 'courses/comments/replies/form', comment: comment, course: course, cache: true

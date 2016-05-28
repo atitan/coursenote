@@ -12,7 +12,7 @@
             i.fa.fa-pencil
             | 編輯
         li
-          = link_to reply, method: :delete, remote: true, data: { confirm: '確定刪除？' } do
+          = link_to reply, method: :delete, remote: true, class: "btn-delete-comment", data: { confirm: '確定刪除？' } do
             i.fa.fa-remove
             | 刪除
           

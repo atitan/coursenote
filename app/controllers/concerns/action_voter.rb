@@ -5,6 +5,7 @@ module ActionVoter
     vote = current_user.votes.find_or_initialize_by(votable: votable)
     if vote.update(upvote: choice)
       render json: vote.as_json(
+        only: [:id, :votable_id, :votable_type, :upvote, :updated_at],
         include: { votable: { only: [:score, :votes_count] } }
       )
     else

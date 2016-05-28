@@ -1,4 +1,4 @@
-.reply-block.collapse id="#{comment.id}"
+.reply-block.collapse id="#{comment.id}_comment_form"
   = form_for [course, @new_comment], url: comments_path, remote: true, html: {id: "new_reply_on_#{comment.id}"} do |f|
     = f.hidden_field :course_id, value: course.id
     = f.hidden_field :parent_id, value: comment.id

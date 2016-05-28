@@ -33,7 +33,8 @@ Rambulance.setup do |config|
     "ActionController::UnknownFormat"             => :not_acceptable,
     "ActionController::InvalidAuthenticityToken"  => :unprocessable_entity,
     "ActionController::ParameterMissing"          => :bad_request,
-    "ActiveRecord::RecordNotFound"                => :not_found
+    "ActiveRecord::RecordNotFound"                => :not_found,
+    "RangeError"                                  => :not_found
   }
 
   # The template name for the layout of the error pages. The default value is

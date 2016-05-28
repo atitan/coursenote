@@ -21,7 +21,7 @@ class Comment < ActiveRecord::Base
   validates :content, length: { maximum: 1000 }, presence: true
   validates_presence_of :course, :user
   validates_presence_of :parent, unless: 'parent_id.nil?'
-  validate :check_parent_course_id, unless: 'parent_id.nil?'
+  validate :check_parent_course_id, unless: 'parent.nil?'
 
   scope :thread, -> { where(parent: nil) }
 
@@ -34,7 +34,7 @@ class Comment < ActiveRecord::Base
 
   def check_parent_course_id
     if parent.course_id != course_id
-      errors.add(:course_id, 'different course_id between parent and reply')
+      errors.add(:course_id, 'id不相符')
     end
   end
 end

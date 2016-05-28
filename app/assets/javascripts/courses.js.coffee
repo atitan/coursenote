@@ -12,17 +12,43 @@ ready = ->
   $('.btn-follow-course').unbind()
   $('a.btn-vote-comment').unbind()
   $('a.btn-vote-reply').unbind()
+  $('a.btn-delete-comment').unbind()
+  $('form.new_comment').unbind()
+
+  $('form.new_comment').on("ajax:success", (e, data, status, xhr) ->
+    msg = Messenger().post
+      message: '已成功新增留言！'
+      hideAfter: 3
+      actions:
+        cancel:
+          label: '關閉訊息'
+          action: ->
+            msg.hide()
+  )
+
+  $('a.btn-delete-comment').on("ajax:success", (e, data, status, xhr) ->
+    comment = xhr.responseJSON
+    $("#" + comment.id + "_comment").remove()
+    msg = Messenger().post
+      message: '已成功刪除留言！'
+      hideAfter: 3
+      actions:
+        cancel:
+          label: '關閉訊息'
+          action: ->
+            msg.hide()
+  )
 
   $('.btn-follow-course').on("ajax:success", (e, data, status, xhr) ->
     $(this).addClass 'follow-actived pure-disabled'
-    follow_success_msg = Messenger().post
+    msg = Messenger().post
       message: '已成功追蹤課程！'
       hideAfter: 3
       actions:
         cancel:
           label: '關閉訊息'
           action: ->
-            follow_success_msg.hide()
+            msg.hide()
   )
 
   $('.btn-vote-course').on("ajax:success", (e, data, status, xhr) ->
@@ -32,14 +58,14 @@ ready = ->
       .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_course_' + data.votable_id)
     target_credit.html data.votable.score + '|' + data.votable.votes_count
-    vote_success_msg = Messenger().post
+    msg = Messenger().post
       message: '已成功送出課程投票！'
       hideAfter: 3
       actions:
         cancel:
           label: '關閉訊息'
           action: ->
-            vote_success_msg.hide()
+            msg.hide()
   )
 
   $('a.btn-vote-comment').on("ajax:success", (e, data, status, xhr) ->
@@ -49,14 +75,14 @@ ready = ->
       .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_comment_' + data.votable_id)
     target_credit.html data.votable.score + '|' + data.votable.votes_count
-    vote_success_msg = Messenger().post
+    msg = Messenger().post
       message: '已成功送出留言投票！'
       hideAfter: 3
       actions:
         cancel:
           label: '關閉訊息'
           action: ->
-            vote_success_msg.hide()
+            msg.hide()
   )
 
   $('a.btn-vote-reply').on("ajax:success", (e, data, status, xhr) ->
@@ -66,23 +92,23 @@ ready = ->
       .removeClass 'vote-actived pure-disabled'
     target_credit = $('#rank_on_reply_' + data.votable_id)
     target_credit.html data.votable.score + '|' + data.votable.votes_count
-    vote_success_msg = Messenger().post
+    msg = Messenger().post
       message: '已成功送出評論投票！'
       hideAfter: 3
       actions:
         cancel:
           label: '關閉訊息'
           action: ->
-            vote_success_msg.hide()
+            msg.hide()
   )
 
-  $('.btn-vote-course, a.btn-vote-comment, a.btn-vote-reply, .btn-follow-course')
+  $('.btn-vote-course, a.btn-vote-comment, a.btn-vote-reply, .btn-follow-course, a.btn-delete-comment, form.new_comment')
   .on "ajax:error", (e, xhr, status, error) ->
     if xhr.status == 401
-      errmsg = Messenger().post
-        message: xhr.responseJSON.error
+      msg = Messenger().post
+        message: if xhr.responseJSON == undefined then xhr.responseText else xhr.responseJSON.error
         type: 'error'
-        hideAfter: 3
+        hideAfter: 5
         actions:
           login:
             label: '按此登入'
@@ -91,7 +117,17 @@ ready = ->
           cancel:
             label: '關閉訊息'
             action: ->
-              errmsg.hide()
+              msg.hide()
+    else
+      msg = Messenger().post
+        message: xhr.responseJSON.error
+        type: 'error'
+        hideAfter: 5
+        actions:
+          cancel:
+            label: '關閉訊息'
+            action: ->
+              msg.hide()
 
   $('#by_title').autocomplete
     source: (request, response) ->

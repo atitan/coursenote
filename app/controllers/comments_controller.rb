@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     if @comment.save
       @new_comment = Comment.new
-      if  @comment.parent_id.nil?
+      if @comment.parent_id.nil?
         render 'courses/comments/created'
       else
         render 'courses/comments/replies/created'
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      render json: @comment
+      render json: @comment.as_json(only: [:id, :content, :updated_at])
     else
       render json: { error: @comment.errors.full_messages }, status: 500
     end
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment.destroy
-      render 'courses/comments/deleted'
+      render json: @comment.as_json(only: [:id])
     else
       render json: { error: @comment.errors.full_messages }, status: 500
     end
