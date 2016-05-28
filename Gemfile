@@ -8,11 +8,11 @@ gem 'rails', '~> 4.2.0'
 # Use postgresql for production
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -33,7 +33,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 3.5.2'
+gem 'devise', '~> 3.5.0'
 gem 'devise-i18n'
 
 # scope
@@ -43,7 +43,7 @@ gem 'has_scope'
 gem 'kaminari', '~> 0.16.1'
 
 # Record Versioning
-gem 'paper_trail', '~> 4.0.0'
+gem 'paper_trail', '~> 5.1.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'

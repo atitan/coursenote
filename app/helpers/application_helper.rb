@@ -80,6 +80,6 @@ module ApplicationHelper
       time_filter.key?(key) && (timetable[key] - time_filter[key]).empty?
     end
 
-    nonoverlap ? '' : 'background-color: #FFCCCC'
+    nonoverlap ? '' : 'background-color: #FFD4D4'
   end
 end
