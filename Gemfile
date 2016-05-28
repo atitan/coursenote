@@ -58,6 +58,9 @@ gem 'font-awesome-sass'
 # Messenger javascript library
 gem 'messengerjs-rails', '~> 1.4.1'
 
+# Inline editing
+gem 'bootstrap-editable-rails'
+
 # JSON validator
 gem 'activerecord_json_validator'
 gem 'json-schema', '2.5.2'

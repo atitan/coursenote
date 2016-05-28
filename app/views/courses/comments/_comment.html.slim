@@ -19,7 +19,7 @@
           i.fa.fa-caret-down
         ul.dropdown-menu aria-labelledby='dropdownEditOptions'
           li
-            a href='#'
+            a.comment-edit-button href='#'
               i.fa.fa-pencil
               | 編輯
           li
@@ -28,7 +28,7 @@
               | 刪除
     .comment-content
       .text itemprop="reviewBody"
-        = simple_format comment.content
+        = simple_format comment.content, data: {resource: :comment, url: comment_path(comment.id), name: :content}
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
         span

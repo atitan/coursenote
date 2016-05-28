@@ -8,7 +8,7 @@
         i.fa.fa-caret-down
       ul.dropdown-menu aria-labelledby='dropdownEditOptions'
         li
-          a href='#'
+          a.reply-edit-button href='#'
             i.fa.fa-pencil
             | 編輯
         li
@@ -18,7 +18,7 @@
           
   .reply-content
     .text itemprop="text"
-      = simple_format reply.content
+      = simple_format reply.content, data: {resource: :comment, url: comment_path(reply.id), name: :content}
     .vote
       span.date data-date="#{reply.created_at.utc.iso8601}"
       span

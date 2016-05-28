@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
 //= require messenger
 //= require messenger-theme-future
 //= require_tree .

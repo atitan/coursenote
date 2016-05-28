@@ -8,12 +8,13 @@ namespace :data do
 
     # read fingerprint file
     fingerprint_file = Rails.root.join('config/course_data.fingerprint')
-    raw_fingerprint = File.open(fingerprint_file, 'w+').read
+    File.write(fingerprint_file, "") unless File.exists?(fingerprint_file)
     begin
-      fingerprint = Marshal.load(raw_fingerprint)
+      fingerprint = Marshal.load(File.read(fingerprint_file))
     rescue ArgumentError => e
       fingerprint = ''
     end
+    puts "Last fingerprint: #{fingerprint}"
 
     # pass yearterm using this sort of command `rake data:import[1031]`
     require 'net/http'
@@ -34,6 +35,7 @@ namespace :data do
       raise 'Nothing new to update'
     else
       fingerprint = raw_digest
+      puts "New fingerprint found: #{fingerprint}"
     end
 
     print 'Processing...'

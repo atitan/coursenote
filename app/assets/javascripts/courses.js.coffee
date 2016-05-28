@@ -15,6 +15,20 @@ ready = ->
   $('a.btn-delete-comment').unbind()
   $('form.new_comment').unbind()
 
+  $.fn.editable.defaults.mode = 'inline'
+  $.fn.editable.defaults.type = 'textarea'
+  $.fn.editable.defaults.toggle = 'manual'
+  $('.comment-edit-button').click((e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    $(this).parents('.comments').find('.comment-content p').editable('show')
+  )
+  $('.reply-edit-button').click((e) ->
+    e.stopPropagation()
+    e.preventDefault()
+    $(this).parents('.replies').find('.reply-content p').editable('show')
+  )
+
   $('form.new_comment').on("ajax:success", (e, data, status, xhr) ->
     msg = Messenger().post
       message: '已成功新增留言！'
