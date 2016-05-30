@@ -140,7 +140,7 @@ ready = ->
             label: '關閉訊息'
             action: ->
               msg.hide()
-    else
+    else if xhr.status == 500
       msg = Messenger().post
         message: xhr.responseJSON.error
         type: 'error'
