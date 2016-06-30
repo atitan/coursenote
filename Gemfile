@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -33,7 +33,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 3.5.0'
+gem 'devise', '~> 4.1.0'
 gem 'devise-i18n'
 
 # scope
@@ -73,7 +73,6 @@ gem 'highline'
 
 # Queue processing
 gem 'sidekiq'
-gem 'devise-async'
 
 # Traffic throttling
 gem 'rack-attack'
@@ -86,7 +85,6 @@ gem 'rambulance'
 
 # Redis
 gem 'redis'
-gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 
