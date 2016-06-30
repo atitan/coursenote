@@ -22,9 +22,10 @@ class CoursesController < ApplicationController
 
   def index
     @courses = apply_scopes(Course).includes(:entries, comments: :replies).order_by_rating
+    return render 'not_found' , status: 404 if @courses.empty?
+    
     @new_comment = Comment.new
     @votes = current_user.votes if user_signed_in?
-    render status: 404 if @courses.empty?
   end
 
   def show
