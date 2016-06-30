@@ -8,11 +8,11 @@ gem 'rails', '~> 4.2.0'
 # Use postgresql for production
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -33,17 +33,17 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 3.5.2'
+gem 'devise', '~> 4.1.0'
 gem 'devise-i18n'
 
 # scope
 gem 'has_scope'
 
 # Model pagination
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 0.17.0'
 
 # Record Versioning
-gem 'paper_trail', '~> 4.0.0'
+gem 'paper_trail', '~> 5.2.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -58,6 +58,9 @@ gem 'font-awesome-sass'
 # Messenger javascript library
 gem 'messengerjs-rails', '~> 1.4.1'
 
+# Inline editing
+gem 'bootstrap-editable-rails'
+
 # JSON validator
 gem 'activerecord_json_validator'
 gem 'json-schema', '2.5.2'
@@ -70,7 +73,6 @@ gem 'highline'
 
 # Queue processing
 gem 'sidekiq'
-gem 'devise-async'
 
 # Traffic throttling
 gem 'rack-attack'
@@ -83,7 +85,6 @@ gem 'rambulance'
 
 # Redis
 gem 'redis'
-gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 

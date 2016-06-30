@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :lockable, :confirmable, :async
+         :validatable, :lockable, :confirmable
 
   # Has many relationships
   has_many :comments
@@ -49,5 +49,9 @@ class User < ActiveRecord::Base
 
   def active_for_authentication?
     super && (self[:banned_until].nil? || DateTime.now > self[:banned_until])
+  end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 end

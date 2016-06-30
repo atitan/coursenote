@@ -420,8 +420,8 @@
   }
 }
 
-.btn-vote-comment,
-.btn-vote-reply {
+a.btn-vote-comment,
+a.btn-vote-reply {
   &.vote-actived {
     color: $orange;
   }
@@ -542,6 +542,17 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: fixed;
+}
+
+@media screen and (min-width: 992px) {
+  #entry-info {
+    min-height: 300px;
+  }
+}
+
+#cat404 {
+  margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 // a.btn-vote-course {

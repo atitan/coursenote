@@ -6,9 +6,9 @@
 | $("span#comments_count_on_#{@comment.course_id}").html("#{@comment.course.comments.count}&ensp;則留言&ensp;");
 
 // Render Newly Created Comments
-| $("##{@comment.course_id}_comment").prepend('
+| $("##{@comment.course_id}_comment").prepend("
 = j render 'courses/comments/comment', comment: @comment, course: @comment.course
-| ');
+| ");
 
 // Processing Relative Time
 | $('##{@comment.course_id}_comment .date').each(function() {

@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def vote_status(object, btn_type)
-    return '' if @votes.nil? || @votes.empty?
+    return '' if @votes.nil? || @votes == []
 
     found = @votes.find do |vote|
       vote[:votable_type] == object.class.name && vote[:votable_id] == object.id
@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def fav_course_status(code)
-    return '' if current_user.nil? || current_user.favorite_courses.empty?
+    return '' if current_user.nil? || current_user.favorite_courses == []
 
     found = current_user.favorite_courses.find do |entry|
       entry == code
@@ -60,9 +60,7 @@ module ApplicationHelper
     end
   end
 
-  def concat_title(base_title = '', add_title = '', reverse = false)
-    return base_title if add_title.blank?
-
+  def concat_title(base_title, add_title, reverse = false)
     if reverse
       base_title + ' - ' + add_title
     else
@@ -80,6 +78,6 @@ module ApplicationHelper
       time_filter.key?(key) && (timetable[key] - time_filter[key]).empty?
     end
 
-    nonoverlap ? '' : 'background-color: #FFCCCC'
+    nonoverlap ? '' : 'background-color: #FFD4D4'
   end
 end

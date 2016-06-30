@@ -1,4 +1,4 @@
-.comment-list itemprop="review" itemscope=true itemtype="http://schema.org/Review"
+.comment-list id="#{comment.id}_comment" itemprop="review" itemscope=true itemtype="http://schema.org/Review"
   span itemprop="author" itemscope=true itemtype="http://schema.org/Person"
     meta itemprop="name" content="Anonymous"
   meta itemprop="dateCreated" content="#{comment.created_at.utc.iso8601}"
@@ -7,37 +7,38 @@
       p
         = link_to comment_vote_path(comment_id: comment.id, upvote: true), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, true)}" do
           i.fa.fa-chevron-up
-      p id="rank_on_comment_#{comment.id}" = "#{comment.score}|#{comment.votes_count}"
+      p id="rank_on_comment_#{comment.id}" = "#{comment.score}\xE2\x80\x8B|\xE2\x80\x8B#{comment.votes_count}"
       p
         = link_to comment_vote_path(comment_id: comment.id, upvote: false), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, false)}" do
           i.fa.fa-chevron-down
     .avatar
       = image_tag avatar_path(comment), class: 'img-responsive'
-    .options.dropdown.comment-info.text-right.clearfix
-      a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
-        i.fa.fa-caret-down
-      ul.dropdown-menu aria-labelledby='dropdownEditOptions'
-        li
-          a href='#'
-            i.fa.fa-pencil
-            | 編輯
-        li
-          a href='#'
-            i.fa.fa-remove
-            | 刪除
+    - if is_author?(comment)
+      .options.dropdown.comment-info.text-right.clearfix
+        a.dropdown-toggle href='#' type='button' id='dropdownEditOptions' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'
+          i.fa.fa-caret-down
+        ul.dropdown-menu aria-labelledby='dropdownEditOptions'
+          li
+            a.comment-edit-button href='#'
+              i.fa.fa-pencil
+              | 編輯
+          li
+            = link_to comment, method: :delete, remote: true, class: "btn-delete-comment", data: { confirm: '確定刪除？' } do
+              i.fa.fa-remove
+              | 刪除
     .comment-content
       .text itemprop="reviewBody"
-        = simple_format comment.content
+        = simple_format comment.content, data: {resource: :comment, url: comment_path(comment.id), name: :content}
       .comment-info
         span.date data-date="#{comment.created_at.utc.iso8601}"
         span
-          a.switch aria-controls="#{comment.id}_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_reply"
+          a.switch aria-controls="#{comment.id}_comment_reply" aria-expanded='true' data-toggle='collapse' href="##{comment.id}_comment_reply"
             span id="replies_count_on_#{comment.id}"
               = comment.replies.size
               | 則回覆
             i.fa.fa-minus
         span
-          a aria-controls='collapseExample' aria-expanded='false' data-toggle='collapse' href="##{comment.id}"
+          a aria-controls='reply_form_collapse' aria-expanded='false' data-toggle='collapse' href="##{comment.id}_comment_form"
             | 回覆
             i.fa.fa-reply
   = render 'courses/comments/replies/form', comment: comment, course: course, cache: true

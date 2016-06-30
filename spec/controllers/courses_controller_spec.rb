@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CoursesController, type: :controller do
-  let(:course) { create(:course) }
+  let!(:course) { create(:course) }
 
   describe "index" do
     it "renders the index template" do

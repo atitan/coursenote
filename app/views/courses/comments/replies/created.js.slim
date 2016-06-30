@@ -6,13 +6,13 @@
 | $("span#replies_count_on_#{@comment.parent_id}").html("#{@comment.parent.replies.size}&nbsp;則回覆&ensp;");
 
 // Render Newly Created Comments
-| content = $("##{@comment.parent_id}_reply").append('
+| content = $("##{@comment.parent_id}_comment_reply").append("
 = j render 'courses/comments/replies/reply', reply: @comment
-| ');
-| $('body').animate({scrollTop: $("##{@comment.id}_reply").position().top}, 800);
+| ");
+| $('body').animate({scrollTop: $("##{@comment.id}_comment_reply").position().top}, 800);
 
 // Processing Relative Time
-| $('##{@comment.parent_id}_reply .date').each(function() {
+| $('##{@comment.parent_id}_comment_reply .date').each(function() {
 |  var date = $(this).data('date');
 |  var date_formatted = moment(date).startOf('minute').fromNow();
 |  $(this).text(date_formatted);

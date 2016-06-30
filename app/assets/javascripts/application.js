@@ -14,6 +14,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
 //= require messenger
 //= require messenger-theme-future
 //= require_tree .
@@ -38,7 +40,7 @@ var ready = function() {
 
 	/* click event to scroll to top */
 	$('.totop').click(function(){
-		$('html, body').animate({scrollTop : 0},800);
+		$('html, body').animate({'scrollTop': 0}, 800);
 		return false;
 	});
 
