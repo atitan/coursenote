@@ -4,11 +4,11 @@
 
 ## 系統需求
 
-**Ruby 2.2以上**
+**Ruby 2.2+**
 
-**PostgreSQL 9.4以上**
+**PostgreSQL 9.4+**
 
-**Redis**
+**Redis 2.8+**
 
 ## 安裝使用
 
