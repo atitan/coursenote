@@ -544,6 +544,12 @@ a.btn-vote-reply {
   position: fixed;
 }
 
+@media screen and (min-width: 992px) {
+  #entry-info {
+    min-height: 300px;
+  }
+}
+
 // a.btn-vote-course {
 //   color: white;
 //   margin-right: 5px;
