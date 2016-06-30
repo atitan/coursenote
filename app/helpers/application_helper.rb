@@ -60,9 +60,7 @@ module ApplicationHelper
     end
   end
 
-  def concat_title(base_title = '', add_title = '', reverse = false)
-    return base_title if add_title.blank?
-
+  def concat_title(base_title, add_title, reverse = false)
     if reverse
       base_title + ' - ' + add_title
     else

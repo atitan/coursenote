@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
 
   def vote
     course = Course.find(params[:course_id])
-    vote_it(course, params[:upvote])
+    vote_for(course, params[:upvote])
   end
 
   def title

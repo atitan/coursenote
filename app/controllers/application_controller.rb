@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :flash_write_back, if: :user_signed_in?
+  before_filter :set_paper_trail_whodunnit
 
   protected
 

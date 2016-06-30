@@ -19,7 +19,6 @@ module DeviseHelper
   end
 
   def devise_error_messages?
-    resource.errors.empty? ? false : true
+    !resource.errors.empty?
   end
-
 end
