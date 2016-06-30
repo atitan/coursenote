@@ -8,10 +8,10 @@ namespace :data do
 
     # read fingerprint file
     fingerprint_file = Rails.root.join('config/course_data.fingerprint')
-    File.write(fingerprint_file, "") unless File.exists?(fingerprint_file)
+    File.write(fingerprint_file, "") unless File.exist?(fingerprint_file)
     begin
       fingerprint = Marshal.load(File.read(fingerprint_file))
-    rescue ArgumentError => e
+    rescue ArgumentError
       fingerprint = ''
     end
     puts "Last fingerprint: #{fingerprint}"
