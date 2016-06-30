@@ -23,7 +23,7 @@ module ApplicationHelper
   end
 
   def vote_status(object, btn_type)
-    return '' if @votes.nil? || @votes.empty?
+    return '' if @votes.nil? || @votes == []
 
     found = @votes.find do |vote|
       vote[:votable_type] == object.class.name && vote[:votable_id] == object.id
@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def fav_course_status(code)
-    return '' if current_user.nil? || current_user.favorite_courses.empty?
+    return '' if current_user.nil? || current_user.favorite_courses == []
 
     found = current_user.favorite_courses.find do |entry|
       entry == code

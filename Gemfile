@@ -40,10 +40,10 @@ gem 'devise-i18n'
 gem 'has_scope'
 
 # Model pagination
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 0.17.0'
 
 # Record Versioning
-gem 'paper_trail', '~> 5.1.0'
+gem 'paper_trail', '~> 5.2.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
