@@ -19,8 +19,11 @@ namespace :data do
     # pass yearterm using this sort of command `rake data:import[1031]`
     require 'net/http'
     print 'Downloading...'
-    uri = URI('https://itouch.cycu.edu.tw/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm)
-    raw = Net::HTTP.get_response(uri).body.force_encoding("utf-8")
+    http = Net::HTTP.new("itouch.cycu.edu.tw", 443)
+    http.use_ssl = true
+    req = Net::HTTP::Get.new('/active_system/CourseQuerySystem/GetCourses.jsp?yearTerm=' + args.yearterm, {'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0'})
+    response = http.request(req)
+    raw = response.body.force_encoding("utf-8")
     raw.gsub!(/(\s+|\r|\n)/, '') # remove space or newline
     puts 'completed'
 
