@@ -33,7 +33,7 @@ class CsysHandler
 
   def fetch_class_schedule
     return false unless @loggedin
-    path = '/student/op/StudentCourseTime.srv'
+    path = '/student/student/op/StudentCourseTime.srv'
 
     resp = @http.post(path, "cmd=selectJson&where=idcode%3D'#{@student_id}'", @headers)
     resp_json = JSON.parse(resp.body)
@@ -50,7 +50,7 @@ class CsysHandler
 
   def bookmark(list = [])
     return false unless @loggedin
-    path = '/student/op/StudentCourseTrace.srv'
+    path = '/student/student/op/StudentCourseTrace.srv'
 
     list.each do |item|
       @http.post(path, "cmd=insert&op_code=#{item}", @headers)
