@@ -17,9 +17,9 @@ section
         hr
         table.table.table-condensed.table-hover.break-table
           h3.h4 已修過課程列表
-          button.pull-right.btn.btn-danger type='submit'
-            span.fa.fa-times
-              | 全部取消登記
+          = link_to users_passed_courses_path, class: 'btn btn-danger', method: :delete do
+              span.fa.fa-times
+                | &ensp;全部取消登記
           thead
             tr
               th 課程名稱
