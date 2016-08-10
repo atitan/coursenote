@@ -104,6 +104,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'capybara'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~> 4.0', require: false
   gem 'shoulda-matchers'
