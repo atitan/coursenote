@@ -17,7 +17,7 @@ module CoursesHelper
   end
 
   def avatar_path(comment)
-    if user_signed_in? && comment.user_id == current_user.id
+    if is_author?(comment)
       'user-indicator.png'
     else
       "https://secure.gravatar.com/avatar/#{comment.avatar}?d=identicon&s=40"
