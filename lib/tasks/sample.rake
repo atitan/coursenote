@@ -15,11 +15,11 @@ namespace :sample do
     user.save!
     user.confirm
 
-    puts  "\n接下來將隨機產生 500 則評論。"
+    puts "\n接下來將隨機產生 500 則評論。"
     print 'Downloading Random Sentences...'
-    random_sentences  = JSON.load(open 'http://more.handlino.com/sentences.json?n=100&limit=5,20')['sentences']
+    random_sentences = JSON.load(open 'http://more.handlino.com/sentences.json?n=100&limit=5,20')['sentences']
     random_sentences << JSON.load(open 'http://more.handlino.com/sentences.json?n=100&limit=5,20')['sentences']
-    puts  'completed'
+    puts 'completed'
 
     percentage = 0
 
@@ -32,7 +32,7 @@ namespace :sample do
       end
     end
 
-    puts  "\n接下來將隨機產生 1000 則回應。"
+    puts "\n接下來將隨機產生 1000 則回應。"
     percentage = 0
     1000.times do |index|
       comment = Comment.where(parent_id: nil).sample

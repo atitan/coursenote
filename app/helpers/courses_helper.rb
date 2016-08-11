@@ -6,18 +6,11 @@ module CoursesHelper
     end
     display_name = name.length == 1 ? "#{name}學" : name
 
-    html = <<-HTML
-      <label class="btn btn-warning mg-b-10 #{'active' if active}">
-      <input type="checkbox" name="by_category[]" value="#{name}" #{'checked' if active}>
-      #{display_name}
-      </label>
-    HTML
-
-    html.html_safe
+    return active, display_name
   end
 
   def avatar_path(comment)
-    if user_signed_in? && comment.user_id == current_user.id
+    if is_author?(comment)
       'user-indicator.png'
     else
       "https://secure.gravatar.com/avatar/#{comment.avatar}?d=identicon&s=40"

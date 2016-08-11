@@ -7,7 +7,7 @@ class CsysHandler
     @student_id = student_id
     @password = password
     @http = Net::HTTP.new('csys.cycu.edu.tw')
-    @headers = {}
+    @headers = {'Referer' => 'http://csys.cycu.edu.tw/student/', 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36'}
     @loggedin = false
     init_cookie
   end
@@ -15,7 +15,7 @@ class CsysHandler
   def login
     return false if @loggedin
 
-    resp = @http.post('/sso/sso.srv', "cmd=login&userid=#{@student_id}&hash=#{login_hash}", @headers)
+    resp = @http.post('/student/sso.srv', "cmd=login&userid=#{@student_id}&hash=#{login_hash}", @headers)
     resp_json = JSON.parse(resp.body)
 
     raise resp_json['message'] unless resp_json['result']
@@ -26,13 +26,14 @@ class CsysHandler
 
   def logout
     return false unless @loggedin
-    @http.post('/sso/sso.srv', 'cmd=logout', @headers)
+    @http.post('/student/sso.srv', 'cmd=logout', @headers)
     @loggedin = false
+    true
   end
 
   def fetch_class_schedule
     return false unless @loggedin
-    path = '/student/op/StudentCourseTime.srv'
+    path = '/student/student/op/StudentCourseTime.srv'
 
     resp = @http.post(path, "cmd=selectJson&where=idcode%3D'#{@student_id}'", @headers)
     resp_json = JSON.parse(resp.body)
@@ -49,7 +50,7 @@ class CsysHandler
 
   def bookmark(list = [])
     return false unless @loggedin
-    path = '/student/op/StudentCourseTrace.srv'
+    path = '/student/student/op/StudentCourseTrace.srv'
 
     list.each do |item|
       @http.post(path, "cmd=insert&op_code=#{item}", @headers)
@@ -59,7 +60,7 @@ class CsysHandler
   private
 
   def init_cookie
-    resp = @http.get('/index.jsp')
+    resp = @http.get('/student/index.jsp', @headers)
     raw_cookies = resp.response['set-cookie']
 
     cookies = []
@@ -71,12 +72,13 @@ class CsysHandler
   end
 
   def secure_random
-    resp = @http.post('/sso/sso.srv', 'cmd=login_init', @headers)
+    resp = @http.post('/student/sso.srv', 'cmd=login_init', @headers)
     resp_json = JSON.parse(resp.body)
     resp_json['secureRandom']
   end
 
   def login_hash
-    OpenSSL::HMAC.hexdigest('sha256', @password, @student_id + secure_random)
+    hashed_passwd = OpenSSL::Digest::MD5.hexdigest(@password)
+    OpenSSL::HMAC.hexdigest('sha256', hashed_passwd, @student_id + secure_random)
   end
 end
