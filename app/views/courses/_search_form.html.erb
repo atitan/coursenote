@@ -14,7 +14,11 @@
     </div>
     <div data-toggle="buttons" class="search-buttons">
       <% %w(天 人 物 我 宗哲 人哲 歷史 體育 公民 英聽 文學 軍訓 科技).each do |name| %>
-        <%= category_button(name) %>
+        <% active, display_name = category_button(name) %>
+        <label class="btn btn-warning mg-b-10 <%= 'active' if active %>">
+          <input type="checkbox" name="by_category[]" value="<%= name %>" <%= 'checked' if active %>>
+          <%= display_name %>
+        </label>
       <% end %>
     </div>
     <div class="filter-checkbox checkbox">

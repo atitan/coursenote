@@ -46,4 +46,21 @@ RSpec.describe CoursesHelper, type: :helper do
       end
     end
   end
+
+  describe ".category_button" do
+    it "indicate active if matched params in URL" do
+      allow(helper).to receive(:params).and_return({:by_category => ['宗哲']})
+      expect(helper.category_button('宗哲')).to eq([true, '宗哲'])
+    end
+
+    it "indicate not active if no matched params in URL" do
+      allow(helper).to receive(:params).and_return({:by_category => []})
+      expect(helper.category_button('宗哲')).to eq([nil, '宗哲'])
+    end
+
+    it "add trailing 學 if name.length == 1" do
+      allow(helper).to receive(:params).and_return({:by_category => []})
+      expect(helper.category_button('人')).to eq([nil, '人學'])
+    end
+  end
 end
