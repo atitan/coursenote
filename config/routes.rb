@@ -23,16 +23,13 @@ Rails.application.routes.draw do
   end
 
   resources :courses, only: [:index, :show] do
-    post 'vote'
+    post :vote, on: :member
+    post :title, on: :collection
+    post :instructor, on: :collection
   end
 
   resources :comments, only: [:create, :update, :destroy] do
-    post 'vote'
-  end
-
-  scope 'courses' do
-    post 'title' => 'courses#title'
-    post 'instructor' => 'courses#instructor'
+    post :vote, on: :member
   end
 
   #namespace :api do

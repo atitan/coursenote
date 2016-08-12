@@ -5,11 +5,11 @@
   .comments.clearfix
     .vote
       p
-        = link_to comment_vote_path(comment_id: comment.id, upvote: true), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, true)}" do
+        = link_to vote_comment_path(id: comment.id, upvote: true), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, true)}" do
           i.fa.fa-chevron-up
       p id="rank_on_comment_#{comment.id}" = "#{comment.score}\xE2\x80\x8B|\xE2\x80\x8B#{comment.votes_count}"
       p
-        = link_to comment_vote_path(comment_id: comment.id, upvote: false), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, false)}" do
+        = link_to vote_comment_path(id: comment.id, upvote: false), method: :post, remote: true, class: "btn-vote-comment #{vote_status(comment, false)}" do
           i.fa.fa-chevron-down
     .avatar
       = image_tag avatar_path(comment), class: 'img-responsive'

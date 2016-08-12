@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    comment = Comment.find(params[:comment_id])
+    comment = Comment.find(params[:id])
     vote_for(comment, params[:upvote])
   end
 
