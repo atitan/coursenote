@@ -33,7 +33,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 4.1.0'
+gem 'devise', '~> 4.2.0'
 gem 'devise-i18n'
 
 # scope
@@ -120,10 +120,6 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-autosize'
-end
-
-group :production do
-  gem 'skylight'
 end
 
 # Use ActiveModel has_secure_password
