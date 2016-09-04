@@ -1,9 +1,15 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @email %> 安安</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>帳號註冊成功</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>點擊以下的連結進行認證</p>
 
-<p>Or paste the link into browser window</p>
+<p><%= link_to '點這裡進行認證', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>或是把網址貼進瀏覽器</p>
 
 <p><%= confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>如果你沒有進行註冊卻收到此信，可暫時忽略，日後再使用忘記密碼功能取回帳號所有權</p>
+
+<%= render 'footer' %>
