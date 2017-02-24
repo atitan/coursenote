@@ -1,7 +1,13 @@
-<p>Hello <%= @resource.email %>!</p>
+<p><%= @resource.email %> 安安</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>有人試圖登入你的帳號，因此帳號已被鎖定30分鐘</p>
 
-<p>Click the link below to unlock your account:</p>
+<p>點擊以下的連結進行立即解鎖</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to '解鎖我的帳號', unlock_url(@resource, unlock_token: @token) %></p>
+
+<p>或是把網址貼進瀏覽器</p>
+
+<p><%= unlock_url(@resource, unlock_token: @token) %></p>
+
+<%= render 'footer' %>

@@ -23,8 +23,8 @@
       span.date data-date="#{reply.created_at.utc.iso8601}"
       span
         | &ensp;&#8901;&ensp;
-        = link_to comment_vote_path(comment_id: reply.id, upvote: true), method: :post, remote: true, class: "btn-vote-reply #{vote_status(reply, true)}" do
+        = link_to vote_comment_path(id: reply.id, upvote: true), method: :post, remote: true, class: "btn-vote-reply #{vote_status(reply, true)}" do
           i.fa.fa-chevron-up
         span id="rank_on_reply_#{reply.id}" = "#{reply.score}|#{reply.votes_count}"
-        = link_to comment_vote_path(comment_id: reply.id, upvote: false), method: :post, remote: true, class: "btn-vote-reply #{vote_status(reply, false)}" do
+        = link_to vote_comment_path(id: reply.id, upvote: false), method: :post, remote: true, class: "btn-vote-reply #{vote_status(reply, false)}" do
           i.fa.fa-chevron-down

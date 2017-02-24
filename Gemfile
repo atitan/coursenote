@@ -33,17 +33,17 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
-gem 'devise', '~> 4.1.0'
+gem 'devise', '~> 4.2.0'
 gem 'devise-i18n'
 
 # scope
 gem 'has_scope'
 
 # Model pagination
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.0.0'
 
 # Record Versioning
-gem 'paper_trail', '~> 5.2.0'
+gem 'paper_trail', '~> 6.0.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -120,10 +120,6 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-autosize'
-end
-
-group :production do
-  gem 'skylight'
 end
 
 # Use ActiveModel has_secure_password

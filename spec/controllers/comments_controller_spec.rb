@@ -29,7 +29,7 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "vote" do
     it 'requires you to be logged in' do
-      xhr :post, :vote, comment_id: comment.id
+      xhr :post, :vote, id: comment.id
       expect(response).to have_http_status(401)
     end
     

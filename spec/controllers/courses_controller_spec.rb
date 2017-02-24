@@ -30,7 +30,7 @@ RSpec.describe CoursesController, type: :controller do
 
   describe "vote" do
     it 'requires you to be logged in' do
-      xhr :post, :vote, course_id: course.id
+      xhr :post, :vote, id: course.id
       expect(response).to have_http_status(401)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe CoursesController, type: :controller do
       login_user
 
       it 'returns http 200 if voted successfully' do
-        xhr :post, :vote, course_id: course.id
+        xhr :post, :vote, id: course.id
         expect(response).to have_http_status(200)
       end
     end
