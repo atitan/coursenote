@@ -102,35 +102,35 @@ RSpec.describe ApplicationHelper, type: :helper do
     it "render alert as danger" do
       value = double('message')
 
-      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'danger', message: value })
+      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'danger', message: value, dismissable: true })
       helper.render_flash('alert', value)
     end
 
     it "render error as danger" do
       value = double('message')
 
-      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'danger', message: value })
+      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'danger', message: value, dismissable: true })
       helper.render_flash('error', value)
     end
 
     it "render warning as warning" do
       value = double('message')
 
-      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'warning', message: value })
+      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'warning', message: value, dismissable: true })
       helper.render_flash('warning', value)
     end
 
     it "render notice as info" do
       value = double('message')
 
-      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'info', message: value })
+      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'info', message: value, dismissable: true })
       helper.render_flash('notice', value)
     end
 
     it "render success as success" do
       value = double('message')
 
-      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'success', message: value })
+      expect(helper).to receive(:render).with(partial: 'common/flash', locals: { type: 'success', message: value, dismissable: true })
       helper.render_flash('success', value)
     end
   end
