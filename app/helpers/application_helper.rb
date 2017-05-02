@@ -7,7 +7,7 @@ module ApplicationHelper
     raw buffer
   end
 
-  def render_flash(key, value)
+  def render_flash(key, value, dismissable = true)
     case key.to_s
     when 'alert', 'error'
       type = 'danger'
@@ -19,7 +19,7 @@ module ApplicationHelper
       type = 'success'
     end
 
-    render partial: 'common/flash', locals: { type: type, message: value }
+    render partial: 'common/flash', locals: { type: type, message: value, dismissable: dismissable }
   end
 
   def vote_status(object, btn_type)
