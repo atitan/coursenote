@@ -1,4 +1,4 @@
-- provide(:title, '時間表')
+- provide(:title, '空堂時間表')
 section
   .container
     h1.sr-only 使用者時間表設定
@@ -6,11 +6,13 @@ section
       = render 'users/aside_tabs'
     article.col-md-10
       .jumbotron
-        h2.m-title.text-center 時間表
+        h2.m-title.text-center 空堂時間表
         .pull-right
             - if current_user.student?
-              button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 自動排除已選上時段
-        h3.h4 目前時間表
+              button.btn.btn-success.button_to data-toggle="modal" data-target="#confirmed_form" 自動排除已修課時段
+        h3.h4 功能用途
+        .box 可於課程查詢時自動以顏色標示衝堂課程
+        h3.h4 目前空堂時間表
         .box = timetable_to_string(current_user.time_filter)
         = form_for :time_filter, method: :put do |f|
           h3.h4 手動修改時間表(格式：1-ABCD,2-34567,4-1256CDE)
@@ -24,7 +26,7 @@ section
             .modal-header
               button.close aria-label="Close" data-dismiss="modal" type="button"
                 span aria-hidden="true"  &times;
-              h3.h4#myModalLabel.modal-title 匯入課表
+              h3.h4#myModalLabel.modal-title 匯入時間表
             = form_for :time_filter, url: {action: "import"}, method: :post, html: {class: 'form-horizontal'} do |f|
               .modal-body.h4
                 .form-group
