@@ -11,7 +11,7 @@
     <ul class="nav-list text-right">
       <li class="nav-item hover-effect"><%= link_to '課程查詢', courses_path %></li>
       <li class="nav-item hover-effect"><a href="https://www.facebook.com/CourseNote" target="_blank">粉絲專頁</a></li>
-
+      <li class="nav-item hover-effect"><a href="/old_coursenote.json" target="_blank">舊版選課大全資料</a></li>
       <% if user_signed_in? %>
         <li class="dropdown nav-item">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><%= current_user.email %> <span class="caret"></span></a>

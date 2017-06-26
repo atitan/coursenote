@@ -29,7 +29,12 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.includes(:entries, comments: :replies).find(params[:id])
+    @course = Course.includes(:entries, comments: :replies)
+    if params[:id].to_i > 0
+      @course = @course.find(params[:id])
+    else
+      @course = @course.by_code(params[:id]).take!
+    end
     @new_comment = Comment.new
   end
 

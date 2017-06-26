@@ -14,7 +14,8 @@
 	width: 33%;
 	margin-right: 2%;
 	height: auto;
-	max-height: 90vh;
+  /* 沒有公告時設90vh */
+	max-height: 75vh;
 	/* 解決 fixed 的時候 33% 抓 body 而非 container 所以爆炸的問題 */
 	max-width: 350px;
 	@include breakpoint(laptop) {
