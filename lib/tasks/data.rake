@@ -93,6 +93,7 @@ namespace :data do
       total = courses.length
       percentage = 0
       courses.each_with_index do |course, index|
+        next if course.any?{|k,v| v.blank?}
 
         course_record = Course.find_or_initialize_by(course)
         course_record.save!
