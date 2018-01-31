@@ -20,6 +20,6 @@ RSpec.feature "Signing Up", type: :feature do
       fill_in '確認密碼', with: 'こんな格言を知ってる？'
     end
     click_button '送出'
-    expect(page).to have_content '電子郵箱 是無效的'
+    expect(page).to have_content 'Email 是無效的'
   end
 end

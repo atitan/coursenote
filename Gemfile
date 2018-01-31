@@ -6,7 +6,7 @@ gem 'rails', '~> 4.2.0'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3', group: [:development, :test]
 # Use postgresql for production
-gem 'pg'
+gem 'pg', '~> 0.20.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,7 +34,6 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 
 # User management
 gem 'devise', '~> 4.2.0'
-gem 'devise-i18n'
 
 # scope
 gem 'has_scope'
@@ -86,7 +85,6 @@ gem 'rambulance'
 # Redis
 gem 'redis'
 gem 'redis-rails'
-gem 'redis-rack-cache'
 
 # JSON lib
 gem 'oj'
@@ -106,7 +104,7 @@ end
 group :development, :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails', '~> 4.0', require: false
+  gem 'factory_bot_rails', '~> 4.0', require: false
   gem 'shoulda-matchers'
   gem 'shoulda-callback-matchers', '~> 1.1.1'
   #gem 'rack-mini-profiler'
