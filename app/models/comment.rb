@@ -19,8 +19,8 @@ class Comment < ApplicationRecord
 
   validates :content, length: { maximum: 1000 }, presence: true
   validates_presence_of :course, :user
-  validates_presence_of :parent, unless: 'parent_id.nil?'
-  validate :check_parent_course_id, unless: 'parent.nil?'
+  validates_presence_of :parent, unless: -> { parent_id.nil? }
+  validate :check_parent_course_id, unless: -> { parent.nil? }
 
   scope :thread, -> { where(parent: nil) }
 

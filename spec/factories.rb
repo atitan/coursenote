@@ -31,17 +31,19 @@ FactoryBot.define do
   end
 
   factory :user do
-    sequence(:email) { |n| "s#{(10200000 + n).to_s}@cycu.edu.tw" }
+    sequence(:email) { |n| "s#{10200000 + n}@cycu.edu.tw" }
     password { 'a12345678' }
   end
 
   factory :course_vote, class: "Vote" do
     user
     association :votable, factory: :course
+    upvote { true }
   end
 
   factory :comment_vote, class: "Vote" do
     user
     association :votable, factory: :comment
+    upvote { true }
   end
 end

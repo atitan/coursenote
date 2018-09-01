@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.7'
+gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3', group: [:development, :test]
 # Use postgresql for production
@@ -12,7 +12,7 @@ gem 'sass-rails', '~> 5.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.2'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -39,10 +39,10 @@ gem 'devise', '~> 4.5.0'
 gem 'has_scope'
 
 # Model pagination
-gem 'kaminari', '~> 1.0.0'
+gem 'kaminari', '~> 1.1.1'
 
 # Record Versioning
-gem 'paper_trail', '~> 6.0.0'
+gem 'paper_trail', '~> 9.2.0'
 
 # Use Bootstrap for stylesheets
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -90,6 +90,9 @@ gem 'redis-rails'
 gem 'oj'
 gem 'oj_mimic_json'
 
+# Console
+gem 'pry-rails'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -97,8 +100,6 @@ group :development do
   gem 'bullet'
   # Deployment
   gem 'capistrano-rails'
-  # console
-  gem 'pry-rails'
 end
 
 group :development, :test do
