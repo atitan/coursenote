@@ -4,7 +4,7 @@
 
 ## 系統需求
 
-**Ruby 2.2+**
+**Ruby 2.3+**
 
 **PostgreSQL 9.4+**
 
@@ -16,9 +16,9 @@
 
 ``` bash
 $ ruby -v
-ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
+ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin17]
 $ gem install bundler
-Successfully installed bundler-1.10.6
+Successfully installed bundler-1.16.4
 ```
 
 **確認PostgreSQL已安裝並啟動**
@@ -34,7 +34,7 @@ $ ps aux | grep postgres
 ``` bash
 $ bundle install
 $ createdb coursewiki
-$ rake db:migrate
+$ bundle exec rails db:migrate
 ```
 
 **匯入課程資料**
@@ -51,7 +51,7 @@ $ rake data:import[....]
 ``` bash
 $ rails server
 => Booting Puma
-=> Rails 4.2.0 application starting in development on http://localhost:3000
+=> Rails 5.2.1 application starting in development on http://localhost:3000
 => Run `rails server -h` for more startup options
 => Ctrl-C to shutdown server
 ```
