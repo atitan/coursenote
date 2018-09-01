@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3', group: [:development, :test]
+# gem 'sqlite3', group: [:development, :test]
 # Use postgresql for production
 gem 'pg'
 # Use SCSS for stylesheets
@@ -83,6 +83,7 @@ gem 'easy_diff'
 gem 'rambulance'
 
 # Redis
+gem 'hiredis'
 gem 'redis'
 gem 'redis-rails'
 
@@ -122,11 +123,3 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-autosize'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
