@@ -99,8 +99,6 @@ group :development do
   gem 'binding_of_caller'
   # N+1 problem
   gem 'bullet'
-  # Deployment
-  gem 'capistrano-rails'
 end
 
 group :development, :test do
