@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.7'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3', group: [:development, :test]
 # Use postgresql for production
-gem 'pg', '~> 0.20.0'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,16 +24,16 @@ gem 'jquery-ui-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+# gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
 # I18n
-gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
+gem 'rails-i18n', '~> 5.1' # For 5.x
 
 # User management
-gem 'devise', '~> 4.2.0'
+gem 'devise', '~> 4.5.0'
 
 # scope
 gem 'has_scope'
@@ -52,7 +52,7 @@ gem 'slim', '~> 3.0.6'
 gem 'slim-rails'
 
 # Official Font Awesome SASS Ruby Gem
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 4'
 
 # Messenger javascript library
 gem 'messengerjs-rails', '~> 1.4.1'
@@ -62,7 +62,7 @@ gem 'bootstrap-editable-rails'
 
 # JSON validator
 gem 'activerecord_json_validator'
-gem 'json-schema', '2.5.2'
+gem 'json-schema'
 
 # Use puma server
 gem 'puma'
@@ -114,6 +114,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem "codeclimate-test-reporter", require: nil
   gem 'simplecov', require: false
+  gem 'rails-controller-testing'
 end
 
 source 'https://rails-assets.org' do

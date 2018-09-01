@@ -1,4 +1,4 @@
-class ImportClassScheduleJob < ActiveJob::Base
+class ImportClassScheduleJob < ApplicationJob
   queue_as :default
 
   after_enqueue do |job|

@@ -1,4 +1,4 @@
-class Entry < ActiveRecord::Base
+class Entry < ApplicationRecord
   # Belongs to these models
   belongs_to :course, touch: true
 

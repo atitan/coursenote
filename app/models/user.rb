@@ -1,5 +1,4 @@
-require 'securerandom'
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,7 +24,6 @@ class User < ActiveRecord::Base
   # use randomly generated string to prevent identity guessing
   def generate_secure_random
     self[:secure_random] = SecureRandom.hex(16)
-    true
   end
 
   # extract student id
@@ -34,7 +32,6 @@ class User < ActiveRecord::Base
     matches = self[:email].match(exp)
     self[:is_student] = !matches.nil?
     self[:student_id] = matches[3] if self[:is_student]
-    true
   end
 
   def sanitize_array_column
@@ -44,7 +41,6 @@ class User < ActiveRecord::Base
     self[:favorite_courses].reject!(&:blank?)
     self[:passed_courses].delete_if { |item| !item.is_a?(String) }
     self[:favorite_courses].delete_if { |item| !item.is_a?(String) }
-    true
   end
 
   def active_for_authentication?
