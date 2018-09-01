@@ -27,7 +27,8 @@ module Coursenote
     # Traffic throttling
     config.middleware.use Rack::Attack
 
-    # Suppress deprecation warning
-    config.active_record.raise_in_transactional_callbacks = true
+    # Upgrade configs
+    config.active_record.belongs_to_required_by_default = true
+    config.action_controller.forgery_protection_origin_check = true
   end
 end

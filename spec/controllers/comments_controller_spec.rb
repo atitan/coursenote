@@ -5,7 +5,7 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "create" do
     it 'requires you to be logged in' do
-      xhr :post, :create
+      post :create, xhr: true
       expect(response).to have_http_status(401)
     end
     
@@ -13,7 +13,7 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "update" do
     it 'requires you to be logged in' do
-      xhr :post, :update, id: comment.id
+      post :update, params: { id: comment.id }, xhr: true
       expect(response).to have_http_status(401)
     end
     
@@ -21,7 +21,7 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "destroy" do
     it 'requires you to be logged in' do
-      xhr :post, :destroy, id: comment.id
+      post :destroy, params: { id: comment.id }, xhr: true
       expect(response).to have_http_status(401)
     end
     
@@ -29,7 +29,7 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "vote" do
     it 'requires you to be logged in' do
-      xhr :post, :vote, id: comment.id
+      post :vote, params: { id: comment.id }, xhr: true
       expect(response).to have_http_status(401)
     end
     

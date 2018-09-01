@@ -1,8 +1,8 @@
-class Vote < ActiveRecord::Base
+class Vote < ApplicationRecord
   belongs_to :votable, polymorphic: true, counter_cache: true, touch: true
   belongs_to :user
 
-  after_save :update_score
+  after_save :update_score, if: :saved_change_to_upvote?
 
   validates_uniqueness_of :user_id, scope: [:votable_id, :votable_type]
   validates_presence_of :votable, :user
@@ -10,7 +10,7 @@ class Vote < ActiveRecord::Base
   private
 
   def update_score
-    history = changes['upvote'] || [nil, nil]
+    history = saved_change_to_upvote
     lookup = { nil => 0, true => 1, false => -1 }
 
     diff = -lookup[history[0]] + lookup[history[1]]

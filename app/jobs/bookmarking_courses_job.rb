@@ -1,4 +1,4 @@
-class BookmarkingCoursesJob < ActiveJob::Base
+class BookmarkingCoursesJob < ApplicationJob
   queue_as :default
 
   after_enqueue do |job|
