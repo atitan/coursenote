@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -26,12 +25,11 @@ ActiveRecord::Schema.define(version: 20160302102611) do
     t.text     "content",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["course_id"], name: "index_comments_on_course_id", using: :btree
+    t.index ["parent_id"], name: "index_comments_on_parent_id", using: :btree
+    t.index ["score"], name: "index_comments_on_score", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
-
-  add_index "comments", ["course_id"], name: "index_comments_on_course_id", using: :btree
-  add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
-  add_index "comments", ["score"], name: "index_comments_on_score", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "title",                       null: false
@@ -43,15 +41,14 @@ ActiveRecord::Schema.define(version: 20160302102611) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "engaged",     default: false, null: false
+    t.index ["available"], name: "index_courses_on_available", using: :btree
+    t.index ["category"], name: "index_courses_on_category", using: :btree
+    t.index ["engaged"], name: "index_courses_on_engaged", using: :btree
+    t.index ["instructor"], name: "index_courses_on_instructor", using: :btree
+    t.index ["score"], name: "index_courses_on_score", using: :btree
+    t.index ["title"], name: "index_courses_on_title", using: :btree
+    t.index ["votes_count"], name: "index_courses_on_votes_count", using: :btree
   end
-
-  add_index "courses", ["available"], name: "index_courses_on_available", using: :btree
-  add_index "courses", ["category"], name: "index_courses_on_category", using: :btree
-  add_index "courses", ["engaged"], name: "index_courses_on_engaged", using: :btree
-  add_index "courses", ["instructor"], name: "index_courses_on_instructor", using: :btree
-  add_index "courses", ["score"], name: "index_courses_on_score", using: :btree
-  add_index "courses", ["title"], name: "index_courses_on_title", using: :btree
-  add_index "courses", ["votes_count"], name: "index_courses_on_votes_count", using: :btree
 
   create_table "entries", force: :cascade do |t|
     t.integer  "course_id",                     null: false
@@ -68,13 +65,12 @@ ActiveRecord::Schema.define(version: 20160302102611) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "capacity",         default: 0,  null: false
+    t.index ["code"], name: "index_entries_on_code", using: :btree
+    t.index ["course_id"], name: "index_entries_on_course_id", using: :btree
+    t.index ["cross_department"], name: "index_entries_on_cross_department", using: :btree
+    t.index ["department"], name: "index_entries_on_department", using: :btree
+    t.index ["timetable"], name: "index_entries_on_timetable", using: :gin
   end
-
-  add_index "entries", ["code"], name: "index_entries_on_code", using: :btree
-  add_index "entries", ["course_id"], name: "index_entries_on_course_id", using: :btree
-  add_index "entries", ["cross_department"], name: "index_entries_on_cross_department", using: :btree
-  add_index "entries", ["department"], name: "index_entries_on_department", using: :btree
-  add_index "entries", ["timetable"], name: "index_entries_on_timetable", using: :gin
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -102,14 +98,13 @@ ActiveRecord::Schema.define(version: 20160302102611) do
     t.datetime "banned_until"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["secure_random"], name: "index_users_on_secure_random", unique: true, using: :btree
+    t.index ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
-
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["secure_random"], name: "index_users_on_secure_random", unique: true, using: :btree
-  add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true, using: :btree
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false
@@ -121,12 +116,11 @@ ActiveRecord::Schema.define(version: 20160302102611) do
     t.integer  "user_id",    null: false
     t.integer  "course_id",  null: false
     t.integer  "parent_id"
+    t.index ["course_id"], name: "index_versions_on_course_id", using: :btree
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+    t.index ["parent_id"], name: "index_versions_on_parent_id", using: :btree
+    t.index ["user_id"], name: "index_versions_on_user_id", using: :btree
   end
-
-  add_index "versions", ["course_id"], name: "index_versions_on_course_id", using: :btree
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
-  add_index "versions", ["parent_id"], name: "index_versions_on_parent_id", using: :btree
-  add_index "versions", ["user_id"], name: "index_versions_on_user_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id",   null: false
@@ -135,9 +129,8 @@ ActiveRecord::Schema.define(version: 20160302102611) do
     t.boolean  "upvote"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["votable_id", "votable_type", "user_id"], name: "index_votes_on_votable_id_and_votable_type_and_user_id", unique: true, using: :btree
+    t.index ["votable_id"], name: "index_votes_on_votable_id", using: :btree
   end
-
-  add_index "votes", ["votable_id", "votable_type", "user_id"], name: "index_votes_on_votable_id_and_votable_type_and_user_id", unique: true, using: :btree
-  add_index "votes", ["votable_id"], name: "index_votes_on_votable_id", using: :btree
 
 end

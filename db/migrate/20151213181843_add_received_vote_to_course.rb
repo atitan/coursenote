@@ -1,4 +1,4 @@
-class AddReceivedVoteToCourse < ActiveRecord::Migration
+class AddReceivedVoteToCourse < ActiveRecord::Migration[4.2]
   def change
     add_column :courses, :received_vote, :boolean, default: false, null: false
     change_column_default :courses, :available, false
