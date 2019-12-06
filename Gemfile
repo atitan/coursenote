@@ -33,7 +33,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n', '~> 5.1' # For 5.x
 
 # User management
-gem 'devise', '~> 4.5.0'
+gem 'devise', '~> 4.7.1'
 
 # scope
 gem 'has_scope'
