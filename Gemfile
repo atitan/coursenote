@@ -45,7 +45,7 @@ gem 'kaminari', '~> 1.1.1'
 gem 'paper_trail', '~> 9.2.0'
 
 # Use Bootstrap for stylesheets
-gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 # Use slim to simplify html code
 gem 'slim', '~> 3.0.6'
