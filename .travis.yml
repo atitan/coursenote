@@ -1,19 +1,24 @@
 language: ruby
-dist: trusty
+dist: bionic
 sudo: false
 cache: bundler
 rvm:
-  - 2.3.7
-  - 2.4.4
-  - 2.5.1
+  - 2.4.9
+  - 2.5.7
+  - 2.6.5
 before_script:
   - psql -c 'create database coursewiki_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bundle exec rails db:migrate RAILS_ENV=test
 services:
   - postgresql
-  - redis-server
+  - redis
 addons:
+  apt:
+    sources:
+      - ppa:chris-lea/redis-server
+    packages:
+      - redis-server
   postgresql: "9.4"
   code_climate:
     repo_token: ac82785a8b72ce12a4778ca56e43bf844cefbffcfa533eebc103fb090f4cdc23
