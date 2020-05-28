@@ -39,7 +39,7 @@ gem 'devise', '~> 4.7.1'
 gem 'has_scope'
 
 # Model pagination
-gem 'kaminari', '~> 1.1.1'
+gem 'kaminari', '~> 1.2.1'
 
 # Record Versioning
 gem 'paper_trail', '~> 9.2.0'
